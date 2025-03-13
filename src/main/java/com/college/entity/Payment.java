@@ -1,8 +1,7 @@
 package com.college.entity;
 
-import java.lang.module.ModuleDescriptor;
 
-public class payment {
+public class Payment {
      private int paymentId;
      private String paymentAmount;
      private String paymentMethod;
@@ -10,15 +9,7 @@ public class payment {
      private String paymentDate;
 
      private void Payment(){}
-        public payment(int paymentId, String paymentAmount, String paymentMethod, String paymentStatus, String paymentDate) {}
-
-    private payment(ModuleDescriptor.Builder paymentBuilder){
-         this.paymentId = paymentBuilder.builderPaymentId;
-         this.paymentAmount = paymentBuilder.builderPaymentAmount;
-         this.paymentMethod = paymentBuilder.builderPaymentMethod;
-         this.paymentStatus = paymentBuilder.buidlerPaymentStatus;
-         this.paymentDate = paymentBuilder.builderPaymentDate;
-    }
+        public Payment(int paymentId, String paymentAmount, String paymentMethod, String paymentStatus, String paymentDate) {}
 
     public int getPaymentId() {
          return paymentId;
@@ -40,5 +31,6 @@ public class payment {
     @Override
     public String toString() {
 
+        return "";
     }
 }
