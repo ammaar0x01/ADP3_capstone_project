@@ -1,0 +1,109 @@
+package com.college.domain;
+
+public class Guest {
+
+    private int guestID;
+    private String name;
+    private String surname;
+    private String contactNumber;
+    private String email;
+    private String paymentDetails;
+
+    // Default constructor
+    public Guest() {}
+
+    // Parameterized constructor using the builder
+    public Guest(GuestBuilder builder) {
+        this.paymentDetails = builder.paymentDetails;
+        this.email = builder.email;
+        this.contactNumber = builder.contactNumber;
+        this.surname = builder.surname;
+        this.name = builder.name;
+        this.guestID = builder.guestID;
+    }
+
+    // Getters
+    public String getPaymentDetails() {
+        return paymentDetails;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getGuestID() {
+        return guestID;
+    }
+
+    // Overriding toString()
+    @Override
+    public String toString() {
+        return "Guest{" +
+                "guestID=" + guestID +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", contactNumber=" + contactNumber +
+                ", email='" + email + '\'' +
+                ", paymentDetails='" + paymentDetails + '\'' +
+                '}';
+    }
+
+    // Guest Builder Class
+    public static class GuestBuilder {
+
+        private int guestID;
+        private String name;
+        private String surname;
+        private String contactNumber;
+        private String email;
+        private String paymentDetails;
+
+        // Builder methods with method chaining
+        public GuestBuilder setGuestID(int guestID) {
+            this.guestID = guestID;
+            return this;
+        }
+
+        public GuestBuilder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public GuestBuilder setSurname(String surname) {
+            this.surname = surname;
+            return this;
+        }
+
+        public GuestBuilder setContactNumber(String contactNumber) {
+            this.contactNumber = contactNumber;
+            return this;
+        }
+
+        public GuestBuilder setEmail(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public GuestBuilder setPaymentDetails(String paymentDetails) {
+            this.paymentDetails = paymentDetails;
+            return this;
+        }
+
+        // Build method to create a Guest object
+        public Guest build() {
+            return new Guest(this);
+        }
+    }
+}

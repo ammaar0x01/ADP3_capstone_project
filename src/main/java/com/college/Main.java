@@ -20,8 +20,14 @@ Ammaar Swartland | 230159478  | https://github.com/ammaar0x01 |
 
 package com.college;
 
+import com.college.domain.Guest;
+import com.college.factory.GuestFactory;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+        Guest guest1 = GuestFactory.createGuest(102, "Alice", "Smith", "9876543210", "alice@email.com", "PayPal");
+        System.out.println(guest1);
+
     }
 }
