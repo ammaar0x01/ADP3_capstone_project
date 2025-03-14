@@ -10,11 +10,7 @@ Members
 -------
 Name and surname | Student id | GitHub profile                |
 ---------------------------------------------------------------
-Ammaar Swartland | 230159478  | https://github.com/ammaar0x01 |
-Ammaar Swartland | 230159478  | https://github.com/ammaar0x01 |
-Ammaar Swartland | 230159478  | https://github.com/ammaar0x01 |
-Ammaar Swartland | 230159478  | https://github.com/ammaar0x01 |
-Ammaar Swartland | 230159478  | https://github.com/ammaar0x01 |
+Zaid Theunissen | 221084142  | https://github.com/zaid-xt |
 ---------------------------------------------------------------
 */
 

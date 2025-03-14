@@ -9,10 +9,9 @@ public class Guest {
     private String email;
     private String paymentDetails;
 
-    // Default constructor
-    public Guest() {}
+    public Guest() {
+    }
 
-    // Parameterized constructor using the builder
     public Guest(GuestBuilder builder) {
         this.paymentDetails = builder.paymentDetails;
         this.email = builder.email;
@@ -22,7 +21,6 @@ public class Guest {
         this.guestID = builder.guestID;
     }
 
-    // Getters
     public String getPaymentDetails() {
         return paymentDetails;
     }
@@ -47,7 +45,6 @@ public class Guest {
         return guestID;
     }
 
-    // Overriding toString()
     @Override
     public String toString() {
         return "Guest{" +
@@ -60,7 +57,6 @@ public class Guest {
                 '}';
     }
 
-    // Guest Builder Class
     public static class GuestBuilder {
 
         private int guestID;
@@ -70,7 +66,18 @@ public class Guest {
         private String email;
         private String paymentDetails;
 
-        // Builder methods with method chaining
+        public GuestBuilder(int guestID, String name, String surname, String contactNumber, String email, String paymentDetails) {
+            this.guestID = guestID;
+            this.name = name;
+            this.surname = surname;
+            this.contactNumber = contactNumber;
+            this.email = email;
+            this.paymentDetails = paymentDetails;
+        }
+
+        public GuestBuilder() {
+        }
+
         public GuestBuilder setGuestID(int guestID) {
             this.guestID = guestID;
             return this;
@@ -101,7 +108,6 @@ public class Guest {
             return this;
         }
 
-        // Build method to create a Guest object
         public Guest build() {
             return new Guest(this);
         }

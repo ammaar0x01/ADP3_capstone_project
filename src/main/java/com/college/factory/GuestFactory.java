@@ -6,18 +6,17 @@ import com.college.util.Helper;
 public class GuestFactory {
 
     public static Guest createGuest(int guestID, String name, String surname, String contactNumber, String email, String paymentDetails) {
-        // Validation logic (optional)
+
         if (Helper.isNullOrEmpty(name) || Helper.isNullOrEmpty(surname) || Helper.isNullOrEmpty(paymentDetails)) {
-            throw new IllegalArgumentException("Name, surname, and payment details cannot be empty.");
+            return null;
         }
         if (!Helper.isValidEmail(email)) {
-            throw new IllegalArgumentException("Invalid email format.");
+            return null;
         }
-        if (!Helper.isValidContactNumber(contactNumber)) {  // Pass contactNumber as a string
-            throw new IllegalArgumentException("Invalid contact number.");
+        if (!Helper.isValidContactNumber(contactNumber)) {
+            return null;
         }
 
-        // Using the GuestBuilder to build the Guest object
         return new Guest.GuestBuilder()
                 .setGuestID(guestID)
                 .setName(name)
@@ -25,6 +24,6 @@ public class GuestFactory {
                 .setContactNumber(contactNumber)
                 .setEmail(email)
                 .setPaymentDetails(paymentDetails)
-                .build(); // Calling build to create the Guest
+                .build();
     }
 }
