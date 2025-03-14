@@ -2,7 +2,7 @@ package com.college.entity;
 
 public class Employee {
 
-    // Employee attributes
+    // Employee attribute
     private int employeeId;
     private String employeeName;
     private String employeeSurname;
