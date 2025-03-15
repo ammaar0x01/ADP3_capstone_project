@@ -1,17 +1,15 @@
 package com.college.domain;
 
+import com.college.factory.PaymentFactory;
+
 public class Main {
     public static void main(String[] args) {
         // Create a Payment object using the Builder pattern
-        Payment payment = new Payment.Builder()
-                .setPaymentId(1)
-                .setPaymentAmount("100.00")
-                .setPaymentMethod("Credit Card")
-                .setPaymentStatus("Completed")
-                .setPaymentDate("2023-10-01")
-                .build();
+        Payment defaultPayment = PaymentFactory.createDefaultPayment(1, "50.00");
+        System.out.println("Default Payment: " + defaultPayment);
 
-        // Print the Payment object
-        System.out.println(payment);
+        // Create a custom payment using the factory
+        Payment customPayment = PaymentFactory.createPayment(2, "200.00", "PayPal", "Completed", "2023-10-05");
+        System.out.println("Custom Payment: " + customPayment);
     }
 }
