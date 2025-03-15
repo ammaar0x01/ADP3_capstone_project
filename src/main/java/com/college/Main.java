@@ -10,18 +10,24 @@ Members
 -------
 Name and surname | Student id | GitHub profile                |
 ---------------------------------------------------------------
-Ammaar Swartland | 230159478  | https://github.com/ammaar0x01 |
-Ammaar Swartland | 230159478  | https://github.com/ammaar0x01 |
-Ammaar Swartland | 230159478  | https://github.com/ammaar0x01 |
-Ammaar Swartland | 230159478  | https://github.com/ammaar0x01 |
-Ammaar Swartland | 230159478  | https://github.com/ammaar0x01 |
+Ammaar Swartland    | 230159478     | (original) https://github.com/ammaar0x01/ADP3_capstone_project    |
+Zaid Theunissen     | 221084142     | https://github.com/zaid-xt/ADP3_capstone_project                  |
+Joshua Twigg        | 222153881     |                                                                   |
+Talia Theresa Smuts | 221126082     | https://github.com/Taliasmuts28/ADP3_capstone_project.git         |
+Muaath Slamong      | 230074138     | https://github.com/MuaathSlamong-alt/ADP3_capstone_project.git    |
 ---------------------------------------------------------------
 */
 
 package com.college;
 
+import com.college.entity.Employee;
+import com.college.factory.EmployeeFactory;
+
 public class Main {
     public static void main(String[] args) {
+
+        Employee employee = EmployeeFactory.createEmployee(1,"Amaar", "Swartland", "Manager");
+
         System.out.println("Hello world!");
     }
 }
