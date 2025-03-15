@@ -9,7 +9,7 @@ public class Main {
         System.out.println("Default Payment: " + defaultPayment);
 
         // Create a custom payment using the factory
-        Payment customPayment = PaymentFactory.createPayment(2, "200.00", "PayPal", "Completed", "2023-10-05");
+        Payment customPayment = PaymentFactory.createPayment(2, "200.00", "Mastercard", "Completed", "2023-10-05");
         System.out.println("Custom Payment: " + customPayment);
     }
 }
