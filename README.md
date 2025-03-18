@@ -3,7 +3,7 @@
 - Started: 	12.03.25
 - Updated: 	13.03.25
 - Status: 	work-in-progress
-- _Branch:	230159478_
+- Branch:	*MASTER*
 ---
 
 ### Software-class Diagram
