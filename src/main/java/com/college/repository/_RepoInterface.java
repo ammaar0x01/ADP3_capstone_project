@@ -7,7 +7,8 @@ public interface _RepoInterface<ClassType, Id> {
 
     public ClassType update(ClassType obj);
 
-    public ClassType delete(Id id);
+    // public ClassType delete(Id id);
+    public boolean delete(Id id);
 
-    public ClassType getAll();
+    // public ClassType getAll();
 }

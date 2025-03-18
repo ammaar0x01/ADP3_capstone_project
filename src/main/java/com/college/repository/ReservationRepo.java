@@ -2,43 +2,89 @@
 File name:  ReservationRepo.java
 Author:     Ammaar
 Started:    12.03.25
+updated:    18.03.25
+
 */
 
 package com.college.repository;
 
 import com.college.domain.Reservation;
-//import com.college.repository.InReservationRepo;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+//import java.util.HashMap;
 
-public class ReservationRepo implements InReservationRepo{
-    private final HashMap<Integer, Reservation> Reservations = new HashMap<>();
+public class ReservationRepo implements IReservationRepo {
+//    private final HashMap<Integer, Reservation> Reservations = new HashMap<>();
+//    private final ArrayList<Reservation> reservations = new ArrayList<>();
+    // -----------------------------
+
+
+    // for singleton pattern
+    // checking if another instance of the class was already created
+    private static IReservationRepo repo = null;
+    public static IReservationRepo getRepo(){
+        if(repo == null){
+            repo = new ReservationRepo();
+        }
+        return repo;
+    }
+
+    private final ArrayList<Reservation> reservations;
+    private ReservationRepo(){
+        this.reservations = new ArrayList<>();
+    }
     // -----------------------------
 
     @Override
-    public Object create(Object obj) {
+//    public Reservation add(Reservation obj) {
+//    public Reservation save(Reservation obj) {
+    public Reservation create(Reservation obj) {
+        if (this.reservations.add(obj)){
+            System.out.println(" * added to arraylist");
+            return obj;
+        }
         return null;
+    }
+
+    /**
+     * Returns an object at a specific index
+     * */
+    @Override
+    public Reservation read(Integer integer) {
+        System.out.println("object found");
+
+        System.out.println(this.reservations.get(integer));
+//        return this.reservations.get(integer);
+        return null;
+
+        // or use loop
     }
 
     @Override
-    public Object read(Object o) {
-        return null;
+    public boolean delete(Integer integer) {
+        Reservation reservationToDel = this.read(integer);
+        if (reservationToDel == null){
+            return false;
+        }
+        System.out.println("removed from arraylist");
+        return this.reservations.remove(reservationToDel);
+
+        // return this.read(integer) ? this.reservations.remove(reservationToDel) : null;
+
     }
 
     @Override
-    public Object update(Object obj) {
+    public Reservation update(Reservation obj) {
+        System.out.println("updated");
+
         return null;
     }
+
+
+
 
     @Override
-    public Object delete(Object o) {
-        return null;
+    public ArrayList<Reservation> getAll() {
+        return this.reservations;
     }
-
-    @Override
-    public Reservation getAll() {
-        return null;
-    }
-    // -----------------------------
-
 }
