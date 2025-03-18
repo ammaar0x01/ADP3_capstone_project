@@ -9,7 +9,7 @@ public class Main {
 //        Room roomTwo = new Room.RoomBuilder("x","y",124,true,"z").build();
 //        System.out.println(roomOne.toString());
 
-        Room roomThree = RoomFactory.createRoom();
+        Room roomThree = RoomFactory.createRoom("a","b",2,true,"ax");
         System.out.println(roomThree.toString());
 
     }
