@@ -21,12 +21,14 @@ Muaath Slamong      | 230074138     | https://github.com/MuaathSlamong-alt/ADP3_
 package com.college;
 
 import com.college.entity.Employee;
+import com.college.entity.Housekeeper;
 import com.college.factory.EmployeeFactory;
+import com.college.factory.HousekeeperFactory;
 
 public class Main {
     public static void main(String[] args) {
 
-        Employee employee = EmployeeFactory.createEmployee(1,"Amaar", "Swartland", "Manager");
+        Housekeeper housekeeper = HousekeeperFactory.createHousekeeper(56, "John", "Smith", "admin");
 
         System.out.println("Hello world!");
     }
