@@ -18,12 +18,22 @@ package com.college;
 
 import com.college.domain.Guest;
 import com.college.factory.GuestFactory;
+import com.college.repository.GuestRepository;
 
 public class Main {
     public static void main(String[] args) {
 
-        Guest guest1 = GuestFactory.createGuest(102, "Alice", "Smith", "9876543210", "alice@email.com", "PayPal");
-        System.out.println(guest1);
+        // Create GuestRepository instance
+        GuestRepository guestRepository = new GuestRepository();
 
+        // Create a Guest object
+        Guest guest1 = GuestFactory.createGuest(101, "Alice", "Smith", "9876543210", "alice@email.com", "PayPal");
+
+        // Save guest to repository
+        guestRepository.save(guest1);
+
+        // Retrieve and print guest details
+        Guest retrievedGuest = guestRepository.findByGuestID(101);
+        System.out.println("Retrieved Guest: " + retrievedGuest);
     }
 }
