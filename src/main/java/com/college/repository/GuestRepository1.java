@@ -4,7 +4,8 @@ import com.college.domain.Guest;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GuestRepository {
+public class GuestRepository1 {
+
     private final Map<Integer, Guest> guestDatabase = new HashMap<>();
 
     // Save a guest to the database
