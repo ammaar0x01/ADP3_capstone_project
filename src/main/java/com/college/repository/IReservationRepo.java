@@ -10,7 +10,7 @@ import com.college.domain.Reservation;
 
 import java.util.ArrayList;
 
-public interface IReservationRepo extends _RepoInterface<Reservation, Integer>{
+public interface IReservationRepo extends _RepositoryInterface<Reservation, Integer> {
     public ArrayList<Reservation> getAll();
 
 }

@@ -25,10 +25,10 @@ import com.college.repository.IReservationRepo;
 import com.college.repository.ReservationRepo;
 
 public class Main {
-    public static void main(String[] args) {
-        System.out.println("\nTesting");
-        System.out.println("=======");
-
+    /**
+     * Code related to the Reservation-entity
+     * */
+    public static void entityReservation(){
         System.out.println("\n---Reservation---");
         Reservation r0 = new Reservation.Builder()
                 .build();
@@ -39,14 +39,46 @@ public class Main {
         System.out.println(r1);
 
         System.out.println("\n---Reservation factory---");
-        // Reservation r11 = ReservationFactory.createReservation();
+        Reservation r11 = ReservationFactory.createReservation();
         Reservation r12 = ReservationFactory.createReservation(100, "start", "end");
-        // System.out.println(r11);
+        System.out.println(r11);
         System.out.println(r12);
 
         System.out.println("\n---Reservation repository---");
         IReservationRepo repoReservation = ReservationRepo.getRepo();
         repoReservation.create(r0);
-        // -----------------------------------
+        repoReservation.create(r1);
+        repoReservation.create(r12);
+
+        repoReservation.read(100);
+
+        repoReservation.delete(1);
+
+        /// added again
+        repoReservation.create(r1);
+
+        System.out.println();
+        repoReservation.update(r1);
+
+        // System.out.println(repoReservation.getAll());
+
+        System.out.println();
+        int index = 0;
+//        repoReservation.getAll().forEach((obj) -> System.out.println(obj));
+        // or
+        for(Reservation r : repoReservation.getAll()){
+            System.out.println(index);
+            System.out.println(r);
+            System.out.println();
+            index++;
+        }
+    }
+    // -----------------------------------
+
+    public static void main(String[] args) {
+        System.out.println("\nTesting");
+        System.out.println("=======");
+
+        entityReservation();
     }
 }
