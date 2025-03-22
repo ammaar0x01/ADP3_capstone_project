@@ -6,7 +6,6 @@ public class Housekeeper {
     private int housekeeperId;
     private String housekeeperName;
     private String housekeeperSurname;
-    private String housekeeperRole;
 
     // Default Constructor
     public Housekeeper() {
@@ -17,7 +16,6 @@ public class Housekeeper {
         this.housekeeperId = builder.housekeeperId;
         this.housekeeperName = builder.housekeeperName;
         this.housekeeperSurname = builder.housekeeperSurname;
-        this.housekeeperRole = builder.housekeeperRole;
     }
 
     // Getters
@@ -33,9 +31,6 @@ public class Housekeeper {
         return housekeeperSurname;
     }
 
-    public String getHousekeeperRole() {
-        return housekeeperRole;
-    }
 
     @Override
     public String toString() {
@@ -43,15 +38,13 @@ public class Housekeeper {
                 "housekeeperId=" + housekeeperId +
                 ", housekeeperName='" + housekeeperName + '\'' +
                 ", housekeeperSurname='" + housekeeperSurname + '\'' +
-                ", housekeeperRole='" + housekeeperRole + '\'' +
                 '}';
     }
 
     public static class HousekeeperBuilder {
         private int housekeeperId;
         private String housekeeperName;
-        private String housekeeperSurname;
-        private String housekeeperRole;
+        private String housekeeperSurnam
 
         public HousekeeperBuilder() {}
 
@@ -59,7 +52,6 @@ public class Housekeeper {
             this.housekeeperId = housekeeperId;
             this.housekeeperName = housekeeperName;
             this.housekeeperSurname = housekeeperSurname;
-            this.housekeeperRole = housekeeperRole;
         }
 
         // Builder Getters
@@ -75,11 +67,6 @@ public class Housekeeper {
 
         public HousekeeperBuilder setHousekeeperSurname(String housekeeperSurname) {
             this.housekeeperSurname = housekeeperSurname;
-            return this;
-        }
-
-        public HousekeeperBuilder setHousekeeperRole(String housekeeperRole) {
-            this.housekeeperRole = housekeeperRole;
             return this;
         }
 
