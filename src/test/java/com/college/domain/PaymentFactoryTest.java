@@ -9,7 +9,7 @@ public class PaymentFactoryTest {
 
     @Test
     public void testCreateDefaultPayment() {
-        Payment payment = PaymentFactory.createDefaultPayment(1, "1500.00");
+        Payment payment = PaymentFactory.createDefaultPayment(1, "1500.00","Mastercard", "Completed", "2023-10-05");
 
         assertEquals(1, payment.getPaymentId());
         assertEquals("1500.00", payment.getPaymentAmount());

@@ -14,8 +14,8 @@ public class PaymentFactory {
                 .build();
     }
 
-    public static Payment createDefaultPayment(int paymentId, String paymentAmount) {
-        return createPayment(paymentId, paymentAmount, "Credit Card", "Pending", "2023-10-01");
+    public static Payment createDefaultPayment(int paymentId, String paymentAmount, String paymentMethod, String paymentStatus, String paymentDate) {
+        return createPayment(paymentId, paymentAmount, paymentMethod, paymentStatus, paymentDate);
     }
 
 }
