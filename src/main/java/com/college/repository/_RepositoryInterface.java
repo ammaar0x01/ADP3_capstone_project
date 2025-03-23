@@ -1,12 +1,11 @@
 package com.college.repository;
-import com.college.domain.Guest;
 import java.util.Map;
 
-public interface iRepository<T, ID> {
+public interface _RepositoryInterface<T, ID> {
 
-    T create(T entity);
+    T create(T t);
     T read(ID id);
-    T update(T entity);
+    T update(T t);
     boolean delete(ID id);
     Map<ID, T> getAll();
 }

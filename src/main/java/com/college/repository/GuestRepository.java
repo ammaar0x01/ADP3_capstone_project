@@ -1,40 +1,50 @@
 package com.college.repository;
 
 import com.college.domain.Guest;
-
-import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class GuestRepository implements iGuestRepository {
 
+    private final Map<Integer, Guest> guestDatabase = new HashMap<>();
+
     @Override
-    public Guest create(Guest entity) {
+    public Guest create(Guest guest) {
+        guestDatabase.put(guest.getGuestID(), guest);
+        return guest;
+    }
+
+    @Override
+    public Guest read(Integer guestID) {
+        return guestDatabase.get(guestID);
+    }
+
+    @Override
+    public Guest update(Guest guest) {
+        if (guestDatabase.containsKey(guest.getGuestID())) {
+            guestDatabase.put(guest.getGuestID(), guest);
+            return guest;
+        }
         return null;
     }
 
     @Override
-    public Guest read(Integer integer) {
-        return null;
+    public boolean delete(Integer guestID) {
+        return guestDatabase.remove(guestID) != null;
     }
 
     @Override
-    public Guest update(Guest entity) {
-        return null;
-    }
-
-    @Override
-    public boolean delete(Integer integer) {
-        return false;
-    }
-
-    @Override
-    public Map getAll() {
-        return Map.of();
+    public Map<Integer, Guest> getAll() {
+        return guestDatabase;
     }
 
     @Override
     public List<Guest> findByName(String name) {
-        return List.of();
+        List<Guest> result = new ArrayList<>();
+        for (Guest guest : guestDatabase.values()) {
+            if (guest.getName().equalsIgnoreCase(name)) {
+                result.add(guest);
+            }
+        }
+        return result;
     }
 }
