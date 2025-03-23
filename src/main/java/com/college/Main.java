@@ -28,7 +28,7 @@ import com.college.factory.HousekeeperFactory;
 public class Main {
     public static void main(String[] args) {
 
-        Housekeeper housekeeper = HousekeeperFactory.createHousekeeper(56, "John", "Smith", "admin");
+        Housekeeper housekeeper = HousekeeperFactory.createHousekeeper(56, "John", "Smith");
 
         System.out.println("Hello world!");
     }

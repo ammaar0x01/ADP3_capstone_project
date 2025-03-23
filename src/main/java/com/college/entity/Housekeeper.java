@@ -44,7 +44,7 @@ public class Housekeeper {
     public static class HousekeeperBuilder {
         private int housekeeperId;
         private String housekeeperName;
-        private String housekeeperSurnam
+        private String housekeeperSurname;
 
         public HousekeeperBuilder() {}
 
