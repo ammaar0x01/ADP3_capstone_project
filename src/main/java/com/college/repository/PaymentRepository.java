@@ -1,3 +1,10 @@
+/*
+File name:  PaymentRepository.java
+Author:     Talia Smuts
+Student Number:    221126082
+*/
+
+
 package com.college.repository;
 
 import com.college.domain.Payment;

@@ -1,3 +1,10 @@
+/*
+File name:  PaymentFactoryTest.java
+Author:     Talia Smuts
+Student Number:    221126082
+*/
+
+
 package com.college.domain;
 
 import static org.junit.jupiter.api.Assertions.*;

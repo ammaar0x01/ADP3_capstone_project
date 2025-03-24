@@ -1,3 +1,9 @@
+/*
+File name:  Main.java
+Author:     Talia Smuts
+Student Number:    221126082
+*/
+
 package com.college.domain;
 
 import com.college.factory.PaymentFactory;
