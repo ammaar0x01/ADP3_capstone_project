@@ -19,7 +19,7 @@ public class Room {
         this.features = features;
     }
 
-    /// Builder Constructor
+    // Builder Constructor
     private Room(RoomBuilder builder){
         this.roomID = builder.roomID;
         this.roomType = builder.roomType;
@@ -79,7 +79,7 @@ public class Room {
                 '}';
     }
 
-    /// Builder pattern
+    // Builder pattern
     public static class RoomBuilder{
         private String roomID;
         private String roomType;
@@ -120,7 +120,7 @@ public class Room {
             return this;
         }
 
-        /// build method
+        // build method
         public Room build(){
 
             return new Room(this);

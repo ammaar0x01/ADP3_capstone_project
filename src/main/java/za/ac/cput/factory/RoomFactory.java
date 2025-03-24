@@ -8,14 +8,4 @@ public class RoomFactory {
         return new Room.RoomBuilder(roomID,roomType,roomPrice,availablity,features).build();
 
     }
-
-    /// overload method with null checks
-    public static Room createRoomTesting(String roomID) {
-
-        if(roomID.isEmpty() ||roomID ==null){
-            return null;
-        }
-
-        return new Room.RoomBuilder("x","y",124,true,"z").build();
-    }
 }

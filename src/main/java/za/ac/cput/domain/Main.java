@@ -15,23 +15,24 @@ public class Main {
         System.out.println(roomThree.toString());
 
         //crud roomThree with repo
-        RoomRepository roomRepository = new RoomRepository();
+        RoomRepository roomRepository = RoomRepository.getInstance();
 
         //add room to hashmap
         roomRepository.create(roomThree);
 
         //select room three from repo
-       Room retrievedRoom = (roomRepository.read(roomThree.getRoomID()));
-        System.out.println(retrievedRoom + " is the retrieved room");
+        roomRepository.read(roomThree.getRoomID());
 
-        //update room three to room four, apparently this doesnt delete the old room from hashmap idk??!?!
-        //read method anyway??? .readroomthree shoudlnt work but it does? idk
+        //updates values only
         roomRepository.update(roomThree.getRoomID(), roomFour);
-        //selecting again
-       Room newRoom = roomRepository.read(roomFour.getRoomID());
-        System.out.println(newRoom + " is the new room");
+
+        //selecting again to see new values
+        roomRepository.read(roomThree.getRoomID());
+
         //delete from hashmap
-        roomRepository.delete(roomFour.getRoomID());
-        System.out.println(roomRepository.read(roomFour.getRoomID()));
+        roomRepository.delete(roomThree.getRoomID());
+
+        //print everything in hashmap
+        roomRepository.getAll();
     }
 }
