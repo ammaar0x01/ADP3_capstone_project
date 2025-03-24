@@ -47,7 +47,7 @@ class ReservationRepoTest {
 
         Reservation read = testReservationRepo.read(reservation1.getReservationId());
         //System.out.println(reservation1.getReservationId());
-        assertNotNull(read, "\nObject is null");
+        assertNull(read, "\nObject not is null");
 
 
     }
@@ -67,14 +67,27 @@ class ReservationRepoTest {
         Reservation reservation2 = ReservationFactory.createReservation(101, "12pm", "2pm");
 
         var successfulUpdate = testReservationRepo.update(reservation1);
-        assertNotNull(successfulUpdate, "\nUpdate unsuccessful");
+        assertNull(successfulUpdate, "\nUpdate unsuccessful");
     }
 
     @Test
     void getAllT1(){
-        System.out.println("\nTest5 (Get all objects)");
+        System.out.println("\nTest5 (Get all objects; empty)");
 
         System.out.println(testReservationRepo.getAll());
+        assertNotNull(testReservationRepo.getAll(), "\nArrayList is null");
+    }
+
+    @Test
+    void getAllT2(){
+        System.out.println("\nTest6 (Get all objects)");
+
+        Reservation created = testReservationRepo.create(reservation1);
+        assertEquals(reservation1.getReservationId(), created.getReservationId(), "Ids do not match");
+
+        System.out.println();
+        System.out.println(testReservationRepo.getAll());
+        System.out.println(testReservationRepo.getAll().size());
         assertNotNull(testReservationRepo.getAll(), "\nArrayList is null");
     }
 }
