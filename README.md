@@ -1,27 +1,20 @@
-## Project: 	Hotel-booking System
+# Project: 
 - Summary: 
-- Started: 	12.03.25
-- Updated: 	13.03.25
+- Started: 
+- Updated: 
 - Status: 	work-in-progress
-- Branch:	*MASTER*
 ---
 
-### Software-class Diagram
-!["Software class Diagram Hotel booking System"](./hotel_booking_system_S-C_Diagram.png)
-
+Software-class Diagram / UML? 
+- 
+---
 
 ### About project
-- A Java project for managing a hotel-reservation system, created using the IntelliJ IDE 
 
 
 ### Download
-```
-git clone [repo-url]
-OR
-git clone --branch [branch-name] [repo-url]
-```
 
 
 ### Execute
-- Load and run the project using the IntelliJ IDE
----
+
+ 
