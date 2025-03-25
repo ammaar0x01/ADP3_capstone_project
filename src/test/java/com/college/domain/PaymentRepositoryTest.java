@@ -38,7 +38,7 @@ class PaymentRepositoryTest {
         Payment result = repo.create(payment);
 
         assertNotNull(result, "Should return the created payment");
-        Assertions.assertEquals(payment.getPaymentId(), repo.getAll().get(0).getPaymentId(), "Payment ID should match");
+        Assertions.assertEquals(payment.getPaymentId(), repo.getAll().getFirst().getPaymentId(), "Payment ID should match");
     }
 
     @Test
