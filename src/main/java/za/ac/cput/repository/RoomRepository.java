@@ -23,13 +23,14 @@ public class RoomRepository implements _RepositoryInterface<Room, String> {
         return instance;
     }
 
-    public void getAll() {
+    public HashMap<String, Room> getAll() {
         if (map.isEmpty()) {
             System.out.println("The repository is empty.");
         } else {
             System.out.println("The repository contains " + map.size() + " rooms.");
             map.forEach((key, value) -> System.out.println(value + "\t" + "key: " + key));
         }
+        return map;
     }
 
     @Override

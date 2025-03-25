@@ -6,11 +6,14 @@ import za.ac.cput.entity.Room;
 import za.ac.cput.repository.RoomRepository;
 import za.ac.cput.factory.RoomFactory;
 
+import java.util.HashMap;
+
 public class RoomRepositoryTest {
 
     private RoomRepository roomRepository;
     private Room roomOne;
     private Room roomTwo;
+    HashMap<String, Room> map;
 
     @BeforeEach
     public void setUp() {
@@ -23,6 +26,12 @@ public class RoomRepositoryTest {
         roomRepository.create(roomOne);
         roomRepository.create(roomTwo);
 
+    }
+
+    @Test
+    public void testGetAll() {
+        map = roomRepository.getAll();
+        assertNotNull(map);
     }
 
     @Test
