@@ -57,5 +57,19 @@ class HousekeeperFactoryTest {
         assertEquals("Slamong", housekeeper.getHousekeeperSurname());
     }
 
+    @Test
+    void testEquality() {
+        System.out.println("\nTest Equality (Housekeeper Factory)");
+
+        Housekeeper obj1 = HousekeeperFactory.createHousekeeper(3, "Talia", "Smuts");
+        Housekeeper obj2 = HousekeeperFactory.createHousekeeper(3, "Muaath", "Slamong");
+
+        System.out.println(obj1.hashCode());
+        System.out.println(obj2.hashCode());
+
+        // Objects will not be equal since they are different instances
+        assertNotEquals(obj1, obj2, "\nObjects are equal");
+    }
+
 }
 
