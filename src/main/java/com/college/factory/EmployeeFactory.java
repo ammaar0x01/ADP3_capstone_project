@@ -1,3 +1,9 @@
+/* EmployeeFactory.java
+   Employee Factory Class
+   Author: Muaath Slamong (230074138)
+   Date: 14 March 2025
+*/
+
 package com.college.factory;
 
 import com.college.entity.Employee;

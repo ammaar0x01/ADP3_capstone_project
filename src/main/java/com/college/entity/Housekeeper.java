@@ -1,3 +1,9 @@
+/*  Housekeeper.java
+    Housekeeper Entity
+    Author: Muaath Slamong (230074138)
+    Date: 19 March 2025
+*/
+
 package com.college.entity;
 
 public class Housekeeper {
@@ -48,7 +54,7 @@ public class Housekeeper {
 
         public HousekeeperBuilder() {}
 
-        public HousekeeperBuilder(int housekeeperId, String housekeeperName, String housekeeperSurname, String housekeeperRole) {
+        public HousekeeperBuilder(int housekeeperId, String housekeeperName, String housekeeperSurname) {
             this.housekeeperId = housekeeperId;
             this.housekeeperName = housekeeperName;
             this.housekeeperSurname = housekeeperSurname;

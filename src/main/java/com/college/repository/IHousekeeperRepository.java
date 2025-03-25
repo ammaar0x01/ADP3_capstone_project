@@ -1,3 +1,9 @@
+/*  IHousekeeperRepository.java
+    IHousekeeper Repository
+    Author: Muaath Slamong (230074138)
+    Date: 23 March 2025
+*/
+
 package com.college.repository;
 
 import com.college.entity.Housekeeper;

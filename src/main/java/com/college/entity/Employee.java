@@ -1,3 +1,9 @@
+/* Employee.java
+   Employee entity class
+   Author: Muaath Slamong (230074138)
+   Date: 14 March 2025
+*/
+
 package com.college.entity;
 
 public class Employee {
