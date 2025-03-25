@@ -9,7 +9,7 @@ public class Guest {
     private String email;
     private String paymentDetails;
 
-    public Guest() {
+    public Guest(int i, String john, String doe, String number, String mail, String paid) {
     }
 
     public Guest(GuestBuilder builder) {
