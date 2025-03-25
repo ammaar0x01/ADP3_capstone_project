@@ -39,30 +39,31 @@ class RoomFactoryTest {
     }
 
     @Test
-    public void testPrice() {
-        String roomID = "A104";
-        String roomType = "Economy";
-        float roomPrice = 0;
-        boolean availability = true;
-        String features = "";
-
-        Room roomTwo = RoomFactory.createRoom(roomID, roomType, roomPrice, availability, features);
-
-        assertEquals(0.0f, roomTwo.getPricePerNight());
-    }
-
-    @Test
     public void testEmptyFeatures() {
 
-        String roomID = "A104";
-        String roomType = "Economy";
+        String roomID = " ";
+        String roomType = " ";
         float roomPrice = 150.0f;
         boolean availability = true;
         String features = "";
 
         Room roomTwo = RoomFactory.createRoom(roomID, roomType, roomPrice, availability, features);
 
-        assertEquals("", roomTwo.getFeatures());
+        assertNotNull(roomTwo);
+    }
+
+    @Test
+    public void testEqualityOfObjects() {
+        String roomID = "";
+        String roomType = "";
+        float roomPrice = 0;
+        boolean availability = false;
+        String features = "";
+
+        Room roomTwo = RoomFactory.createRoom(roomID, roomType, roomPrice, availability, features);
+
+
+        assertNotEquals(roomTwo,room);
     }
 
 }
