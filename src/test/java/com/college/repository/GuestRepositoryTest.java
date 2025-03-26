@@ -1,3 +1,9 @@
+/* Guest.java
+Guest Repository Test Class
+Author: Zaid Theunissen (221084142)
+Date: 26 March 2025
+*/
+
 package com.college.repository;
 
 import com.college.domain.Guest;
@@ -13,26 +19,15 @@ class GuestRepositoryTest {
         assertNotNull(guest, "New guest should be added successfully");
     }
 
-
     @Test
     void read() {
         GuestRepository repository = new GuestRepository();
-
-        // Create the guest first
         Guest guestCreated = repository.create(new Guest(101, "John", "Doe", "1234567890", "john.doe@example.com", "Paid"));
-
-        // Print the current guestDatabase to verify the guest has been created
         System.out.println("Guest database after creation: " + repository.getAll());
-
-        // Now try to read the guest
         Guest guest = repository.read(101);
-
-        // Print the result of the read operation
         System.out.println("Guest read: " + guest);
-
         assertNull(guest, "Guest should be found");
     }
-
 
     @Test
     void update() {
@@ -48,7 +43,6 @@ class GuestRepositoryTest {
         GuestRepository repository = new GuestRepository();
         Guest guest = new Guest(101, "John", "Doe", "1234567890", "john.doe@example.com", "Paid");
         repository.create(guest);
-
         repository.delete(101);
         assertNull(repository.read(101), "Guest should be deleted");
     }
@@ -57,7 +51,6 @@ class GuestRepositoryTest {
     void getAll() {
         GuestRepository repository = new GuestRepository();
         repository.create(new Guest(101, "John", "Doe", "1234567890", "john.doe@example.com", "Paid"));
-
         assertFalse(repository.getAll().isEmpty(), "Guest list should not be empty");
     }
 }

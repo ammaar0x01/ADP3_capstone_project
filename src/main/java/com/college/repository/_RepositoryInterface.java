@@ -1,4 +1,11 @@
+/* Guest.java
+Guest Repository Class
+Author: Zaid Theunissen (221084142)
+Date: 26 March 2025
+*/
+
 package com.college.repository;
+
 import java.util.Map;
 
 public interface _RepositoryInterface<T, ID> {
