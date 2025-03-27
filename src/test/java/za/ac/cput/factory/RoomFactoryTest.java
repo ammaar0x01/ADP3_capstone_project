@@ -1,3 +1,9 @@
+/* RoomFactoryTest .java
+RoomFactoryTest (Tests for RoomFactory class)
+Author: joshua twigg (222153881)
+Date: 27 March 2025
+*/
+
 package za.ac.cput.factory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
