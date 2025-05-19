@@ -6,14 +6,29 @@ Started:    12.03.25
 
 package com.college.domain;
 
+import com.college.service.ReservationService;
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="Reservation")
 public class Reservation {
+    @Id
+    // @GeneratedValue(strategy = ) // temp
     private int reservationId;
     private String reservationDateTimeStart;
     private String reservationDateTimeEnd;
     // -----------------------------------
 
-    private Reservation(){}
+    // temp
+    // -----------------
+    // new stuff
+//    @OneToOne
+////    @JoinColumn(name="address_id")
+//    @JoinColumn(name="id")
+//    private Address address;
+    // -----------------
 
+    public Reservation(){}
     private Reservation(Builder reservationBuilder){
         this.reservationId = reservationBuilder.builderId;
         this.reservationDateTimeStart = reservationBuilder.builderDateTimeStart;
@@ -53,19 +68,38 @@ public class Reservation {
         private String builderDateTimeStart;
         private String builderDateTimeEnd;
 
+        public Builder(){}
+        public Builder(
+                int id,
+                String dateTimeStart,
+                String dateTimeEnd
+        ){
+            this.builderId = id;
+            this.builderDateTimeStart = dateTimeStart;
+            this.builderDateTimeEnd = dateTimeEnd;
+        }
+        // ---------------------------
+
         public Builder setReservationId(int reservationId) {
             this.builderId = reservationId;
             return this;
         }
-
         public Builder setReservationDateTimeStart(String reservationDateTimeStart) {
             this.builderDateTimeStart = reservationDateTimeStart;
             return this;
         }
-
         public Builder setReservationDateTimeEnd(String reservationDateTimeEnd) {
             this.builderDateTimeEnd = reservationDateTimeEnd;
             return this;
+        }
+        // ---------------------------
+
+//        public Builder copy(Reservation reservation){
+        public Reservation copy(Reservation reservation){
+            this.builderId = reservation.getReservationId();
+            this.builderDateTimeEnd = reservation.getReservationDateTimeEnd();
+            this.builderDateTimeStart = reservation.getReservationDateTimeStart();
+            return new Reservation(this);
         }
 
         public Reservation build(){

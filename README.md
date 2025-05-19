@@ -7,7 +7,7 @@
 ---
 
 ### Software-class Diagram
-!["Software class Diagram Hotel booking System"](./hotel_booking_system_S-C_Diagram.png)
+!["Software class Diagram Hotel booking System"](_trash/hotel_booking_system_S-C_Diagram.png)
 
 
 ### About project
