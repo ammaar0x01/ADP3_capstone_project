@@ -1,13 +1,13 @@
 ## Project: 	Hotel-booking System
 - Summary: 
 - Started: 	12.03.25
-- Updated: 	18.03.25
+- Updated: 	19.05.25
 - Status: 	work-in-progress
 - _Branch:	230159478_
 ---
 
 ### Software-class Diagram
-!["Software class Diagram Hotel booking System"](_trash/hotel_booking_system_S-C_Diagram.png)
+!["class_diagram.png"](class_diagram.png) 
 
 
 ### About project

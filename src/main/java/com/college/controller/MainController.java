@@ -1,10 +1,13 @@
 package com.college.controller;
 
+import com.college.service.ReservationService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MainController {
+
+
     @GetMapping(path={"/", "/root"})
 //    @GetMapping("/")
     public String root(){
@@ -24,4 +27,6 @@ public class MainController {
         return "<a href='https://google.com' target='_blank'>Google</a><br />" +
                 "<a href='/'>Root</a><br />";
     }
+
+
 }

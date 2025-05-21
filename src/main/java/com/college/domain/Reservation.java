@@ -6,14 +6,13 @@ Started:    12.03.25
 
 package com.college.domain;
 
-import com.college.service.ReservationService;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name="Reservation")
 public class Reservation {
     @Id
-    // @GeneratedValue(strategy = ) // temp
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reservationId;
     private String reservationDateTimeStart;
     private String reservationDateTimeEnd;
@@ -29,6 +28,10 @@ public class Reservation {
     // -----------------
 
     public Reservation(){}
+    public Reservation(String reservationDateTimeStart, String reservationDateTimeEnd) {
+        this.reservationDateTimeStart = reservationDateTimeStart;
+        this.reservationDateTimeEnd = reservationDateTimeEnd;
+    }
     private Reservation(Builder reservationBuilder){
         this.reservationId = reservationBuilder.builderId;
         this.reservationDateTimeStart = reservationBuilder.builderDateTimeStart;
@@ -94,13 +97,19 @@ public class Reservation {
         }
         // ---------------------------
 
-//        public Builder copy(Reservation reservation){
-        public Reservation copy(Reservation reservation){
+        public Builder copy(Reservation reservation){
             this.builderId = reservation.getReservationId();
             this.builderDateTimeEnd = reservation.getReservationDateTimeEnd();
             this.builderDateTimeStart = reservation.getReservationDateTimeStart();
-            return new Reservation(this);
+            return this;
         }
+
+//        public Reservation copy(Reservation reservation){
+//            this.builderId = reservation.getReservationId();
+//            this.builderDateTimeEnd = reservation.getReservationDateTimeEnd();
+//            this.builderDateTimeStart = reservation.getReservationDateTimeStart();
+//            return new Reservation(this);
+//        }
 
         public Reservation build(){
             return new Reservation(this);

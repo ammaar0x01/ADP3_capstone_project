@@ -36,9 +36,14 @@ class ReservationServiceTest {
     @Test
     @Order(1)
     void create() {
-        Reservation savedObj = service.create(reservation1);
-        System.out.println(savedObj);
-        assertNotNull(savedObj);
+//        Reservation savedObj = service.create(reservation1);
+//        System.out.println(savedObj);
+//        assertNotNull(savedObj);
+
+        Reservation reservationX = new Reservation("09:00", "11:00");
+        Reservation savedObj1 = service.create(reservationX);
+        System.out.println(savedObj1);
+        assertNotNull(savedObj1);
     }
 
     @Test
