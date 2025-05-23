@@ -8,13 +8,12 @@ package com.college.service;
 
 import com.college.entity.Housekeeper;
 import java.util.List;
-import java.util.Optional;
 
-public interface IHousekeeperService {
-    Housekeeper create(Housekeeper housekeeper);
-    Housekeeper update(Housekeeper housekeeper);
-    void delete(Integer id);
-    Optional<Housekeeper> findById(Integer id);
+public interface IHousekeeperService extends IService<Housekeeper, Integer> {
+
+    Housekeeper findById(Integer id);
+
     List<Housekeeper> getAll();
+
 }
 
