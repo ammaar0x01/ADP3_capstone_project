@@ -17,7 +17,6 @@ public class ReservationController {
         service = reservationService;
     }
 
-//    @GetMapping("get/{id}")
     @GetMapping("get/reservation/{id}")
     public Reservation read(@PathVariable int id){
         return service.read(id);
@@ -44,13 +43,4 @@ public class ReservationController {
     }
     // --------------------
 
-    @GetMapping("/reservation")
-    public String reservation(){
-        return "<h1>Reservation</h1>";
-    }
-
-    @GetMapping("/reservation/get")
-    public String reservationGetAll(){
-        return "{ data: Data from the database }";
-    }
 }

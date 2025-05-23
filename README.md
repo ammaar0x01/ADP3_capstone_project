@@ -1,6 +1,6 @@
 ## Project: 	Hotel-booking System
-- Summary: 
 - Started: 	12.03.25
+<<<<<<< HEAD
 - Updated: 	19.05.25
 - Status: 	work-in-progress
 - _Branch:	230159478_
@@ -8,6 +8,15 @@
 
 ### Software-class Diagram
 !["class_diagram.png"](class_diagram.png) 
+=======
+- Updated: 	25.03.25
+- Status: 	work-in-progress
+- _Branch:	pre-master || MASTER_
+---
+
+### Software-class Diagram
+!["Software class Diagram for Hotel booking System"](./class_diagram.png)
+>>>>>>> pre-master
 
 
 ### About project
@@ -16,9 +25,9 @@
 
 ### Download
 ```
-git clone [repo-url]
+git clone https://github.com/ammaar0x01/ADP3_capstone_project.git
 OR
-git clone --branch [branch-name] [repo-url]
+git clone --branch [branch-name] https://github.com/ammaar0x01/ADP3_capstone_project.git
 ```
 
 
