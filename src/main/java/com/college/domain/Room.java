@@ -5,18 +5,20 @@ Date: 27 March 2025
 */
 package com.college.domain;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="Room")
 public class Room {
-    private String roomID;
+    @Id
+    private int roomID;
     private String roomType;
     private float pricePerNight;
     private Boolean availability;
     private String features;
 
-    public Room() {
-
-    }
-
-    public Room(String roomID, String roomType, float pricePerNight, Boolean availability, String features) {
+    public Room(){}
+    public Room(int roomID, String roomType, float pricePerNight, Boolean availability, String features) {
         this.roomID = roomID;
         this.roomType = roomType;
         this.pricePerNight = pricePerNight;
@@ -33,44 +35,24 @@ public class Room {
         this.features = builder.features;
     }
 
-    public String getRoomID() {
+    public int getRoomID() {
         return roomID;
-    }
-
-    public void setRoomID(String roomID) {
-        this.roomID = roomID;
     }
 
     public String getRoomType() {
         return roomType;
     }
 
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
-    }
-
     public float getPricePerNight() {
         return pricePerNight;
-    }
-
-    public void setPricePerNight(float pricePerNight) {
-        this.pricePerNight = pricePerNight;
     }
 
     public Boolean getAvailability() {
         return availability;
     }
 
-    public void setAvailability(Boolean availability) {
-        this.availability = availability;
-    }
-
     public String getFeatures() {
         return features;
-    }
-
-    public void setFeatures(String features) {
-        this.features = features;
     }
 
     @Override
@@ -84,15 +66,17 @@ public class Room {
                 '}';
     }
 
+
+
     /// Builder pattern
     public static class RoomBuilder{
-        private String roomID;
+        private int roomID;
         private String roomType;
         private float pricePerNight;
         private Boolean availability;
         private String features;
 
-        public RoomBuilder(String roomID, String roomType, float pricePerNight, Boolean availability, String features) {
+        public RoomBuilder(int roomID, String roomType, float pricePerNight, Boolean availability, String features) {
             this.roomID = roomID;
             this.roomType = roomType;
             this.pricePerNight = pricePerNight;
@@ -100,7 +84,17 @@ public class Room {
             this.features = features;
         }
 
-        public RoomBuilder setRoomID(String roomID) {
+        public static RoomBuilder copy(Room room) {
+            return new RoomBuilder(
+                    room.getRoomID(),
+                    room.getRoomType(),
+                    room.getPricePerNight(),
+                    room.getAvailability(),
+                    room.getFeatures()
+            );
+        }
+
+        public RoomBuilder setRoomID(int  roomID) {
             this.roomID = roomID;
             return this;
         }

@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-//@SpringBootTest
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ReservationControllerTest {
@@ -56,11 +55,6 @@ class ReservationControllerTest {
     @Test
     @Order(3)
     void c_update() {
-//        Reservation reservation2 = new Reservation.Builder()
-//                .setReservationDateTimeStart("15:00")
-//                .setReservationDateTimeEnd("17:00")
-//                .build();
-        // or
         Reservation update = new Reservation.Builder()
                 .copy(reservation1)
                 .setReservationDateTimeStart("15:00")
@@ -68,8 +62,6 @@ class ReservationControllerTest {
                 .build();
 
         String url = BASE_URL + "/reservation/update";
-//        ResponseEntity<Reservation> res = restTemplate.postForEntity(url, update, Reservation.class);
-        // or
         restTemplate.put(url, update);
 
         ResponseEntity<Reservation> res = restTemplate.getForEntity(
@@ -113,12 +105,4 @@ class ReservationControllerTest {
 
     }
 
-
-//    @Test
-//    void reservation() {
-//    }
-//
-//    @Test
-//    void reservationGetAll() {
-//    }
 }

@@ -1,3 +1,9 @@
+/*
+File name:  ReservationService.java (Service Class)
+Author:     Ammaar
+Started:    20.05.25
+*/
+
 package com.college.service;
 
 import com.college.domain.Reservation;
@@ -6,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+//import java.util.Optional;
 
 
 @Service
@@ -22,10 +28,6 @@ public class ReservationService {
         return repo.save(reservation);
     }
 
-//    public Optional read(int id){
-//        return repo.findById(id);
-//    }
-    // or
     public Reservation read(int id){
         return repo.findById(id).orElse(null);
     }
@@ -44,6 +46,4 @@ public class ReservationService {
     }
     // ---------------------------
 
-    // Using custom methods?
-    // ...
 }

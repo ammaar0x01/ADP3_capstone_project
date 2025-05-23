@@ -18,15 +18,6 @@ public class Reservation {
     private String reservationDateTimeEnd;
     // -----------------------------------
 
-    // temp
-    // -----------------
-    // new stuff
-//    @OneToOne
-////    @JoinColumn(name="address_id")
-//    @JoinColumn(name="id")
-//    private Address address;
-    // -----------------
-
     public Reservation(){}
     public Reservation(String reservationDateTimeStart, String reservationDateTimeEnd) {
         this.reservationDateTimeStart = reservationDateTimeStart;
@@ -103,13 +94,6 @@ public class Reservation {
             this.builderDateTimeStart = reservation.getReservationDateTimeStart();
             return this;
         }
-
-//        public Reservation copy(Reservation reservation){
-//            this.builderId = reservation.getReservationId();
-//            this.builderDateTimeEnd = reservation.getReservationDateTimeEnd();
-//            this.builderDateTimeStart = reservation.getReservationDateTimeStart();
-//            return new Reservation(this);
-//        }
 
         public Reservation build(){
             return new Reservation(this);

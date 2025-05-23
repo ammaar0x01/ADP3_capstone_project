@@ -1,23 +1,13 @@
 ## Project: 	Hotel-booking System
 - Started: 	12.03.25
-<<<<<<< HEAD
-- Updated: 	19.05.25
+- Updated: 	23.05.25
 - Status: 	work-in-progress
-- _Branch:	230159478_
+- _Branch:	p-master_
 ---
 
 ### Software-class Diagram
 !["class_diagram.png"](class_diagram.png) 
 =======
-- Updated: 	25.03.25
-- Status: 	work-in-progress
-- _Branch:	pre-master || MASTER_
----
-
-### Software-class Diagram
-!["Software class Diagram for Hotel booking System"](./class_diagram.png)
->>>>>>> pre-master
-
 
 ### About project
 - A Java project for managing a hotel-reservation system, created using the IntelliJ IDE 
