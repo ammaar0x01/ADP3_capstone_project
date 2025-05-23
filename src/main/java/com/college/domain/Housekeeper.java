@@ -7,13 +7,14 @@
 
 package com.college.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table (name="Housekeeper")
 public class Housekeeper {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int housekeeperId;
     private String housekeeperName;
     private String housekeeperSurname;
@@ -67,12 +68,12 @@ public class Housekeeper {
             return this;
         }
 
-        public HousekeeperBuilder copy(Housekeeper housekeeper) {
+     /*   public HousekeeperBuilder copy(Housekeeper housekeeper) {
             this.housekeeperId = housekeeper.housekeeperId;
             this.housekeeperName = housekeeper.housekeeperName;
             this.housekeeperSurname = housekeeper.housekeeperSurname;
             return this;
-        }
+        } */
 
         public Housekeeper build() {
             return new Housekeeper(this);
