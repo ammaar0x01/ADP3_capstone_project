@@ -6,7 +6,7 @@
 
 package com.college.service;
 
-import com.college.entity.Housekeeper;
+import com.college.domain.Housekeeper;
 import java.util.List;
 
 public interface IHousekeeperService extends IService<Housekeeper, Integer> {

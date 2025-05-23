@@ -7,7 +7,7 @@
 package com.college.controller;
 
 
-import com.college.entity.Housekeeper;
+import com.college.domain.Housekeeper;
 import com.college.service.HousekeeperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

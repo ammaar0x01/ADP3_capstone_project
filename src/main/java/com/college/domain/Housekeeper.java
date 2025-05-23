@@ -5,7 +5,7 @@
 */
 
 
-package com.college.entity;
+package com.college.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

@@ -6,7 +6,7 @@
 
 package com.college.service;
 
-import com.college.entity.Housekeeper;
+import com.college.domain.Housekeeper;
 import com.college.factory.HousekeeperFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

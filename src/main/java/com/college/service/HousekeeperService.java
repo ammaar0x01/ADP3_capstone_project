@@ -6,7 +6,7 @@
 
 package com.college.service;
 
-import com.college.entity.Housekeeper;
+import com.college.domain.Housekeeper;
 import com.college.repository.HousekeeperRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
