@@ -32,19 +32,6 @@ class PaymentFactoryTest {
         assertEquals("", payment.getPaymentDate());
     }
 
-    @Test
-    void createPaymentDefaultValues() {
-        System.out.println("\nTest2 (object creation with default values)");
-        Payment payment = PaymentFactory.createDefaultPayment(1, "1000.00");
-        System.out.println(payment);
-
-        assertNotNull(payment, "\nObject is null");
-        assertEquals(1, payment.getPaymentId());
-        assertEquals("1000.00", payment.getPaymentAmount());
-        assertEquals("Credit Card", payment.getPaymentMethod());
-        assertEquals("Pending", payment.getPaymentStatus());
-        assertEquals("2023-10-01", payment.getPaymentDate());
-    }
 
     @Test
     void createPaymentCustomValues() {

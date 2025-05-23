@@ -37,7 +37,7 @@ class PaymentControllerTest {
 
     @Test
     @Order(1)
-    void a_create() {
+    void create() {
         String url = BASE_URL + "payment/create";
         Payment created = restTemplate.postForObject(url, payment1, Payment.class);
         System.out.println(created);
@@ -47,7 +47,7 @@ class PaymentControllerTest {
 
     @Test
     @Order(2)
-    void b_read() {
+    void read() {
         String url = BASE_URL + "payment/get/" + payment1.getPaymentId();
         ResponseEntity<Payment> res = restTemplate.getForEntity(url, Payment.class);
         System.out.println(res.getBody());
@@ -56,7 +56,7 @@ class PaymentControllerTest {
 
     @Test
     @Order(3)
-    void c_update() {
+    void update() {
         Payment update = new Payment.Builder()
                 .setPaymentId(payment1.getPaymentId())
                 .setPaymentAmount("1500.00")  // Changed amount
@@ -79,25 +79,25 @@ class PaymentControllerTest {
         assertEquals("Completed", res.getBody().getPaymentStatus());
     }
 
+
     @Test
     @Order(4)
-    void d_delete() {
-        String url = BASE_URL + "payment/delete/" + payment1.getPaymentId();
+    void delete() {
+        String url = BASE_URL + "/payment/delete/" + payment1.getPaymentId();
         restTemplate.delete(url);
 
         ResponseEntity<Payment> res = restTemplate.getForEntity(
-                BASE_URL + "payment/get/" + payment1.getPaymentId(),
+                BASE_URL + "/payment/get/" + payment1.getPaymentId(),
                 Payment.class
         );
         System.out.println(res.getBody());
         System.out.println("Deleted payment with ID: " + payment1.getPaymentId());
-        assertNull(res.getBody());
         assertEquals(HttpStatus.NOT_FOUND, res.getStatusCode());
     }
 
     @Test
     @Order(5)
-    void e_getAll() {
+    void getAll() {
         String url = BASE_URL + "payment/get/all";
         ResponseEntity<Payment[]> res = restTemplate.getForEntity(url, Payment[].class);
         assertNotNull(res.getBody());

@@ -20,13 +20,4 @@ public class PaymentFactory {
                     .build();
         }
 
-        public static Payment createDefaultPayment(int paymentId, String amount) {
-            return new Payment.Builder()
-                    .setPaymentId(paymentId)
-                    .setPaymentAmount(amount)
-                    .setPaymentMethod("Credit Card")
-                    .setPaymentStatus("Pending")
-                    .setPaymentDate("2023-10-01")
-                    .build();
-        }
     }
