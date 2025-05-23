@@ -1,3 +1,8 @@
+/* Guest.java
+Guest Model Class
+Author: Zaid Theunissen (221084142)
+Date: 26 March 2025
+*/
 package com.college.domain;
 
 public class Guest {
@@ -9,6 +14,9 @@ public class Guest {
     private String paymentDetails;
 
     public Guest() {
+    }
+
+    public Guest(int i, String john, String doe, String number, String mail, String paid) {
     }
 
     public Guest(GuestBuilder builder) {
