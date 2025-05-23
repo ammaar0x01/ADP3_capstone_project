@@ -1,4 +1,11 @@
+/*  HousekeeperController.java
+    HousekeeperController
+    Author: Muaath Slamong (230074138)
+    Date: 22 May 2025
+*/
+
 package com.college.controller;
+
 
 import com.college.entity.Housekeeper;
 import com.college.service.HousekeeperService;
@@ -42,7 +49,6 @@ public class HousekeeperController {
         service.delete(id);
     }
 
-    // Optional display/test endpoints
     @GetMapping("/housekeeper")
     public String housekeeper() {
         return "<h1>Housekeeper</h1>";
