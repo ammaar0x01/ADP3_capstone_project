@@ -1,30 +1,31 @@
-/*  Housekeeper.java
-    Housekeeper Entity
-    Author: Muaath Slamong (230074138)
-    Date: 19 March 2025
+/*
+    File name:  Housekeeper.java
+    Author:     Muaath Slamong (230074138)
+    Date:       22 March 2025
 */
+
 
 package com.college.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Housekeeper {
 
-    // Housekeeper attributes
+    @Id
     private int housekeeperId;
     private String housekeeperName;
     private String housekeeperSurname;
 
-    // Default Constructor
-    public Housekeeper() {
-    }
+    protected Housekeeper() {}
 
-    // Builder Housekeeper
-    public Housekeeper(HousekeeperBuilder builder) {
+    private Housekeeper(HousekeeperBuilder builder) {
         this.housekeeperId = builder.housekeeperId;
         this.housekeeperName = builder.housekeeperName;
         this.housekeeperSurname = builder.housekeeperSurname;
     }
 
-    // Getters
     public int getHousekeeperId() {
         return housekeeperId;
     }
@@ -36,7 +37,6 @@ public class Housekeeper {
     public String getHousekeeperSurname() {
         return housekeeperSurname;
     }
-
 
     @Override
     public String toString() {
@@ -52,15 +52,6 @@ public class Housekeeper {
         private String housekeeperName;
         private String housekeeperSurname;
 
-        public HousekeeperBuilder() {}
-
-        public HousekeeperBuilder(int housekeeperId, String housekeeperName, String housekeeperSurname) {
-            this.housekeeperId = housekeeperId;
-            this.housekeeperName = housekeeperName;
-            this.housekeeperSurname = housekeeperSurname;
-        }
-
-        // Builder Getters
         public HousekeeperBuilder setHousekeeperId(int housekeeperId) {
             this.housekeeperId = housekeeperId;
             return this;
@@ -73,6 +64,13 @@ public class Housekeeper {
 
         public HousekeeperBuilder setHousekeeperSurname(String housekeeperSurname) {
             this.housekeeperSurname = housekeeperSurname;
+            return this;
+        }
+
+        public HousekeeperBuilder copy(Housekeeper housekeeper) {
+            this.housekeeperId = housekeeper.housekeeperId;
+            this.housekeeperName = housekeeper.housekeeperName;
+            this.housekeeperSurname = housekeeper.housekeeperSurname;
             return this;
         }
 

@@ -20,14 +20,12 @@ Muaath Slamong      | 230074138     | https://github.com/MuaathSlamong-alt/ADP3_
 
 package com.college;
 
-import com.college.entity.Housekeeper;
-import com.college.factory.HousekeeperFactory;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@SpringBootApplication
 public class Main {
     public static void main(String[] args) {
-
-        Housekeeper housekeeper = HousekeeperFactory.createHousekeeper(56, "John", "Smith");
-
-        System.out.println("Hello world!");
+        SpringApplication.run(Main.class, args);
     }
 }
