@@ -1,3 +1,9 @@
+/* RoomServiceTest.java
+RoomServiceTest class
+Author: joshua twigg (222153881)
+Date: 27 March 2025
+*/
+
 package com.college.service;
 
 import com.college.domain.Room;
