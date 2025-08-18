@@ -26,8 +26,10 @@
             <TableColumn fx:id="colGuestID" text="Guest ID" prefWidth="80"/>
             <TableColumn fx:id="colName" text="Name" prefWidth="120"/>
             <TableColumn fx:id="colSurname" text="Surname" prefWidth="120"/>
-            <TableColumn fx:id="colEmail" text="Email" prefWidth="200"/>
-            <TableColumn fx:id="colContact" text="Contact Number" prefWidth="150"/>
+            <TableColumn fx:id="colEmail" text="Email" prefWidth="150"/>
+            <TableColumn fx:id="colContact" text="Contact Number" prefWidth="120"/>
+            <TableColumn fx:id="colPayment" text="Payment Details" prefWidth="150"/>
+
         </columns>
     </TableView>
 

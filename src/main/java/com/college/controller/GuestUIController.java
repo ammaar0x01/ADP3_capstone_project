@@ -24,6 +24,9 @@ public class GuestUIController {
     private TableColumn<Guest, String> colEmail;
     @FXML
     private TableColumn<Guest, String> colContact;
+    @FXML
+    private TableColumn<Guest, String> colPayment;
+
 
     private final GuestUIService guestService = new GuestUIService();
 
@@ -39,6 +42,9 @@ public class GuestUIController {
                 new javafx.beans.property.SimpleStringProperty(data.getValue().getEmail()));
         colContact.setCellValueFactory(data ->
                 new javafx.beans.property.SimpleStringProperty(data.getValue().getContactNumber()));
+        colPayment.setCellValueFactory(data ->
+                new javafx.beans.property.SimpleStringProperty(data.getValue().getPaymentDetails()));
+
 
         loadGuests();
     }
