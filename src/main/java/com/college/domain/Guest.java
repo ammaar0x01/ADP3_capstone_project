@@ -6,9 +6,10 @@ Date: 26 March 2025
 
 package com.college.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 public class Guest {
 
