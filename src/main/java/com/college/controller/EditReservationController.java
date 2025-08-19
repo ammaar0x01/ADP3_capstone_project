@@ -4,6 +4,7 @@ import com.college.domain.Reservation;
 import com.college.service.ReservationService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ import java.util.ResourceBundle;
 public class EditReservationController implements Initializable {
 
     @FXML private TextField reservationIdField; // To display ID, likely disabled for editing
+    // or
+//    @FXML private Label reservationIdField; // To display ID, likely disabled for editing
     @FXML private TextField startTimeField;
     @FXML private TextField endTimeField;
 

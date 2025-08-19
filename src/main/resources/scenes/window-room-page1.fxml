@@ -54,7 +54,7 @@
                                    </Label>
                                    <ImageView fitHeight="150" fitWidth="200" preserveRatio="false">
                                        <image>
-                                           <Image url="@rooms/b.jpg" />
+                                           <Image url="@../rooms/b.jpg" />
                                        </image>
                                    </ImageView>
                                    <HBox alignment="CENTER_LEFT" spacing="5">
@@ -120,7 +120,7 @@
 
                                <ImageView fitHeight="150" fitWidth="200" preserveRatio="false" smooth="false">
                                    <image>
-                                       <Image url="@rooms/a.jpg" />
+                                       <Image url="@../rooms/a.jpg" />
                                    </image>
                                    <effect>
                                        <Blend />
@@ -353,7 +353,7 @@
                                    </Label>
                                    <ImageView fitHeight="150" fitWidth="200" preserveRatio="false">
                                        <image>
-                                           <Image url="@rooms/b.jpg" />
+                                           <Image url="@../rooms/b.jpg" />
                                        </image>
                                        <effect>
                                            <DropShadow color="black" offsetX="3" offsetY="3" radius="10" />

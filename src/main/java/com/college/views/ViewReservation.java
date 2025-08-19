@@ -39,6 +39,9 @@ public class ViewReservation extends Application {
         stage.getIcons().add(icon);
 
         stage.setTitle("HMS - Reservations");
+
+//        stage.initStyle(StageStyle.UNDECORATED);
+
         stage.setScene(scene);
         stage.setResizable(false);
 //        stage.setWidth(1000);
