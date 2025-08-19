@@ -36,16 +36,15 @@ public class AddReservationController {
             reservationService.create(newReservation);
             System.out.println("New reservation saved: " + newReservation);
 
-            // Close the modal window after saving
             stage.close();
-        } else {
+        }
+        else {
             System.out.println("Please fill in all fields.");
         }
     }
 
     @FXML
     private void cancel() {
-        // Close the modal window without saving
         stage.close();
     }
 }

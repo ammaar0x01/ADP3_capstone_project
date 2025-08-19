@@ -52,6 +52,14 @@ public class Reservation {
         return reservationDateTimeEnd;
     }
 
+    public void setReservationDateTimeStart(String reservationDateTimeStart) {
+        this.reservationDateTimeStart = reservationDateTimeStart;
+    }
+
+    public void setReservationDateTimeEnd(String reservationDateTimeEnd) {
+        this.reservationDateTimeEnd = reservationDateTimeEnd;
+    }
+
     @Override
     public String toString() {
         if (this.reservationId == 0){

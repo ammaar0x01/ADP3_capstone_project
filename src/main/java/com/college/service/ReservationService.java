@@ -22,10 +22,6 @@ public class ReservationService {
         return repo.save(reservation);
     }
 
-//    public Optional read(int id){
-//        return repo.findById(id);
-//    }
-    // or
     public Reservation read(int id){
         return repo.findById(id).orElse(null);
     }
@@ -42,8 +38,4 @@ public class ReservationService {
     public List<Reservation> getAll(){
         return repo.findAll();
     }
-    // ---------------------------
-
-    // Using custom methods?
-    // ...
 }

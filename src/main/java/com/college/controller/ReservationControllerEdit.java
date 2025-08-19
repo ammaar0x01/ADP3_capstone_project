@@ -24,10 +24,18 @@ public class ReservationControllerEdit {
 
     public void setStage(Stage stage) {
         this.stage = stage;
+        this.startTimeField.setText("start");
+        this.endTimeField.setText("end");
+
+        Reservation r1 = reservationService.read(2);
+        System.out.println(r1);
+        System.out.println(r1.getReservationDateTimeEnd());
+        System.out.println(r1.getReservationDateTimeStart());
+
     }
 
     @FXML
-    private void saveReservation() {
+    private void editReservation() {
         String startTime = startTimeField.getText();
         String endTime = endTimeField.getText();
 
@@ -36,16 +44,15 @@ public class ReservationControllerEdit {
             reservationService.create(newReservation);
             System.out.println("New reservation saved: " + newReservation);
 
-            // Close the modal window after saving
             stage.close();
-        } else {
+        }
+        else {
             System.out.println("Please fill in all fields.");
         }
     }
 
     @FXML
     private void cancel() {
-        // Close the modal window without saving
         stage.close();
     }
 }
