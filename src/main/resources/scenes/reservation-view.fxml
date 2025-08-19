@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.college.controller.ReservationUIController"
+      spacing="10"
+      alignment="CENTER">
+
+    <TableView fx:id="reservationTable">
+        <columns>
+            <TableColumn fx:id="reservationIdColumn" text="ID" prefWidth="75.0" />
+            <TableColumn fx:id="startTimeColumn" text="Start Time" prefWidth="150.0" />
+            <TableColumn fx:id="endTimeColumn" text="End Time" prefWidth="150.0" />
+        </columns>
+    </TableView>
+
+</VBox>

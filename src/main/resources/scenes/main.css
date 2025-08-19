@@ -1,0 +1,17 @@
+/*
+main.css
+========
+*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.btn{
+    border-radius: 20px;
+    background-color: red;
+    color:white; 
+}
+
