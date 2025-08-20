@@ -16,15 +16,15 @@ import java.util.ResourceBundle;
 @Component
 public class EditReservationController implements Initializable {
 
-    @FXML private TextField reservationIdField; // To display ID, likely disabled for editing
+    @FXML private TextField reservationIdField;
     // or
-//    @FXML private Label reservationIdField; // To display ID, likely disabled for editing
+//    @FXML private Label reservationIdField;
     @FXML private TextField startTimeField;
     @FXML private TextField endTimeField;
 
     private final ReservationService reservationService;
     private Stage stage;
-    private Reservation reservationToEdit; // The reservation object passed from the main controller
+    private Reservation reservationToEdit;
 
     @Autowired
     public EditReservationController(ReservationService reservationService) {
@@ -33,7 +33,6 @@ public class EditReservationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // ID field is often non-editable
         reservationIdField.setEditable(false);
     }
 
@@ -41,7 +40,6 @@ public class EditReservationController implements Initializable {
         this.stage = stage;
     }
 
-    // Method to set the reservation to be edited and populate fields
     public void setReservationToEdit(Reservation reservation) {
         this.reservationToEdit = reservation;
         if (reservationToEdit != null) {
@@ -58,21 +56,21 @@ public class EditReservationController implements Initializable {
             String newEndTime = endTimeField.getText();
 
             if (!newStartTime.isEmpty() && !newEndTime.isEmpty()) {
-                // use builder setters
+                // use builder setters?
                 reservationToEdit.setReservationDateTimeStart(newStartTime);
                 reservationToEdit.setReservationDateTimeEnd(newEndTime);
 
                 try {
                     reservationService.update(reservationToEdit);
                     System.out.println("Reservation updated: " + reservationToEdit);
-                    stage.close(); // Close the modal window
+                    stage.close();
                 } catch (Exception e) {
                     e.printStackTrace();
-                    // In a real app, show an error message to the user (e.g., using a Label or Alert)
+                     // ...
                     System.out.println("Error updating reservation: " + e.getMessage());
                 }
             } else {
-                // In a real app, show a message that fields are empty
+                // ...show a message that fields are empty
                 System.out.println("Please fill in all fields.");
             }
         }
@@ -80,6 +78,6 @@ public class EditReservationController implements Initializable {
 
     @FXML
     private void cancel() {
-        stage.close(); // Close the modal window without saving
+        stage.close();
     }
 }

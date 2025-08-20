@@ -1,6 +1,5 @@
 package com.college.views;
 
-import com.college.controller.RoomController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,10 +20,6 @@ public class RoomView extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainView.fxml"));
-
-//        String sceneName = "/MainView.fxml";
-//        String sceneName = "/scenes/reservation-view.fxml";
         String sceneName = "/scenes/window-room-page1.fxml";
 
         System.out.println("\n>>> Loading scene from '" + sceneName + "'...");
@@ -36,9 +31,9 @@ public class RoomView extends Application {
         Parent root = loader.load();
         Scene scene = new Scene(root);
 
-//        scene.getStylesheets().add(getClass().getResource("/css/buttonStyle.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/css/button-style.css").toExternalForm());
 
-        Image icon = new Image(getClass().getResourceAsStream("/icon.png"));
+        Image icon = new Image(getClass().getResourceAsStream("/images/icons/app-icon.png"));
         stage.getIcons().add(icon);
 
         stage.setScene(scene);

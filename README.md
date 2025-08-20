@@ -1,7 +1,7 @@
 ## Project: 	Hotel-booking System
 - Summary: 
 - Started: 	12.03.25
-- Updated: 	19.05.25
+- Updated: 	19.08.25
 - Status: 	work-in-progress
 - _Branch:	230159478_
 ---

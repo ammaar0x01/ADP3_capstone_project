@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
-public class ViewReservation extends Application {
+public class ReservationView extends Application {
     private ConfigurableApplicationContext springContext;
 
     @Override
@@ -22,10 +22,10 @@ public class ViewReservation extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-//        String sceneName = "/scenes/dashboard.fxml";
-        String sceneName = "/scenes/window-reservation.fxml";
-//        String sceneName = "/scenes/reservation-view.fxml";
+//        stage.initStyle(StageStyle.UNDECORATED);
+//        String sceneName = "/scenes/window-dashboard.fxml";
 
+        String sceneName = "/scenes/window-reservation-1.fxml";
         System.out.println("\n>>> Loading scene from '" + sceneName + "'...");
         FXMLLoader loader = new FXMLLoader(getClass().getResource(sceneName));
 
@@ -35,12 +35,11 @@ public class ViewReservation extends Application {
         Parent root = loader.load();
         Scene scene = new Scene(root);
 
-        Image icon = new Image(getClass().getResourceAsStream("/icon.png"));
+        Image icon = new Image(getClass().getResourceAsStream("/images/icons/app-icon.png"));
         stage.getIcons().add(icon);
 
         stage.setTitle("HMS - Reservations");
 
-//        stage.initStyle(StageStyle.UNDECORATED);
 
         stage.setScene(scene);
         stage.setResizable(false);

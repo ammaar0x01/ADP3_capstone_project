@@ -23,7 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.IOException;
 
-//@RestController idk if this wil break old code. cause nowit needs to be @component to work with javafx ui
+//@RestController idk if this wil break old code.
+// cause nowit needs to be @component to work with javafx ui
 @Component
 public class RoomController {
 
@@ -32,10 +33,7 @@ public class RoomController {
 
     private Room room;
 
-    public RoomController() {
-        // No-arg constructor (can be empty)
-    }
-
+    public RoomController(){}
     public RoomController(RoomService roomService) {
         this.roomService = roomService;
         room = RoomFactory.createRoom(1, "Single", 100.0f, true, "WiFi, TV");
@@ -63,15 +61,6 @@ public class RoomController {
     @FXML private Label featuresLabel;
     @FXML private TextField featuresTextField;
 
-    //How this works. 4 functionalities
-    //edit type price... etc
-    //each functionality has 1 method which checks which label called the method by traversing the event source
-    //then each functionality has 1 enter method for saving only that functionality
-    // for example, price will have 1 method and 1 enter method tied to it. Type same thing 1 and 1. etc
-    // so 4 enter methods checking what label to save for. 4 normal methods for editing labels.
-    //traversing the event means you dont have to hardcode 8+ methods for each image
-
-    // --- Booking button handlers ---
     @FXML
     private void handleVipClick() {
         System.out.println("Button clicked!");
@@ -365,14 +354,11 @@ public class RoomController {
     }
 
 
-
-    // --- Navigation ---
-
     @FXML
     private void nextPage(ActionEvent event) {
         System.out.println("Button clicked!");
         try {
-            Parent page2Root = FXMLLoader.load(getClass().getResource("/pageTwo.fxml"));
+            Parent page2Root = FXMLLoader.load(getClass().getResource("/_trash/pageTwo.fxml"));
             Scene currentScene = ((Node) event.getSource()).getScene();
             currentScene.setRoot(page2Root);
             System.out.println("Moving to new page");
@@ -385,7 +371,7 @@ public class RoomController {
     @FXML
     private void goBack(ActionEvent event) {
         try {
-            Parent mainViewRoot = FXMLLoader.load(getClass().getResource("/MainView.fxml"));
+            Parent mainViewRoot = FXMLLoader.load(getClass().getResource("/_trash/MainView.fxml"));
             Scene currentScene = ((Node) event.getSource()).getScene();
             currentScene.setRoot(mainViewRoot);
         } catch (IOException e) {

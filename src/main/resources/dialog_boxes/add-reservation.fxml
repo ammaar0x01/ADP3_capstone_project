@@ -16,10 +16,10 @@
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
 
-    <Label text="Start Time:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    <Label text="Start Date:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
     <TextField fx:id="startTimeField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
-    <Label text="End Time:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <Label text="End Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
     <TextField fx:id="endTimeField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
     <HBox spacing="10" alignment="CENTER_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2">

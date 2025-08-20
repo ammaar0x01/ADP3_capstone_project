@@ -19,10 +19,10 @@
     <Label text="Reservation ID:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
     <TextField fx:id="reservationIdField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
-    <Label text="Start Time:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <Label text="Start Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
     <TextField fx:id="startTimeField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
-    <Label text="End Time:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+    <Label text="End Date:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
     <TextField fx:id="endTimeField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
 
     <HBox spacing="10" alignment="CENTER_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="3">

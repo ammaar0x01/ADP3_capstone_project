@@ -54,7 +54,7 @@
                                    </Label>
                                    <ImageView fitHeight="150" fitWidth="200" preserveRatio="false">
                                        <image>
-                                           <Image url="@../rooms/b.jpg" />
+                                           <Image url="@../images/rooms/b.jpg" />
                                        </image>
                                    </ImageView>
                                    <HBox alignment="CENTER_LEFT" spacing="5">
@@ -63,7 +63,7 @@
                                            <TextField fx:id="priceTextField1" managed="false" onKeyPressed="#priceTextFieldOnEnter" visible="false" />
                                            <ImageView fitHeight="16" fitWidth="16" onMouseClicked="#editPrice" pickOnBounds="true" preserveRatio="true">
                                                <image>
-                                                   <Image url="@/icons/green.png" />
+                                                   <Image url="@/images/icons/green.png" />
                                                </image>
                                            </ImageView>
                                        </children>
@@ -74,7 +74,7 @@
                                            <TextField fx:id="typeTextField1" managed="false" onKeyPressed="#typeTextFieldOnEnter" visible="false" />
                                            <ImageView fitHeight="16" fitWidth="16" onMouseClicked="#editType" pickOnBounds="true" preserveRatio="true">
                                                <image>
-                                                   <Image url="@/icons/green.png" />
+                                                   <Image url="@/images/icons/green.png" />
                                                </image>
                                            </ImageView>
                                        </children>
@@ -85,7 +85,7 @@
                                            <TextField fx:id="availabilityTextField1" managed="false" onKeyPressed="#availabilityTextFieldOnEnter" visible="false" />
                                            <ImageView fitHeight="16" fitWidth="16" onMouseClicked="#editAvailability" pickOnBounds="true" preserveRatio="true">
                                                <image>
-                                                   <Image url="@/icons/green.png" />
+                                                   <Image url="@/images/icons/green.png" />
                                                </image>
                                            </ImageView>
                                        </children>
@@ -96,7 +96,7 @@
                                            <TextField fx:id="featuresTextField1" managed="false" onKeyPressed="#featuresTextFieldOnEnter" visible="false" />
                                            <ImageView fitHeight="16" fitWidth="16" onMouseClicked="#editFeatures" pickOnBounds="true" preserveRatio="true">
                                                <image>
-                                                   <Image url="@/icons/green.png" />
+                                                   <Image url="@/images/icons/green.png" />
                                                </image>
                                            </ImageView>
                                        </children>
@@ -120,7 +120,7 @@
 
                                <ImageView fitHeight="150" fitWidth="200" preserveRatio="false" smooth="false">
                                    <image>
-                                       <Image url="@../rooms/a.jpg" />
+                                       <Image url="@../images/rooms/a.jpg" />
                                    </image>
                                    <effect>
                                        <Blend />
@@ -133,7 +133,7 @@
                                    <TextField fx:id="priceTextField" managed="false" onKeyPressed="#priceTextFieldOnEnter" visible="false" />
                                    <ImageView fitHeight="16" fitWidth="16" onMouseClicked="#editPrice" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                           <Image url="@/icons/green.png" />
+                                           <Image url="@/images/icons/green.png" />
                                        </image>
                                    </ImageView>
                                </HBox>
@@ -144,7 +144,7 @@
                                    <TextField fx:id="typeTextField" managed="false" onKeyPressed="#typeTextFieldOnEnter" visible="false" />
                                    <ImageView fitHeight="16" fitWidth="16" onMouseClicked="#editType" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                           <Image url="@/icons/green.png" />
+                                           <Image url="@/images/icons/green.png" />
                                        </image>
                                    </ImageView>
                                </HBox>
@@ -155,7 +155,7 @@
                                    <TextField fx:id="availabilityTextField" managed="false" onKeyPressed="#availabilityTextFieldOnEnter" visible="false" />
                                    <ImageView fitHeight="16" fitWidth="16" onMouseClicked="#editAvailability" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                           <Image url="@/icons/green.png" />
+                                           <Image url="@/images/icons/green.png" />
                                        </image>
                                    </ImageView>
                                </HBox>
@@ -166,7 +166,7 @@
                                    <TextField fx:id="featuresTextField" managed="false" onKeyPressed="#featuresTextFieldOnEnter" visible="false" />
                                    <ImageView fitHeight="16" fitWidth="16" onMouseClicked="#editFeatures" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                           <Image url="@/icons/green.png" />
+                                           <Image url="@/images/icons/green.png" />
                                        </image>
                                    </ImageView>
                                </HBox>
@@ -178,7 +178,7 @@
                            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white;" GridPane.columnIndex="2" GridPane.rowIndex="0">
                                <ImageView fitHeight="150" fitWidth="200" preserveRatio="false">
                                    <image>
-                                       <Image url="@/rooms/b.jpg" />
+                                       <Image url="@/images/rooms/b.jpg" />
                                    </image>
                                </ImageView>
 
@@ -190,7 +190,7 @@
                                    <TextField managed="false" onKeyPressed="#priceTextFieldOnEnter" visible="false" />
                                    <ImageView fitHeight="16" fitWidth="16" onMouseClicked="#editPrice" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                           <Image url="@/icons/green.png" />
+                                           <Image url="@/images/icons/green.png" />
                                        </image>
                                    </ImageView>
                                </HBox>
@@ -201,7 +201,7 @@
                                    <TextField managed="false" onKeyPressed="#typeTextFieldOnEnter" visible="false" />
                                    <ImageView fitHeight="16" fitWidth="16" onMouseClicked="#editType" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                           <Image url="@/icons/green.png" />
+                                           <Image url="@/images/icons/green.png" />
                                        </image>
                                    </ImageView>
                                </HBox>
@@ -212,7 +212,7 @@
                                    <TextField managed="false" onKeyPressed="#availabilityTextFieldOnEnter" visible="false" />
                                    <ImageView fitHeight="16" fitWidth="16" onMouseClicked="#editAvailability" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                           <Image url="@/icons/green.png" />
+                                           <Image url="@/images/icons/green.png" />
                                        </image>
                                    </ImageView>
                                </HBox>
@@ -223,7 +223,7 @@
                                    <TextField managed="false" onKeyPressed="#featuresTextFieldOnEnter" visible="false" />
                                    <ImageView fitHeight="16" fitWidth="16" onMouseClicked="#editFeatures" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                           <Image url="@/icons/green.png" />
+                                           <Image url="@/images/icons/green.png" />
                                        </image>
                                    </ImageView>
                                </HBox>
@@ -235,7 +235,7 @@
                            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                <ImageView fitHeight="150" fitWidth="200" preserveRatio="true">
                                    <image>
-                                       <Image url="@/rooms/c.jpg" />
+                                       <Image url="@/images/rooms/c.jpg" />
                                    </image>
                                </ImageView>
 
@@ -247,7 +247,7 @@
                                    <TextField managed="false" onKeyPressed="#priceTextFieldOnEnter" visible="false" />
                                    <ImageView fitHeight="16" fitWidth="16" onMouseClicked="#editPrice" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                           <Image url="@/icons/green.png" />
+                                           <Image url="@/images/icons/green.png" />
                                        </image>
                                    </ImageView>
                                </HBox>
@@ -258,7 +258,7 @@
                                    <TextField managed="false" onKeyPressed="#typeTextFieldOnEnter" visible="false" />
                                    <ImageView fitHeight="16" fitWidth="16" onMouseClicked="#editType" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                           <Image url="@/icons/green.png" />
+                                           <Image url="@/images/icons/green.png" />
                                        </image>
                                    </ImageView>
                                </HBox>
@@ -269,7 +269,7 @@
                                    <TextField managed="false" onKeyPressed="#availabilityTextFieldOnEnter" visible="false" />
                                    <ImageView fitHeight="16" fitWidth="16" onMouseClicked="#editAvailability" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                           <Image url="@/icons/green.png" />
+                                           <Image url="@/images/icons/green.png" />
                                        </image>
                                    </ImageView>
                                </HBox>
@@ -280,7 +280,7 @@
                                    <TextField managed="false" onKeyPressed="#featuresTextFieldOnEnter" visible="false" />
                                    <ImageView fitHeight="16" fitWidth="16" onMouseClicked="#editFeatures" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                           <Image url="@/icons/green.png" />
+                                           <Image url="@/images/icons/green.png" />
                                        </image>
                                    </ImageView>
                                </HBox>
@@ -292,7 +292,7 @@
                            <VBox alignment="CENTER" spacing="10" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                <ImageView fitHeight="150" fitWidth="200" preserveRatio="false">
                                    <image>
-                                       <Image url="@/rooms/d.jpg" />
+                                       <Image url="@/images/rooms/d.jpg" />
                                    </image>
                                </ImageView>
 
@@ -304,7 +304,7 @@
                                    <TextField managed="false" onKeyPressed="#priceTextFieldOnEnter" visible="false" />
                                    <ImageView fitHeight="16" fitWidth="16" onMouseClicked="#editPrice" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                           <Image url="@/icons/green.png" />
+                                           <Image url="@/images/icons/green.png" />
                                        </image>
                                    </ImageView>
                                </HBox>
@@ -315,7 +315,7 @@
                                    <TextField managed="false" onKeyPressed="#typeTextFieldOnEnter" visible="false" />
                                    <ImageView fitHeight="16" fitWidth="16" onMouseClicked="#editType" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                           <Image url="@/icons/green.png" />
+                                           <Image url="@/images/icons/green.png" />
                                        </image>
                                    </ImageView>
                                </HBox>
@@ -326,7 +326,7 @@
                                    <TextField managed="false" onKeyPressed="#availabilityTextFieldOnEnter" visible="false" />
                                    <ImageView fitHeight="16" fitWidth="16" onMouseClicked="#editAvailability" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                           <Image url="@/icons/green.png" />
+                                           <Image url="@/images/icons/green.png" />
                                        </image>
                                    </ImageView>
                                </HBox>
@@ -337,7 +337,7 @@
                                    <TextField managed="false" onKeyPressed="#featuresTextFieldOnEnter" visible="false" />
                                    <ImageView fitHeight="16" fitWidth="16" onMouseClicked="#editFeatures" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                           <Image url="@/icons/green.png" />
+                                           <Image url="@/images/icons/green.png" />
                                        </image>
                                    </ImageView>
                                </HBox>
@@ -353,7 +353,7 @@
                                    </Label>
                                    <ImageView fitHeight="150" fitWidth="200" preserveRatio="false">
                                        <image>
-                                           <Image url="@../rooms/b.jpg" />
+                                           <Image url="@../images/rooms/b.jpg" />
                                        </image>
                                        <effect>
                                            <DropShadow color="black" offsetX="3" offsetY="3" radius="10" />
@@ -365,7 +365,7 @@
                                            <TextField fx:id="priceTextField11" managed="false" onKeyPressed="#priceTextFieldOnEnter" visible="false" />
                                            <ImageView fitHeight="16" fitWidth="16" onMouseClicked="#editPrice" pickOnBounds="true" preserveRatio="true">
                                                <image>
-                                                   <Image url="@/icons/green.png" />
+                                                   <Image url="@/images/icons/green.png" />
                                                </image>
                                            </ImageView>
                                        </children>
@@ -376,7 +376,7 @@
                                            <TextField fx:id="typeTextField11" managed="false" onKeyPressed="#typeTextFieldOnEnter" visible="false" />
                                            <ImageView fitHeight="16" fitWidth="16" onMouseClicked="#editType" pickOnBounds="true" preserveRatio="true">
                                                <image>
-                                                   <Image url="@/icons/green.png" />
+                                                   <Image url="@/images/icons/green.png" />
                                                </image>
                                            </ImageView>
                                        </children>
@@ -387,7 +387,7 @@
                                            <TextField fx:id="availabilityTextField11" managed="false" onKeyPressed="#availabilityTextFieldOnEnter" visible="false" />
                                            <ImageView fitHeight="16" fitWidth="16" onMouseClicked="#editAvailability" pickOnBounds="true" preserveRatio="true">
                                                <image>
-                                                   <Image url="@/icons/green.png" />
+                                                   <Image url="@/images/icons/green.png" />
                                                </image>
                                            </ImageView>
                                        </children>
@@ -398,7 +398,7 @@
                                            <TextField fx:id="featuresTextField11" managed="false" onKeyPressed="#featuresTextFieldOnEnter" visible="false" />
                                            <ImageView fitHeight="16" fitWidth="16" onMouseClicked="#editFeatures" pickOnBounds="true" preserveRatio="true">
                                                <image>
-                                                   <Image url="@/icons/green.png" />
+                                                   <Image url="@/images/icons/green.png" />
                                                </image>
                                            </ImageView>
                                        </children>
