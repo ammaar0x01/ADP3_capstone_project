@@ -50,14 +50,4 @@ public class PaymentController {
         return true;
     }
 
-    // Optional basic test endpoints for confirmation
-    @GetMapping
-    public String paymentHome() {
-        return "<h1>Payment Module</h1>";
-    }
-
-    @GetMapping("/test")
-    public String paymentTestData() {
-        return "{ data: 'Sample payment data response' }";
-    }
 }

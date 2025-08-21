@@ -7,6 +7,7 @@ Student Number: 221126082
 package com.college.domain;
 
 import jakarta.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "payment")
@@ -16,16 +17,15 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int paymentId;
 
-    private String paymentAmount;
+    private double paymentAmount;
     private String paymentMethod;
     private String paymentStatus;
-    private String paymentDate;
-
+    private LocalDate paymentDate;
 
     public Payment() {}
 
-
-    public Payment(int paymentId, String paymentAmount, String paymentMethod, String paymentStatus, String paymentDate) {
+    // Full constructor
+    public Payment(int paymentId, double paymentAmount, String paymentMethod, String paymentStatus, LocalDate paymentDate) {
         this.paymentId = paymentId;
         this.paymentAmount = paymentAmount;
         this.paymentMethod = paymentMethod;
@@ -33,7 +33,7 @@ public class Payment {
         this.paymentDate = paymentDate;
     }
 
-
+    // Private constructor for Builder
     private Payment(Builder builder) {
         this.paymentId = builder.paymentId;
         this.paymentAmount = builder.paymentAmount;
@@ -42,52 +42,47 @@ public class Payment {
         this.paymentDate = builder.paymentDate;
     }
 
+    // Getters and Setters
+    public int getPaymentId() { return paymentId; }
+    public void setPaymentId(int paymentId) { this.paymentId = paymentId; }
 
-    public int getPaymentId() {
-        return paymentId;
-    }
+    public double getPaymentAmount() { return paymentAmount; }
+    public void setPaymentAmount(double paymentAmount) { this.paymentAmount = paymentAmount; }
 
-    public String getPaymentAmount() {
-        return paymentAmount;
-    }
+    public String getPaymentMethod() { return paymentMethod; }
+    public void setPaymentMethod(String paymentMethod) { this.paymentMethod = paymentMethod; }
 
-    public String getPaymentMethod() {
-        return paymentMethod;
-    }
+    public String getPaymentStatus() { return paymentStatus; }
+    public void setPaymentStatus(String paymentStatus) { this.paymentStatus = paymentStatus; }
 
-    public String getPaymentStatus() {
-        return paymentStatus;
-    }
-
-    public String getPaymentDate() {
-        return paymentDate;
-    }
+    public LocalDate getPaymentDate() { return paymentDate; }
+    public void setPaymentDate(LocalDate paymentDate) { this.paymentDate = paymentDate; }
 
     @Override
     public String toString() {
         return "Payment{" +
                 "paymentId=" + paymentId +
-                ", paymentAmount='" + paymentAmount + '\'' +
+                ", paymentAmount=" + paymentAmount +
                 ", paymentMethod='" + paymentMethod + '\'' +
                 ", paymentStatus='" + paymentStatus + '\'' +
-                ", paymentDate='" + paymentDate + '\'' +
+                ", paymentDate=" + paymentDate +
                 '}';
     }
 
-
+    // Builder pattern
     public static class Builder {
         private int paymentId;
-        private String paymentAmount;
+        private double paymentAmount;
         private String paymentMethod;
         private String paymentStatus;
-        private String paymentDate;
+        private LocalDate paymentDate;
 
         public Builder setPaymentId(int paymentId) {
             this.paymentId = paymentId;
             return this;
         }
 
-        public Builder setPaymentAmount(String paymentAmount) {
+        public Builder setPaymentAmount(double paymentAmount) {
             this.paymentAmount = paymentAmount;
             return this;
         }
@@ -102,7 +97,7 @@ public class Payment {
             return this;
         }
 
-        public Builder setPaymentDate(String paymentDate) {
+        public Builder setPaymentDate(LocalDate paymentDate) {
             this.paymentDate = paymentDate;
             return this;
         }
