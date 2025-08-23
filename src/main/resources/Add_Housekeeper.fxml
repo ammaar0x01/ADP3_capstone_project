@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="300.0" prefWidth="520.0"
+            xmlns="http://javafx.com/javafx/24.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.college.controller.HousekeeperFormController">
+
+    <Label layoutX="170.0" layoutY="20.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Housekeeper Form"/>
+
+    <Label layoutX="80.0" layoutY="90.0" text="Name:"/>
+    <TextField fx:id="txtName" layoutX="170.0" layoutY="85.0" prefWidth="260.0"/>
+
+    <Label layoutX="80.0" layoutY="140.0" text="Surname:"/>
+    <TextField fx:id="txtSurname" layoutX="170.0" layoutY="135.0" prefWidth="260.0"/>
+
+    <Button layoutX="170.0" layoutY="200.0" text="Save" onAction="#handleSave"/>
+    <Button layoutX="260.0" layoutY="200.0" text="Cancel" onAction="#handleCancel"/>
+</AnchorPane>
