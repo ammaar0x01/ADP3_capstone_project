@@ -15,7 +15,7 @@ public class MainApp extends Application {
         Scene scene = new Scene(root);
         stage.setTitle("Guest Management");
         stage.setScene(scene);
-        stage.setWidth(800);
+        stage.setWidth(1000);
         stage.setHeight(600);
         stage.show();
     }
