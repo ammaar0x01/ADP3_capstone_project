@@ -6,3 +6,13 @@
 
     -fx-effect: dropshadow(gaussian, black, 5, 0.1, 3, 3);
 }
+
+.button:hover {
+    -fx-background-color: #ADD8E6;  /* hover color */
+    -fx-cursor: hand;              /* change cursor to pointer */
+}
+
+.room-title {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
