@@ -34,17 +34,11 @@ public class RoomService implements IRoomService {
     }
 
     @Override
-//    public void update(Room room) {
-//        roomRepository.save(room);
-//    }
     public Room update(Room room) {
         return roomRepository.save(room);
     }
 
     @Override
-//    public void delete(Integer integer) {
-//        roomRepository.deleteById(integer);
-//    }
     public boolean delete(Integer integer) {
         roomRepository.deleteById(integer);
         return true;

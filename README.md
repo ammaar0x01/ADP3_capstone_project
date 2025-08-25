@@ -1,6 +1,6 @@
 ## Project: 	Hotel-booking System
 - Started: 	12.03.25
-- Updated: 	23.05.25
+- Updated: 	25.08.25
 - Status: 	work-in-progress
 - _Branch:	p-master_
 ---

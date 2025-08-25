@@ -1,7 +1,7 @@
 /*
 Project:    Hotel-management system
 Started:    11.03.25
-Updated:    23.05.25
+Updated:    25.08.25
 ---
 
 Members
@@ -36,3 +36,4 @@ public class Main {
         SpringApplication.run(Main.class, args);
     }
 }
+

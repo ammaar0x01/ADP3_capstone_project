@@ -119,7 +119,7 @@ public class Room {
             return this;
         }
 
-        /// build method
+        // build method
         public Room build(){
             return new Room(this);
         }

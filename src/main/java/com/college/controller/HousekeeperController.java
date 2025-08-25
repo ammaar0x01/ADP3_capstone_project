@@ -49,4 +49,13 @@ public class HousekeeperController {
         service.delete(id);
     }
 
+    @GetMapping("/housekeeper")
+    public String housekeeper() {
+        return "<h1>Housekeeper</h1>";
+    }
+
+    @GetMapping("/housekeeper/get")
+    public String housekeeperGetAll() {
+        return "{ data: All housekeepers from the database }";
+    }
 }
