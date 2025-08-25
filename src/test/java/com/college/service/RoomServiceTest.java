@@ -1,14 +1,8 @@
-/* RoomServiceTest.java
-RoomServiceTest class
-Author: joshua twigg (222153881)
-Date: 27 March 2025
-*/
-
 package com.college.service;
 
 import com.college.domain.Room;
 import com.college.factory.RoomFactory;
-import com.college.repository.RoomRepositoryJpa;
+import com.college.repository.RoomRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class RoomServiceTest {
-
-
     @Autowired
-    RoomRepositoryJpa repository;
+    RoomRepository repository;
 
     @Autowired
     RoomService service;
@@ -31,44 +23,31 @@ class RoomServiceTest {
 
     @BeforeEach
     void setUp() {
-
-       roomOne = RoomFactory.createRoom(1, "medium", 1200.50f, true, "Sea view, King bed, WiFi");
-       roomTwo = RoomFactory.createRoom(2, "suite", 100.50f, true, "King123 bed, sink");
-
+        roomOne = RoomFactory.createRoom(1, "medium", 1200.50f, true, "Sea view, King bed, WiFi");
+        roomTwo = RoomFactory.createRoom(2, "suite", 100.50f, true, "King123 bed, sink");
     }
-
 
     @Test
     void testSaveRoom() {
-
         assertNotNull(service.create(roomOne));
         System.out.println(roomOne + " saved ");
     }
 
-
     @Test
     void testReadRoom() {
-
-       Room r = service.read(2);
+        Room r = service.read(2);
         System.out.println(r + " retrieved ");
     }
 
-
-
     @Test
     void testUpdateRoom() {
-
         service.update(roomTwo);
         System.out.println(" updated: " + roomTwo);
     }
 
-
     @Test
     void testDeleteRoom() {
-
         service.delete(1);
         System.out.println(" room deleted");
     }
-
-
 }

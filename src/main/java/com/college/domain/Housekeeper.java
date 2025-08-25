@@ -1,77 +1,68 @@
-/*  Housekeeper.java
-    Housekeeper Entity
-    Author: Muaath Slamong (230074138)
-    Date: 19 March 2025
+/*
+    File name:  Housekeeper.java
+    Author:     Muaath Slamong (230074138)
+    Date:       22 March 2025
 */
+
+
 package com.college.domain;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table (name="Housekeeper")
 public class Housekeeper {
-    // Housekeeper attribute
-    private int HousekeeperId;
-    private String HousekeeperName;
-    private String HousekeeperSurname;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int housekeeperId;
+    private String housekeeperName;
+    private String housekeeperSurname;
 
-    // Default Constructor
-    public Housekeeper() {
-
+    protected Housekeeper() {}
+    private Housekeeper(HousekeeperBuilder builder) {
+        this.housekeeperId = builder.housekeeperId;
+        this.housekeeperName = builder.housekeeperName;
+        this.housekeeperSurname = builder.housekeeperSurname;
     }
 
-    // Builder Housekeeper
-    public Housekeeper(HousekeeperBuilder builder) {
-        this.HousekeeperId = builder.HousekeeperId;
-        this.HousekeeperName = builder.HousekeeperName;
-        this.HousekeeperSurname = builder.HousekeeperSurname;
-    }
-
-    // Getters
     public int getHousekeeperId() {
-        return HousekeeperId;
+        return housekeeperId;
     }
 
     public String getHousekeeperName() {
-        return HousekeeperName;
+        return housekeeperName;
     }
 
     public String getHousekeeperSurname() {
-        return HousekeeperSurname;
+        return housekeeperSurname;
     }
-
 
     @Override
     public String toString() {
         return "Housekeeper{" +
-                "HousekeeperId=" + HousekeeperId +
-                ", HousekeeperName='" + HousekeeperName + '\'' +
-                ", HousekeeperSurname='" + HousekeeperSurname + '\'' +
+                "housekeeperId=" + housekeeperId +
+                ", housekeeperName='" + housekeeperName + '\'' +
+                ", housekeeperSurname='" + housekeeperSurname + '\'' +
                 '}';
     }
 
     public static class HousekeeperBuilder {
-        private int HousekeeperId;
-        private String HousekeeperName;
-        private String HousekeeperSurname;
+        private int housekeeperId;
+        private String housekeeperName;
+        private String housekeeperSurname;
 
-        public HousekeeperBuilder() {}
-
-        public HousekeeperBuilder(int HousekeeperId, String HousekeeperName, String HousekeeperSurname, String HousekeeperRole) {
-            this.HousekeeperId = HousekeeperId;
-            this.HousekeeperName = HousekeeperName;
-            this.HousekeeperSurname = HousekeeperSurname;
-        }
-
-        // Builder Getters
-        public HousekeeperBuilder setHousekeeperId(int HousekeeperId) {
-            this.HousekeeperId = HousekeeperId;
+        public HousekeeperBuilder setHousekeeperId(int housekeeperId) {
+            this.housekeeperId = housekeeperId;
             return this;
         }
 
-        public HousekeeperBuilder setHousekeeperName(String HousekeeperName) {
-            this.HousekeeperName = HousekeeperName;
+        public HousekeeperBuilder setHousekeeperName(String housekeeperName) {
+            this.housekeeperName = housekeeperName;
             return this;
         }
 
-        public HousekeeperBuilder setHousekeeperSurname(String HousekeeperSurname) {
-            this.HousekeeperSurname = HousekeeperSurname;
+        public HousekeeperBuilder setHousekeeperSurname(String housekeeperSurname) {
+            this.housekeeperSurname = housekeeperSurname;
             return this;
         }
 

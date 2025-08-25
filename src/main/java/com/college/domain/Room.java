@@ -8,24 +8,16 @@ package com.college.domain;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Room")
+@Table(name="Room")
 public class Room {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int roomID;
     private String roomType;
     private float pricePerNight;
     private Boolean availability;
     private String features;
 
-//    @OneToOne
-//    @JoinColumn(name = "detail_id")
-    //need another entity here it's related to
-
-    public Room() {
-
-    }
-
+    public Room(){}
     public Room(int roomID, String roomType, float pricePerNight, Boolean availability, String features) {
         this.roomID = roomID;
         this.roomType = roomType;
@@ -47,31 +39,21 @@ public class Room {
         return roomID;
     }
 
-
-
     public String getRoomType() {
         return roomType;
     }
-
-
 
     public float getPricePerNight() {
         return pricePerNight;
     }
 
-
-
     public Boolean getAvailability() {
         return availability;
     }
 
-
-
     public String getFeatures() {
         return features;
     }
-
-
 
     @Override
     public String toString() {
@@ -93,8 +75,6 @@ public class Room {
         private float pricePerNight;
         private Boolean availability;
         private String features;
-
-
 
         public RoomBuilder(int roomID, String roomType, float pricePerNight, Boolean availability, String features) {
             this.roomID = roomID;

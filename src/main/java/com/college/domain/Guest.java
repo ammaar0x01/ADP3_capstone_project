@@ -1,11 +1,18 @@
+
 /* Guest.java
 Guest Model Class
 Author: Zaid Theunissen (221084142)
 Date: 26 March 2025
 */
+
 package com.college.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Guest {
+    @Id
     private int guestID;
     private String name;
     private String surname;
@@ -13,13 +20,8 @@ public class Guest {
     private String email;
     private String paymentDetails;
 
-    public Guest() {
-    }
-
-    public Guest(int i, String john, String doe, String number, String mail, String paid) {
-    }
-
-    public Guest(GuestBuilder builder) {
+    protected Guest() {}
+    private Guest(GuestBuilder builder) {
         this.paymentDetails = builder.paymentDetails;
         this.email = builder.email;
         this.contactNumber = builder.contactNumber;
@@ -64,7 +66,6 @@ public class Guest {
                 '}';
     }
 
-
     public static class GuestBuilder {
         private int guestID;
         private String name;
@@ -72,18 +73,6 @@ public class Guest {
         private String contactNumber;
         private String email;
         private String paymentDetails;
-
-        public GuestBuilder(int guestID, String name, String surname, String contactNumber, String email, String paymentDetails) {
-            this.guestID = guestID;
-            this.name = name;
-            this.surname = surname;
-            this.contactNumber = contactNumber;
-            this.email = email;
-            this.paymentDetails = paymentDetails;
-        }
-
-        public GuestBuilder() {
-        }
 
         public GuestBuilder setGuestID(int guestID) {
             this.guestID = guestID;
@@ -111,6 +100,16 @@ public class Guest {
         }
 
         public GuestBuilder setPaymentDetails(String paymentDetails) {
+            this.paymentDetails = paymentDetails;
+            return this;
+        }
+
+        public GuestBuilder copy(Guest guest) {
+            this.guestID = guestID;
+            this.name = name;
+            this.surname = surname;
+            this.contactNumber = contactNumber;
+            this.email = email;
             this.paymentDetails = paymentDetails;
             return this;
         }
