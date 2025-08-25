@@ -16,15 +16,25 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.*;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.util.HashMap;
+import java.util.Map;
 
-//@RestController idk if this wil break old code. cause nowit needs to be @component to work with javafx ui
+
 @Component
 public class RoomController {
 
@@ -43,10 +53,10 @@ public class RoomController {
     }
 
     // Buttons
-    @FXML private Button buttonVip;
-    @FXML private Button buttonSuite;
-    @FXML private Button buttonStandard;
-    @FXML private Button buttonEconomy;
+    @FXML private Button buttonA;
+    @FXML private Button buttonB;
+    @FXML private Button buttonC;
+    @FXML private Button buttonD;
 
     // Editable Labels and TextFields for Price
     @FXML private Label priceLabel;
@@ -64,57 +74,219 @@ public class RoomController {
     @FXML private Label featuresLabel;
     @FXML private TextField featuresTextField;
 
-    //How this works. 4 functionalities
-    //edit type price... etc
-    //each functionality has 1 method which checks which label called the method by traversing the event source
-    //then each functionality has 1 enter method for saving only that functionality
-    // for example, price will have 1 method and 1 enter method tied to it. Type same thing 1 and 1. etc
-    // so 4 enter methods checking what label to save for. 4 normal methods for editing labels.
-    //traversing the event means you dont have to hardcode 8+ methods for each image
+    // --- Card A Icons ---
+    @FXML private ImageView priceIconA, typeIconA, availabilityIconA, featuresIconA;
 
-    // --- Booking button handlers ---
+    // --- Card B Icons ---
+    @FXML private ImageView priceIconB, typeIconB, availabilityIconB, featuresIconB;
+
+    // --- Card C Icons ---
+    @FXML private ImageView priceIconC, typeIconC, availabilityIconC, featuresIconC;
+
+    // --- Card D Icons ---
+    @FXML private ImageView priceIconD, typeIconD, availabilityIconD, featuresIconD;
+
+
+    //page 2. No dice
+
+//    // --- Card E Icons ---
+//    @FXML private ImageView priceIconE, typeIconE, availabilityIconE, featuresIconE;
+//
+//    // --- Card F Icons ---
+//    @FXML private ImageView priceIconF, typeIconF, availabilityIconF, featuresIconF;
+//
+//    // --- Card G Icons ---
+//    @FXML private ImageView priceIconG, typeIconG, availabilityIconG, featuresIconG;
+//
+//    // --- Card H Icons ---
+//    @FXML private ImageView priceIconH, typeIconH, availabilityIconH, featuresIconH;
+
+
+
+    // --- Hover Handlers for all green icons ---
     @FXML
-    private void handleVipClick() {
-        System.out.println("Button clicked!");
-        buttonVip.setText("Clicked!");
+    private void onIconMouseEntered(MouseEvent event) {
+        ImageView icon = (ImageView) event.getSource();
+        icon.setOpacity(0.7); // example hover effect
+    }
 
-        //get values from label, still needs specific label idk how yet event src?
-        String priceText = priceLabel.getText();
-        String typeText = typeLabel.getText();
-        String availabilityText = availabilityLabel.getText();
-        String featuresText = featuresLabel.getText();
+    @FXML
+    private void onIconMouseExited(MouseEvent event) {
+        ImageView icon = (ImageView) event.getSource();
+        icon.setOpacity(1.0); // reset when mouse exits
+    }
 
-        // Extract the actual values
+
+    //one handler for all booking buttons
+    @FXML
+    private void handleBookClick(ActionEvent event) {
+        Button clickedButton = (Button) event.getSource(); // the button that fired the event
+        String id = clickedButton.getId(); // fx:id from FXML
+//        clickedButton.setDisable(true);
+
+        //traverse JavaFx dom, event Source to find the button that was clicked
+        VBox cardVBox = (VBox) clickedButton.getParent();
+
+        HBox priceBox = (HBox) cardVBox.getChildren().get(2);      // index 2
+        HBox typeBox = (HBox) cardVBox.getChildren().get(3);       // index 3 etc
+        HBox availabilityBox = (HBox) cardVBox.getChildren().get(4);
+        HBox featuresBox = (HBox) cardVBox.getChildren().get(5);
+
+        String priceText = ((Label) priceBox.getChildren().get(0)).getText();
+        String typeText = ((Label) typeBox.getChildren().get(0)).getText();
+        String availabilityText = ((Label) availabilityBox.getChildren().get(0)).getText();
+        String featuresText = ((Label) featuresBox.getChildren().get(0)).getText();
+
+        // clean text values
         String roomType = typeText.replace("Room Type:", "").trim();
-        float price = Float.parseFloat(priceText.replaceAll("[^\\d.]", "")); // removes "Price Per Night: R"
-        boolean available = availabilityText.toLowerCase().contains("available");
+        float price = Float.parseFloat(priceText.replaceAll("[^\\d.]", ""));
+        boolean available = availabilityText.toLowerCase().contains("yes");
         String features = featuresText.replace("Features:", "").trim();
 
+        System.out.println("Room Type: " + roomType);
+        System.out.println("Price: " + price);
+        System.out.println("Available: " + available);
+        System.out.println("Features: " + features);
 
-        Room roomOne = RoomFactory.createRoom(
-                51, roomType, price, available, features);
 
-        System.out.println(roomOne.toString());
-        roomService.create(roomOne);
+        int roomID = 0;
+
+        // Determine roomID based on button
+        switch (id) {
+            // Page 1
+            case "buttonA": roomID = 51; break;
+            case "buttonB": roomID = 52; break;
+            case "buttonC": roomID = 53; break;
+            case "buttonD": roomID = 54; break;
+
+            //  2
+            case "buttonE": roomID = 55; break;
+            case "buttonF": roomID = 56; break;
+            case "buttonG": roomID = 57; break;
+            case "buttonH": roomID = 58; break;
+
+            // 3
+            case "buttonI": roomID = 59; break;
+            case "buttonJ": roomID = 60; break;
+            case "buttonK": roomID = 61; break;
+            case "buttonL": roomID = 62; break;
+        }
+
+        // Create the Room object
+        Room room = RoomFactory.createRoom(roomID, roomType, price, available, features);
+
+        // Decide action based on button text
+        if (clickedButton.getText().equals("Update")) {
+            System.out.println("Updating room: " + roomType);
+            roomService.update(room); // call update
+        } else {
+            System.out.println(roomType + " Add");
+            clickedButton.setText("Update");
+            roomService.create(room); // first-time booking
+        }
+
+        // Consume RESTful service
+        String jsonPayload = String.format(
+                "{\"roomType\":\"%s\", \"price\":%.2f, \"available\":%b, \"features\":\"%s\"}",
+                roomType, price, available, features
+        );
+
+        endPoint(jsonPayload);
+
+        System.out.println(room.toString());
 
     }
 
-    @FXML
-    private void handleSuiteClick() {
-        System.out.println("Button clicked!");
-        buttonSuite.setText("Clicked!");
+    //have to re make all icons visible = false if i want hover again.
+    //
+
+//    @FXML
+//    public void initialize() {
+//        // --- Page 1 ---
+//        safeSetupHover(priceIconA); safeSetupHover(typeIconA); safeSetupHover(availabilityIconA); safeSetupHover(featuresIconA);
+//        safeSetupHover(priceIconB); safeSetupHover(typeIconB); safeSetupHover(availabilityIconB); safeSetupHover(featuresIconB);
+//        safeSetupHover(priceIconC); safeSetupHover(typeIconC); safeSetupHover(availabilityIconC); safeSetupHover(featuresIconC);
+//        safeSetupHover(priceIconD); safeSetupHover(typeIconD); safeSetupHover(availabilityIconD); safeSetupHover(featuresIconD);
+//
+//        // --- Page 2 Icons ---
+////        safeSetupHover(priceIconE); safeSetupHover(typeIconE); safeSetupHover(availabilityIconE); safeSetupHover(featuresIconE);
+////        safeSetupHover(priceIconF); safeSetupHover(typeIconF); safeSetupHover(availabilityIconF); safeSetupHover(featuresIconF);
+////        safeSetupHover(priceIconG); safeSetupHover(typeIconG); safeSetupHover(availabilityIconG); safeSetupHover(featuresIconG);
+////        safeSetupHover(priceIconH); safeSetupHover(typeIconH); safeSetupHover(availabilityIconH); safeSetupHover(featuresIconH);
+//
+//
+//
+//    }
+
+
+//    private void safeSetupHover(ImageView icon) {
+//        if (icon == null) {
+//            System.err.println("Warning: ImageView is null in setupHover");
+//            return;
+//        }
+//
+//        icon.setVisible(false); // hide icon by default
+//
+//        if (icon.getParent() != null) {
+//            icon.getParent().setOnMouseEntered(e -> icon.setVisible(true));
+//            icon.getParent().setOnMouseExited(e -> icon.setVisible(false));
+//        }
+//    }
+
+    //permanent button name if a room is already on database
+//    @FXML
+//    public void initialize() {
+//        Map<Integer, Button> roomButtonMap = new HashMap<>();
+//        roomButtonMap.put(51, buttonA);
+//        roomButtonMap.put(52, buttonB);
+//        roomButtonMap.put(53, buttonC);
+//        roomButtonMap.put(54, buttonD);
+//
+//        for (Map.Entry<Integer, Button> entry : roomButtonMap.entrySet()) {
+//            int roomID = entry.getKey();
+//            Button button = entry.getValue();
+//
+//            boolean roomExists = roomService.read(roomID) != null;
+//            button.setText(roomExists ? "Update" : "Add");
+//        }
+//    }
+
+
+    //2 ways of calling an endpoint url. Make one, or use public one
+
+    private void endPoint(String jsonPayload) {
+        RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<String> request = new HttpEntity<>(jsonPayload, headers);
+
+        try {
+
+            //call my url
+            String responseSpring = restTemplate.postForObject(
+                    "http://localhost:8080/api/book-room",
+                    request,
+                    String.class
+            );
+
+            System.out.println("Response: " + responseSpring);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    @FXML
-    private void handleStandardClick() {
-        System.out.println("Button clicked!");
-        buttonStandard.setText("Clicked!");
-    }
+    @RestController
+    @RequestMapping("/api")
+    public class MockController {
 
-    @FXML
-    private void handleEconomyClick() {
-        System.out.println("Button clicked!");
-        buttonEconomy.setText("Clicked!");
+        @PostMapping("/book-room")
+        public ResponseEntity<String> bookRoom(@RequestBody String payload) {
+            System.out.println("Received payload: " + payload);
+            return ResponseEntity.ok("{\"status\":\"success\"}");
+        }
     }
 
     // --- Toggle helper for editing Labels/TextFields ---
@@ -366,22 +538,68 @@ public class RoomController {
     }
 
 
-
     // --- Navigation ---
+
+    //old doesnt work with buttons or hover on 2nd page
+//    @FXML
+//    private void nextPage(ActionEvent event) {
+//        System.out.println("Button clicked!");
+//        try {
+//            Parent page2Root = FXMLLoader.load(getClass().getResource("/pageTwo.fxml"));
+//            Scene currentScene = ((Node) event.getSource()).getScene();
+//            currentScene.setRoot(page2Root);
+//            System.out.println("Moving to new page");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//
+//        }
+//    }
+
+
+    public void setRoomService(RoomService roomService) {
+        this.roomService = roomService;
+    }
+
 
     @FXML
     private void nextPage(ActionEvent event) {
-        System.out.println("Button clicked!");
         try {
-            Parent page2Root = FXMLLoader.load(getClass().getResource("/pageTwo.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/pageTwo.fxml"));
+            Parent page2 = loader.load();
+
+            // Get the controller to manually inject the service
+            RoomController page2Controller = loader.getController();
+            page2Controller.setRoomService(this.roomService); // pass your existing service
+
+            // Replace the current root
             Scene currentScene = ((Node) event.getSource()).getScene();
-            currentScene.setRoot(page2Root);
-            System.out.println("Moving to new page");
+            currentScene.setRoot(page2);
+
         } catch (IOException e) {
             e.printStackTrace();
-
         }
     }
+
+    @FXML
+    private void Page3(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/pageThree.fxml")); // adjust path
+            Parent page3 = loader.load();
+
+            // Get controller to inject services if needed
+            RoomController page3Controller = loader.getController();
+            page3Controller.setRoomService(this.roomService); // reuse same service
+
+            // Replace current scene root
+            Scene currentScene = ((Node) event.getSource()).getScene();
+            currentScene.setRoot(page3);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     @FXML
     private void goBack(ActionEvent event) {

@@ -41,31 +41,18 @@ public class RoomView extends Application {
         stage.getIcons().add(icon);
 
         stage.setScene(scene);
-        // stage.setWidth(1000); Ammar res
-        // stage.setHeight(600);
+//        stage.setWidth(1000);
+        stage.setHeight(800);
+        stage.setResizable(false);
         stage.show();
     }
 
     @Override
     public void stop() {
-        // Gracefully shutdown Spring when JavaFX exits
+       //shutdown Spring when JavaFX exits
         springContext.close();
     }
 }
-//1
-//had to add  @Override
-//    public void init() {
-//        // Start Spring before JavaFX
-//        springContext = new SpringApplicationBuilder(com.college.Main.class)
-//                .run(); // your SpringBootApplication class
-//    }
-
-//2
-//had to replace @restfulcontroller in room controller with @ component\\
 
 
-//init() method starts Spring before FXMLLoader tries to fetch beans.
-//
-//loader.setControllerFactory(springContext::getBean); now works because Spring knows about RoomController.
-//
-//stop() closes Spring cleanly when the app exits.
+
