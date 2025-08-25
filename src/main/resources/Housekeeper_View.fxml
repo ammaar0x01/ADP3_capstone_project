@@ -17,7 +17,7 @@
         </columns>
     </TableView>
 
-    <Button layoutX="200.0" layoutY="520.0" text="Add" onAction="#handleAdd"/>
-    <Button layoutX="360.0" layoutY="520.0" text="Update" onAction="#handleUpdate"/>
-    <Button layoutX="520.0" layoutY="520.0" text="Delete" onAction="#handleDelete"/>
+    <Button layoutX="200.0" layoutY="520.0" text="Add" onAction="#handleAdd" style="-fx-background-color: #26AD00" textFill="white"/>
+    <Button layoutX="360.0" layoutY="520.0" text="Update" onAction="#handleUpdate" style="-fx-background-color: #26AD00" textFill="white"/>
+    <Button layoutX="520.0" layoutY="520.0" text="Delete" onAction="#handleDelete" style="-fx-background-color: #C20010" textFill="white"/>
 </AnchorPane>
