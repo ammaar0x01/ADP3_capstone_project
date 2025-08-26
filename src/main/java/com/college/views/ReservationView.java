@@ -1,14 +1,12 @@
 package com.college.views;
 
 
-import com.college.utilities.ApplicationContextProvider;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
@@ -30,7 +28,7 @@ public class ReservationView extends Application {
 //        stage.initStyle(StageStyle.UNDECORATED);
 //        String sceneName = "/scenes/window-dashboard.fxml";
 
-        String sceneName = "/scenes/window-reservation-1.fxml";
+        String sceneName = "/scenes/window-reservation.fxml";
         System.out.println("\n>>> Loading scene from '" + sceneName + "'...");
         FXMLLoader loader = new FXMLLoader(getClass().getResource(sceneName));
 

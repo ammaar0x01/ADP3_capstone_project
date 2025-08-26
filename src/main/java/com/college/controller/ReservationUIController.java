@@ -14,10 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -27,21 +24,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 @Component
-//public class ReservationUIController implements Initializable, ApplicationContextAware  {
-public class ReservationUIController implements Initializable, ApplicationContextAware {
-
-
-    private static ApplicationContext context;
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        // Spring will call this method and provide the application context
-        context = applicationContext;
-    }
-
-    public static ApplicationContext getApplicationContext() {
-        return context;
-    }
+public class ReservationUIController implements Initializable {
 
     @FXML private TableView<Reservation> reservationTable;
     @FXML private TableColumn<Reservation, Integer> reservationIdColumn;
@@ -123,45 +106,15 @@ public class ReservationUIController implements Initializable, ApplicationContex
     private void getAll() {
         loadReservationData();
     }
-//
-//    @FXML
-//    private void add() {
-//        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dialog_boxes/add-reservation.fxml"));
-//            loader.setControllerFactory(ApplicationContextProvider.getApplicationContext()::getBean);
-//
-//            Parent root = loader.load();
-//            AddReservationController addController = loader.getController();
-//
-//            Stage modalStage = new Stage();
-//            modalStage.initModality(Modality.APPLICATION_MODAL);
-//            modalStage.setTitle("Add New Reservation");
-//            modalStage.setScene(new Scene(root));
-//            addController.setStage(modalStage);
-//
-//            modalStage.showAndWait();
-//            loadReservationData();
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            labelFeedback.setText("Error opening Add Reservation form.");
-//        }
-//    }
 
     @FXML
     private void add() {
         try {
-            // Get the controller instance from the Spring context
-            AddReservationController addController = ApplicationContextProvider.getApplicationContext().getBean(AddReservationController.class);
-
-            // Create the FXMLLoader
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/dialog_boxes/add-reservation.fxml"));
+            loader.setControllerFactory(ApplicationContextProvider.getApplicationContext()::getBean);
 
-            // Set the controller instance to the FXMLLoader
-            loader.setController(addController);
-
-            // Load the FXML file
             Parent root = loader.load();
+            AddReservationController addController = loader.getController();
 
             Stage modalStage = new Stage();
             modalStage.initModality(Modality.APPLICATION_MODAL);
@@ -177,7 +130,6 @@ public class ReservationUIController implements Initializable, ApplicationContex
             labelFeedback.setText("Error opening Add Reservation form.");
         }
     }
-
 
     @FXML
     private void delete() {
@@ -222,8 +174,7 @@ public class ReservationUIController implements Initializable, ApplicationContex
         }
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dialog_boxes/edit-reservation.fxml"));
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dialog_boxes/edit-reservation.fxml")); // Use a dedicated FXML for editing
             loader.setControllerFactory(ApplicationContextProvider.getApplicationContext()::getBean);
 
             Parent root = loader.load();
@@ -246,4 +197,3 @@ public class ReservationUIController implements Initializable, ApplicationContex
         }
     }
 }
-
