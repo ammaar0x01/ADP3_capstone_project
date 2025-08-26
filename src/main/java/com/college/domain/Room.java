@@ -11,7 +11,9 @@ import jakarta.persistence.*;
 @Table(name="Room")
 public class Room {
     @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int roomID;
+
     private String roomType;
     private float pricePerNight;
     private Boolean availability;

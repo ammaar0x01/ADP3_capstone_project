@@ -85,8 +85,8 @@ public class AppT extends Application {
 
     public static void main(String[] args) {
         // Disable Spring Boot's web server since we're using JavaFX
-        System.setProperty("java.awt.headless", "false");
-        System.setProperty("spring.main.web-application-type", "none");
+//        System.setProperty("java.awt.headless", "false");
+//        System.setProperty("spring.main.web-application-type", "none");
 
         // Launch JavaFX application
         Application.launch(AppT.class, args);

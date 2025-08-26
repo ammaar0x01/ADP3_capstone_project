@@ -20,8 +20,8 @@ public class RoomView extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        String sceneName = "/scenes/window-room-page1.fxml";
-//        String sceneName = "MainView.fxml";
+        String sceneName = "/_trash/window-room-page1.fxml";
+//        String sceneName = "window-room-page1.fxml";
 
         System.out.println("\n>>> Loading scene from '" + sceneName + "'...");
         FXMLLoader loader = new FXMLLoader(getClass().getResource(sceneName));

@@ -590,7 +590,7 @@ public class RoomController1 {
     @FXML
     private void goBack(ActionEvent event) {
         try {
-            Parent mainViewRoot = FXMLLoader.load(getClass().getResource("/MainView.fxml"));
+            Parent mainViewRoot = FXMLLoader.load(getClass().getResource("/scenes/window-room-page1.fxml"));
             Scene currentScene = ((Node) event.getSource()).getScene();
             currentScene.setRoot(mainViewRoot);
         } catch (IOException e) {
