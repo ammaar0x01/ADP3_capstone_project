@@ -1,29 +1,24 @@
-/*
-
-Project:    temp
-Desc:       temp
-Started:    11.03.25
-Updated:    22.05.25
----
-
-Members
--------
-Name and surname | Student id | GitHub profile                |
----------------------------------------------------------------
-Zaid Theunissen | 221084142  | https://github.com/zaid-xt |
----------------------------------------------------------------
-*/
-
 package com.college;
 
+import javafx.application.Application;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 public class Main {
+
+    private static ConfigurableApplicationContext springContext;
+
     public static void main(String[] args) {
+        // Start Spring Boot and block until it's ready
+        springContext = SpringApplication.run(Main.class, args);
 
-        SpringApplication.run(Main.class, args);
+        // Once Spring Boot is ready, start JavaFX
+        Application.launch(MainApp.class, args);
+    }
 
+    public static ConfigurableApplicationContext getSpringContext() {
+        return springContext;
     }
 }

@@ -6,9 +6,11 @@ import com.college.service.GuestUIService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class GuestUIController {
 
     @FXML
