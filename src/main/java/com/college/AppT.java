@@ -44,6 +44,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -70,6 +71,9 @@ public class AppT extends Application {
         primaryStage.setScene(scene);
 
         primaryStage.setTitle("HMS - Payment Management");
+        Image icon = new Image(getClass().getResourceAsStream("/images/icons/app-icon.png"));
+        primaryStage.getIcons().add(icon);
+
         primaryStage.setWidth(1000);
         primaryStage.setHeight(600);
         primaryStage.setResizable(false);

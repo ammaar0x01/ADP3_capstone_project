@@ -3,6 +3,7 @@ package com.college;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,6 +28,9 @@ public class AppM extends Application {
         loader.setControllerFactory(context::getBean);
 
         stage.setTitle("HMS - House-keeper Management");
+        Image icon = new Image(getClass().getResourceAsStream("/images/icons/app-icon.png"));
+        stage.getIcons().add(icon);
+
         stage.setScene(new Scene(loader.load(), 1000, 600));
         stage.setResizable(false);
         stage.show();

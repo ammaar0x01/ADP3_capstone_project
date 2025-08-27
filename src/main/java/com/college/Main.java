@@ -27,13 +27,37 @@ Muaath Slamong      | Housekeeper classes           |
 
 package com.college;
 
+//import org.springframework.boot.SpringApplication;
+//import org.springframework.boot.autoconfigure.SpringBootApplication;
+//
+//@SpringBootApplication
+//public class Main {
+//    public static void main(String[] args) {
+//        SpringApplication.run(Main.class, args);
+//    }
+//}
+//
+
+
+import javafx.application.Application;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 public class Main {
+
+    private static ConfigurableApplicationContext springContext;
+
     public static void main(String[] args) {
-        SpringApplication.run(Main.class, args);
+        // Start Spring Boot and block until it's ready
+        springContext = SpringApplication.run(Main.class, args);
+
+        // Once Spring Boot is ready, start JavaFX
+        Application.launch(AppZ.class, args);
+    }
+
+    public static ConfigurableApplicationContext getSpringContext() {
+        return springContext;
     }
 }
-
