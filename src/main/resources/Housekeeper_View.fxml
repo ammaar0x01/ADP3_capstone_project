@@ -2,7 +2,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0"
+<AnchorPane prefHeight="600.0" prefWidth="1000.0"
             xmlns="http://javafx.com/javafx/24.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.college.controller.HousekeeperViewController">
@@ -17,7 +17,7 @@
         </columns>
     </TableView>
 
-    <Button layoutX="200.0" layoutY="520.0" text="Add" onAction="#handleAdd" style="-fx-background-color: #26AD00" textFill="white"/>
-    <Button layoutX="360.0" layoutY="520.0" text="Update" onAction="#handleUpdate" style="-fx-background-color: #26AD00" textFill="white"/>
-    <Button layoutX="520.0" layoutY="520.0" text="Delete" onAction="#handleDelete" style="-fx-background-color: #C20010" textFill="white"/>
+    <Button layoutX="200.0" layoutY="520.0" text="Add" onAction="#handleAdd" style="-fx-background-color: #26AD00" textFill="white" prefHeight="40.0" prefWidth="150.0"/>
+    <Button layoutX="360.0" layoutY="520.0" text="Update" onAction="#handleUpdate" style="-fx-background-color: #26AD00" textFill="white" prefHeight="40.0" prefWidth="150.0"/>
+    <Button layoutX="520.0" layoutY="520.0" text="Delete" onAction="#handleDelete" style="-fx-background-color: #C20010" textFill="white" prefHeight="40.0" prefWidth="150.0"/>
 </AnchorPane>
