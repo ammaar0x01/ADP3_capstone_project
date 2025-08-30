@@ -6,13 +6,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="600.0" minWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.college.controller.ReservationUIController">
+<AnchorPane minHeight="600.0" minWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.college.controller.ReservationUIController" style="-fx-font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif">
 <!--            fx:controller="com.college.controller.ReservationController">-->
 
    <children>
       <VBox prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;">
          <children>
-            <Label alignment="CENTER" prefHeight="55.0" prefWidth="1000.0" text="Reservations">
+            <Label alignment="CENTER" prefHeight="55.0" prefWidth="1000.0" text="Reservations" style="-fx-background-color: #26AD00;-fx-text-fill: white;" >
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -27,7 +27,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="299.0" prefWidth="289.0">
                      <children>
-                        <TableView fx:id="reservationTable" prefHeight="362.0" prefWidth="969.0">
+                        <TableView fx:id="reservationTable" prefHeight="362.0" prefWidth="969.0" stylesheets="@/css/table.css">
                           <columns>
                             <TableColumn fx:id="reservationIdColumn" editable="false" maxWidth="100.0" minWidth="70.0" prefWidth="100.0" text="Id" />
                             <TableColumn fx:id="startTimeColumn" maxWidth="500.0" minWidth="200.0" prefWidth="450.0" text="Start time" />
@@ -43,7 +43,7 @@
             </ScrollPane>
             <HBox alignment="CENTER" prefHeight="70.0" prefWidth="963.0">
                <children>
-                  <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#add" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #26AD00;" text="Add" textFill="WHITE">
+                  <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#add" prefHeight="40.0" prefWidth="150.0" text="Add" styleClass="button">
                      <padding>
                         <Insets bottom="8.0" left="20.0" right="20.0" top="8.0" />
                      </padding>
@@ -57,7 +57,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnEdit" mnemonicParsing="false" onAction="#update" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #26AD00;" text="Edit" textFill="WHITE">
+                  <Button fx:id="btnEdit" mnemonicParsing="false" onAction="#update" prefHeight="40.0" prefWidth="150.0" text="Edit" styleClass="button">
                      <padding>
                         <Insets bottom="8.0" left="20.0" right="20.0" top="8.0" />
                      </padding>

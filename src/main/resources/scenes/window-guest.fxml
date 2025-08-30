@@ -11,12 +11,10 @@
 <AnchorPane prefHeight="600.0" prefWidth="1000.0"
             xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.college.controller.GuestUIController">
+            fx:controller="com.college.controller.GuestUIController" style="-fx-font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif">
 
     <!-- Heading -->
-    <Label layoutX="40.0" layoutY="20.0"
-           style="-fx-font-size: 24px; -fx-font-weight: bold;"
-           text="Guests" />
+    <Label text="Guests" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-background-color: #26AD00;-fx-text-fill: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" layoutY="20.0" alignment="CENTER" />
 
     <!-- Table -->
     <TableView fx:id="guestTable" layoutX="40.0" layoutY="70.0"
@@ -42,12 +40,12 @@
             onAction="#handleEditGuest"
             prefHeight="40.0" prefWidth="150.0"
             style="-fx-background-color: #26AD00;"
-            text="Edit Guest" textFill="WHITE" />
+            text="Edit Guest" textFill="WHITE" styleClass="button"/>
 
     <Button layoutX="210.0" layoutY="470.0"
             onAction="#handleAddGuest"
             prefHeight="40.0" prefWidth="150.0"
             style="-fx-background-color: #26AD00;"
-            text="Add Guest" textFill="WHITE" />
+            text="Add Guest" textFill="WHITE" styleClass="button" />
 
 </AnchorPane>

@@ -7,10 +7,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.college.controller.PaymentViewController">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.college.controller.PaymentViewController" style="-fx-font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif">
 
     <!-- Heading -->
-    <Label layoutX="40.0" layoutY="20.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Payments" />
+    <Label text="Payments" layoutY="20.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-background-color: #26AD00;-fx-text-fill: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" alignment="CENTER" />
 
     <!-- Table -->
     <TableView fx:id="paymentTable" layoutX="40.0" layoutY="70.0" prefHeight="350.0" prefWidth="920.0">
@@ -26,7 +26,7 @@
     <!-- Buttons -->
     <HBox layoutX="40.0" layoutY="440.0" spacing="20.0" />
      <Button layoutX="666.0" layoutY="470.0" onAction="#handleDeletePayment" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #C20010;" text="Delete Payment" textFill="WHITE" />
-     <Button layoutX="435.0" layoutY="470.0" onAction="#handleUpdatePayment" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #26AD00;" text="Update Payment" textFill="WHITE" />
-     <Button layoutX="210.0" layoutY="470.0" onAction="#handleAddPayment" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #26AD00;" text="Add Payment" textFill="WHITE" />
+     <Button layoutX="435.0" layoutY="470.0" onAction="#handleUpdatePayment" prefHeight="40.0" prefWidth="150.0" styleClass="button" text="Update Payment" textFill="WHITE" />
+     <Button layoutX="210.0" layoutY="470.0" onAction="#handleAddPayment" prefHeight="40.0" prefWidth="150.0" styleClass="button" text="Add Payment" textFill="WHITE" />
 
 </AnchorPane>

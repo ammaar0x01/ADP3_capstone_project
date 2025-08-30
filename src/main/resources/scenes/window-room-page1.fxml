@@ -22,10 +22,11 @@
         <Label text="Available Rooms"
                alignment="CENTER"
                textAlignment="CENTER"
-               style="-fx-font-family: 'Segoe UI', 'Verdana', sans-serif;
+               style="-fx-font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+               -fx-background-color: #26AD00;
               -fx-font-size: 25px;
-              -fx-font-weight: 600;
-              -fx-text-fill: #34495e;
+              -fx-font-weight: bold;
+              -fx-text-fill: white;
               -fx-padding: 0 0 20 0;"
                AnchorPane.topAnchor="10"
                AnchorPane.leftAnchor="0"
