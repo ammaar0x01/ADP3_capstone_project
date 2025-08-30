@@ -28,7 +28,7 @@ public class AppM extends Application {
         loader.setControllerFactory(context::getBean);
 
         stage.setTitle("HMS - House-keeper Management");
-        Image icon = new Image(getClass().getResourceAsStream("/images/icons/app-icon.png"));
+        Image icon = new Image(getClass().getResourceAsStream("/images/icons/bed.png"));
         stage.getIcons().add(icon);
 
         stage.setScene(new Scene(loader.load(), 1000, 600));

@@ -85,8 +85,6 @@ public class AppA extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-//        stage.initStyle(StageStyle.UNDECORATED);
-//        String sceneName = "/scenes/window-dashboard.fxml";
 
         String sceneName = "/scenes/window-reservation.fxml";
         System.out.println("\n>>> Loading scene from '" + sceneName + "'...");
@@ -98,16 +96,15 @@ public class AppA extends Application {
         Parent root = loader.load();
         Scene scene = new Scene(root);
 
-        Image icon = new Image(getClass().getResourceAsStream("/images/icons/app-icon.png"));
+        scene.getStylesheets().add(getClass().getResource("/css/buttonStyle.css").toExternalForm());
+
+        Image icon = new Image(getClass().getResourceAsStream("/images/icons/bed.png"));
         stage.getIcons().add(icon);
 
-        stage.setTitle("HMS - Reservations");
-
+        stage.setTitle("HMS - Reservations Management");
 
         stage.setScene(scene);
         stage.setResizable(false);
-//        stage.setWidth(1000);
-//        stage.setHeight(600);
 
         stage.show();
     }

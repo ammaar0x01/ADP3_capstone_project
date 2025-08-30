@@ -55,6 +55,7 @@ public class Main {
 
         // Once Spring Boot is ready, start JavaFX
         Application.launch(AppZ.class, args);
+
     }
 
     public static ConfigurableApplicationContext getSpringContext() {

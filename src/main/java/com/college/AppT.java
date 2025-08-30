@@ -71,7 +71,10 @@ public class AppT extends Application {
         primaryStage.setScene(scene);
 
         primaryStage.setTitle("HMS - Payment Management");
-        Image icon = new Image(getClass().getResourceAsStream("/images/icons/app-icon.png"));
+
+        scene.getStylesheets().add(getClass().getResource("/css/buttonStyle.css").toExternalForm());
+
+        Image icon = new Image(getClass().getResourceAsStream("/images/icons/bed.png"));
         primaryStage.getIcons().add(icon);
 
         primaryStage.setWidth(1000);

@@ -99,7 +99,7 @@ public class AppJ extends Application {
 
         scene.getStylesheets().add(getClass().getResource("/css/buttonStyle.css").toExternalForm());
 
-        Image icon = new Image(getClass().getResourceAsStream("/images/icons/app-icon.png"));
+        Image icon = new Image(getClass().getResourceAsStream("/images/icons/bed.png"));
         stage.getIcons().add(icon);
 
         stage.setScene(scene);

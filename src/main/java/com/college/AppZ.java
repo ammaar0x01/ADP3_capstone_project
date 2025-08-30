@@ -25,7 +25,10 @@ public class AppZ extends Application {
 
         Scene scene = new Scene(root);
         stage.setTitle("HMS - Guest Management");
-        Image icon = new Image(getClass().getResourceAsStream("/images/icons/app-icon.png"));
+
+        scene.getStylesheets().add(getClass().getResource("/css/buttonStyle.css").toExternalForm());
+
+        Image icon = new Image(getClass().getResourceAsStream("/images/icons/bed.png"));
         stage.getIcons().add(icon);
 
         stage.setScene(scene);
