@@ -1,0 +1,27 @@
+.button {
+    /*-fx-background-color: #4CAF50;   !* hex colour*!*/
+    -fx-background-color: #26AD00;
+
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-radius: 10;
+
+
+}
+
+.button:hover {
+    -fx-background-color: #20A000;
+    -fx-cursor: hand;
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+}
+
+.button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
+.room-title {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}

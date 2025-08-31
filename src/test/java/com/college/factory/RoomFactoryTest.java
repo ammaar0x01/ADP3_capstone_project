@@ -1,0 +1,65 @@
+/* RoomFactoryTest .java
+RoomFactoryTest (Tests for RoomFactory class)
+Author: joshua twigg (222153881)
+Date: 27 March 2025
+*/
+package com.college.factory;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import com.college.domain.Room;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class RoomFactoryTest {
+    private Room room;
+
+    @BeforeEach
+    public void setUp() {
+        room = RoomFactory.createRoom(100, "Single", 100.0f, true, "WiFi, TV");
+    }
+
+    @Test
+    public void testCreateRoom() {
+        assertNotNull(room, "fail, room is null");
+    }
+
+    @Test
+    public void testValidInputs() {
+        String roomID = "A101";
+        String roomType = "Single";
+        float roomPrice = 100.0f;
+        String features = "WiFi, TV";
+
+        assertEquals(roomID, room.getRoomID());
+        assertEquals(roomType, room.getRoomType());
+        assertEquals(roomPrice, room.getPricePerNight());
+        assertTrue(room.getAvailability());
+        assertEquals(features, room.getFeatures());
+    }
+
+    @Test
+    public void testPrice() {
+        int roomID = 104;
+        String roomType = "Economy";
+        float roomPrice = 0;
+        boolean availability = true;
+        String features = "";
+
+        Room roomTwo = RoomFactory.createRoom(roomID, roomType, roomPrice, availability, features);
+        assertEquals(0.0f, roomTwo.getPricePerNight());
+    }
+
+    @Test
+    public void testEqualityOfObjects() {
+        int roomID = 100;
+        String roomType = "";
+        float roomPrice = 0;
+        boolean availability = false;
+
+        String features = "";
+        Room roomTwo = RoomFactory.createRoom(roomID, roomType, roomPrice, availability, features);
+        assertNotEquals(roomTwo, room);
+    }
+
+}
