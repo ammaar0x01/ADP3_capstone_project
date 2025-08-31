@@ -21,7 +21,6 @@ public class AppA extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-
         String sceneName = "/scenes/window-reservation.fxml";
         System.out.println("\n>>> Loading scene from '" + sceneName + "'...");
         FXMLLoader loader = new FXMLLoader(getClass().getResource(sceneName));
@@ -33,6 +32,7 @@ public class AppA extends Application {
         Scene scene = new Scene(root);
 
         scene.getStylesheets().add(getClass().getResource("/css/buttonStyle.css").toExternalForm());
+//        scene.getStylesheets().add(getClass().getResource("/css/main.css").toExternalForm());
 
         Image icon = new Image(getClass().getResourceAsStream("/images/icons/bed.png"));
         stage.getIcons().add(icon);
