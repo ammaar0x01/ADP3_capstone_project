@@ -38,7 +38,6 @@ public class AppA extends Application {
         stage.getIcons().add(icon);
 
         stage.setTitle("HMS - Reservations Management");
-
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setWidth(1000);

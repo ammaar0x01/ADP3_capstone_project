@@ -64,7 +64,8 @@ public class AppT extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Load FXML with Spring controller factory
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/window-payment.fxml"));
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/window-payment.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/window-payment-d1.fxml"));
         loader.setControllerFactory(springContext::getBean);
 
         Scene scene = new Scene(loader.load());
