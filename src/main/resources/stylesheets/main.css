@@ -1,0 +1,60 @@
+/*
+main.css
+========
+*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+button,
+.button,
+.btn{
+    border-radius: 20px;
+    background-color: red;
+    color:white; 
+}
+
+
+.button{
+-x-background-color: #3F2863;
+-fx-background-radius:dem;
+}
+
+button:hover{
+-fx-background-color: #2A1042;
+button:pressed
+-fx-background-color: #715600;
+}
+
+button: focused{
+-fx-background-color: #DoCCB;
+-fx-border-color: #000100
+-fx-border-width: 0px 0px 6px 3px;
+}
+
+
+table-view.column-header,
+table-view.column-header-background filler {
+-fx-cell-size: 20;
+-fx-background-color: #715600:
+.table-view.column-header label
+-fx-text-fill: white;
+-fx-font-weight: bold;
+-fx-alignment: CENTER LEFT;
+}
+
+.table-view.cellf{
+-fx-cell-size: 30:
+-fx-alignment: center-left;
+-fx-text-fill: #000000;
+-fx-alignment: CENTER LEFT;
+}
+
+table-row-cell:selected {
+-fx-background-color: rgb(127, 172, 245);
+table-row-cell:selected text
+-fx-fill: white;
+}

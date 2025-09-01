@@ -1,0 +1,27 @@
+/*
+STYLE.css
+=========
+*/
+
+#btn-submit{
+    border:none;
+    padding:20px;
+    border-radius:20px;
+}
+
+.text{
+    color:blue;
+}
+
+
+        #pane1 {
+            background-color:red;
+            background-blend-mode:luminosity;
+
+
+            -fx-blend-mode: luminosity;
+
+            -fx-background-repeat: stretch; /* or no-repeat, repeat-x, repeat-y */
+            -fx-background-size: cover; /* or contain, or specific dimensions like 100% 100% */
+            -fx-background-position: center center; /* or other positions */
+        }
