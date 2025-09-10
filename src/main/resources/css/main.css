@@ -10,20 +10,6 @@ main.css
 }
 /* ===================================== */
 
-body{
-    background-color:red;
-}
-
-#section-reservation{
-    background-color:red;
-
-}
-
-    AnchorPane {
-        -fx-background-color: orange;
-    }
-
-
 .btn{
     border-radius: 20px;
     background-color: red;
