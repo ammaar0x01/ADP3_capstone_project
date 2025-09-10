@@ -14,7 +14,7 @@ public class AppZ extends Application {
 
     @Override
     public void init() {
-        springContext = MainApp.getSpringContext();
+        springContext = Main.getSpringContext();
     }
 
     @Override
@@ -34,7 +34,6 @@ public class AppZ extends Application {
         stage.setScene(scene);
         stage.setWidth(1000);
         stage.setHeight(600);
-        stage.setResizable(false);
         stage.show();
     }
 

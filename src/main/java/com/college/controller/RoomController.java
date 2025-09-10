@@ -19,10 +19,23 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.*;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -165,46 +178,84 @@ public class RoomController {
                 roomType, price, available, features
         );
 
-//        endPoint(jsonPayload);
+        endPoint(jsonPayload);
 
         System.out.println(room.toString());
 
     }
 
-//    private void endPoint(String jsonPayload) {
-//        RestTemplate restTemplate = new RestTemplate();
-//
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.APPLICATION_JSON);
-//
-//        HttpEntity<String> request = new HttpEntity<>(jsonPayload, headers);
-//
-//        try {
-//
-//            //call my url
-//            String responseSpring = restTemplate.postForObject(
+    @Configuration
+    @EnableWebSecurity
+    public class SecurityConfig {
+
+        @Bean
+        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+            http
+                    .csrf(csrf -> csrf.disable()) // disable CSRF for APIs
+                    .authorizeHttpRequests(auth -> auth
+                            .anyRequest().authenticated() // all endpoints require authentication
+                    )
+                    .httpBasic(Customizer.withDefaults()); // enable HTTP Basic Auth
+
+            return http.build();
+        }
+    }
+
+    private void endPoint(String jsonPayload) {
+        RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        // from application.properties security
+        String user = "user";
+        String pass = "123";
+
+        String auth = user + ":" + pass;
+        byte[] encodedAuth = Base64.getEncoder().encode(auth.getBytes(StandardCharsets.UTF_8));
+        String authHeader = "Basic " + new String(encodedAuth);
+
+        headers.set("Authorization", authHeader);
+
+        HttpEntity<String> request = new HttpEntity<>(jsonPayload, headers);
+
+        try {
+
+            //call my url
+            String responseSpring = restTemplate.postForObject
+                    ( "http://localhost:8080/api/book-room",
+                            request,
+                            String.class );
+
+            //use below code to get status error 200, 302 etc if response is broken
+//            ResponseEntity<String> responseSpring = restTemplate.exchange(
 //                    "http://localhost:8080/api/book-room",
+//                    HttpMethod.POST,
 //                    request,
 //                    String.class
 //            );
-//
-//            System.out.println("Response: " + responseSpring);
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    @RestController
-//    @RequestMapping("/api")
-//    public class MockController {
-//
-//        @PostMapping("/book-room")
-//        public ResponseEntity<String> bookRoom(@RequestBody String payload) {
-//            System.out.println("Received payload: " + payload);
-//            return ResponseEntity.ok("{\"status\":\"success\"}");
-//        }
-//    }
+
+            //            System.out.println("HTTP Status: " + responseSpring.getStatusCode());
+
+            System.out.println("Response: " + responseSpring);
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @RestController
+    @RequestMapping("/api")
+    public class MockController {
+
+        @PostMapping("/book-room")
+        public ResponseEntity<String> bookRoom(@RequestBody String payload) {
+            System.out.println("Received payload: " + payload);
+            return ResponseEntity.ok("{\"status\":\"success\"}");
+        }
+    }
 
     // --- Edit Price ---
     @FXML

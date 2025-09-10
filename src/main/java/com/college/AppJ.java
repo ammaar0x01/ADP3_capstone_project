@@ -82,7 +82,8 @@ public class AppJ extends Application {
     @Override
     public void init() {
         // Start Spring before JavaFX
-        springContext = new SpringApplicationBuilder(com.college.MainApp.class).run();
+        springContext = new SpringApplicationBuilder(com.college.Main.class)
+                .run(); // your SpringBootApplication class
     }
 
     @Override
