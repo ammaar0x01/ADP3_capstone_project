@@ -5,7 +5,10 @@ import com.college.service.GuestService;
 import com.college.service.GuestUIService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -111,6 +114,21 @@ public class GuestUIController {
                 showAlert("Error", "Failed to delete guest: " + e.getMessage());
             }
         });
+    }
+
+    @FXML
+    private void handleOpenEventScreen() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/event-view.fxml"));
+            Scene scene = new Scene(loader.load());
+            Stage stage = new Stage();
+            stage.setTitle("Event Screen");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Error", "Could not open Event screen: " + e.getMessage());
+        }
     }
 
     private void showAlert(String title, String message) {

@@ -48,4 +48,7 @@
             style="-fx-background-color: #26AD00;"
             text="Add Guest" textFill="WHITE" />
 
+    <Button text="View Events" onAction="#handleOpenEventScreen"/>
+
+
 </AnchorPane>
