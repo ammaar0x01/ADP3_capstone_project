@@ -72,11 +72,14 @@ public class EventUIController {
         String newReason = reasonField.getText().trim();
         String newDescription = descriptionField.getText().trim();
 
-        if (!newReason.isEmpty()) selected.setReason(newReason);
-        if (!newDescription.isEmpty()) selected.setDescription(newDescription);
+        // Keep the ID so backend knows which record to update
+        Event updatedEvent = new Event();
+        updatedEvent.setEventId(selected.getEventId());
+        updatedEvent.setReason(!newReason.isEmpty() ? newReason : selected.getReason());
+        updatedEvent.setDescription(!newDescription.isEmpty() ? newDescription : selected.getDescription());
 
         try {
-            eventService.updateEvent(selected);
+            eventService.updateEvent(updatedEvent);
             reasonField.clear();
             descriptionField.clear();
             loadEvents();
