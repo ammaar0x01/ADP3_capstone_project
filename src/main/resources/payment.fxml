@@ -13,7 +13,7 @@
     <Label layoutX="40.0" layoutY="20.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Payments" />
 
     <!-- Table -->
-    <TableView fx:id="paymentTable" layoutX="40.0" layoutY="70.0" prefHeight="350.0" prefWidth="920.0">
+    <TableView fx:id="paymentTable" layoutX="157.0" layoutY="68.0" prefHeight="350.0" prefWidth="706.0">
         <columns>
             <TableColumn fx:id="colId" prefWidth="60" text="ID" />
             <TableColumn fx:id="colAmount" prefWidth="150" text="Amount" />
