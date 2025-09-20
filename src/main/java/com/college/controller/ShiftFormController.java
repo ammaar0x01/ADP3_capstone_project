@@ -1,7 +1,11 @@
 package com.college.controller;
 
+import com.college.domain.Employee;
 import com.college.domain.Shift;
+import com.college.repository.EmployeeRepository;
 import com.college.service.ShiftService;
+
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -20,9 +24,11 @@ public class ShiftFormController {
     @FXML private Spinner<Integer> spinnerEndHour;
     @FXML private Spinner<Integer> spinnerEndMinute;
     @FXML private CheckBox chkOvertime;
+    @FXML private ComboBox<Employee> employeeComboBox;
 
     @Autowired
     private ShiftService shiftService;
+    private EmployeeRepository employeeRepository;
 
     private Shift shift;
 
@@ -36,6 +42,7 @@ public class ShiftFormController {
         spinnerStartMinute.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0));
         spinnerEndHour.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, 17));
         spinnerEndMinute.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0));
+        employeeComboBox.setItems(FXCollections.observableArrayList(employeeRepository.findAll()));
 
         // Debug: confirm controller loaded
         System.out.println("ShiftFormController initialized");
@@ -67,6 +74,11 @@ public class ShiftFormController {
             LocalTime start = LocalTime.of(spinnerStartHour.getValue(), spinnerStartMinute.getValue());
             LocalTime end = LocalTime.of(spinnerEndHour.getValue(), spinnerEndMinute.getValue());
             boolean overtime = chkOvertime.isSelected();
+            Employee selectedEmployee = employeeComboBox.getValue();
+            if (selectedEmployee == null) {
+            showAlert("Please select an employee");
+            return;
+  }
 
             if (shift == null) {
                 // Create new shift
@@ -75,6 +87,7 @@ public class ShiftFormController {
                         .setShiftStartTime(start)
                         .setShiftEndTime(end)
                         .setShiftOvertime(overtime)
+                        .setEmployee(selectedEmployee)
                         .build();
 
                 shiftService.create(newShift);

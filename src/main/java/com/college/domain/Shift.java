@@ -24,6 +24,16 @@ public class Shift {
     private LocalTime shiftEndTime;
     private boolean shiftOvertime;
 
+// FK realaitionship to Employee
+@ManyToOne
+@JoinColumn(name = "employee_id", referencedColumnName = "id")
+private Employee employee;
+
+// getter and setter
+public Employee getEmployee() { return employee; }
+public void setEmployee(Employee employee) { this.employee = employee; }
+
+
 
     public Shift() {}
 
@@ -79,6 +89,9 @@ public class Shift {
         private LocalTime shiftStartTime;
         private LocalTime shiftEndTime;
         private boolean shiftOvertime;
+        private Employee employee;
+
+         // Builder setter methods
 
         public Builder setShiftId(int shiftId) {
             this.shiftId = shiftId;
@@ -105,8 +118,15 @@ public class Shift {
             return this;
         }
 
-        public Shift build() {
-            return new Shift(this);
+        public Builder setEmployee(Employee employee) {
+            this.employee = employee;
+            return this;
         }
+
+        public Shift build() {
+        Shift shift = new Shift(this);
+        shift.setEmployee(this.employee);
+        return shift;
+    }
     }
 }
