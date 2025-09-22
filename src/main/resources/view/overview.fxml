@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            style="-fx-background-color: #ecf0f1; -fx-padding: 20;">
+
+    <VBox spacing="30" alignment="CENTER" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+        <!-- Header -->
+        <Label text="Dashboard Overview"
+               style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+
+        <!-- First Row of Statistics - Centered -->
+        <HBox spacing="20" alignment="CENTER">
+            <!-- Total Guests -->
+            <VBox style="-fx-background-color: #3498db; -fx-padding: 20; -fx-spacing: 10; -fx-min-width: 180; -fx-alignment: center;">
+                <Label text="👥" style="-fx-font-size: 30px;" />
+                <Label text="Total Guests" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" />
+                <Label text="1,247" style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;" />
+                <Label text="+12 this week" style="-fx-text-fill: #ecf0f1; -fx-font-size: 11px;" />
+            </VBox>
+
+            <!-- Total Revenue -->
+            <VBox style="-fx-background-color: #27ae60; -fx-padding: 20; -fx-spacing: 10; -fx-min-width: 180; -fx-alignment: center;">
+                <Label text="💰" style="-fx-font-size: 30px;" />
+                <Label text="Total Revenue" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" />
+                <Label text="R 245,800" style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;" />
+                <Label text="+R 15,200 this month" style="-fx-text-fill: #ecf0f1; -fx-font-size: 11px;" />
+            </VBox>
+
+            <!-- Available Rooms -->
+            <VBox style="-fx-background-color: #e67e22; -fx-padding: 20; -fx-spacing: 10; -fx-min-width: 180; -fx-alignment: center;">
+                <Label text="🛏️" style="-fx-font-size: 30px;" />
+                <Label text="Available Rooms" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" />
+                <Label text="24/50" style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;" />
+                <Label text="48% occupied" style="-fx-text-fill: #ecf0f1; -fx-font-size: 11px;" />
+            </VBox>
+        </HBox>
+
+        <!-- Second Row of Statistics - Centered -->
+        <HBox spacing="20" alignment="CENTER">
+            <!-- Total Employees -->
+            <VBox style="-fx-background-color: #9b59b6; -fx-padding: 20; -fx-spacing: 10; -fx-min-width: 180; -fx-alignment: center;">
+                <Label text="👨‍💼" style="-fx-font-size: 30px;" />
+                <Label text="Total Employees" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" />
+                <Label text="42" style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;" />
+                <Label text="5 departments" style="-fx-text-fill: #ecf0f1; -fx-font-size: 11px;" />
+            </VBox>
+
+            <!-- Occupancy Rate -->
+            <VBox style="-fx-background-color: #16a085; -fx-padding: 20; -fx-spacing: 10; -fx-min-width: 180; -fx-alignment: center;">
+                <Label text="📊" style="-fx-font-size: 30px;" />
+                <Label text="Occupancy Rate" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" />
+                <Label text="72%" style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;" />
+                <Label text="+5% from last month" style="-fx-text-fill: #ecf0f1; -fx-font-size: 11px;" />
+            </VBox>
+
+            <VBox style="-fx-background-color: #f39c12; -fx-padding: 20; -fx-spacing: 10; -fx-min-width: 180;">
+                <Label text="⏳" style="-fx-font-size: 30px;" />
+                <Label text="Pending Payments" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" />
+                <Label text="12" style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;" />
+                <Label text="R 45,600 total" style="-fx-text-fill: #ecf0f1; -fx-font-size: 11px;" />
+            </VBox>
+
+        </HBox>
+    </VBox>
+</AnchorPane>

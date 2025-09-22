@@ -18,12 +18,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/guest-view.fxml"));
-        fxmlLoader.setControllerFactory(springContext::getBean); // Allow Spring to inject dependencies
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/dashboard.fxml"));
+        fxmlLoader.setControllerFactory(springContext::getBean);
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root);
-        stage.setTitle("Guest Management");
+        scene.getStylesheets().add(getClass().getResource("/view/styles.css").toExternalForm());
+        stage.setTitle("Hotel Management Dashboard");
         stage.setScene(scene);
         stage.setWidth(1000);
         stage.setHeight(600);
@@ -32,6 +33,8 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        springContext.close();
+        if (springContext != null) {
+            springContext.close();
+        }
     }
 }
