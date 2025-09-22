@@ -22,7 +22,7 @@ public class AppGuest extends Application {
 //        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/scenes/window-event.fxml"));
 
 //        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/scenes/window-guest.fxml"));
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/scenes/guest-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/scenes/guest-view-updated.fxml"));
 
         fxmlLoader.setControllerFactory(springContext::getBean);
         Parent root = fxmlLoader.load();
