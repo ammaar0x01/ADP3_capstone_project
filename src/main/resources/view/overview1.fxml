@@ -6,44 +6,45 @@
 <ScrollPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.college.controller.OverviewController"
             fitToWidth="true" fitToHeight="true"
-            style="-fx-background: #ecf0f1;">
+            style="-fx-background: white; -fx-background-color: white;">
 
-    <AnchorPane style="-fx-padding: 20;">
-        <VBox spacing="40" alignment="CENTER" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+    <AnchorPane style="-fx-padding: 20; -fx-background-color: white;">
+        <VBox spacing="40" alignment="CENTER" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+              style="-fx-background-color: white;">
 
             <!-- Header -->
             <Label text="Dashboard Overview"
-                   style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+                   style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #398F6C;" />
 
             <!-- Top Row: 3 Statistic Blocks -->
             <HBox spacing="30" alignment="CENTER">
                 <!-- Total Guests -->
                 <VBox spacing="10" alignment="CENTER">
-                    <VBox style="-fx-background-color: #3498db; -fx-padding: 20; -fx-spacing: 10; -fx-min-width: 200; -fx-alignment: center;">
-                        <Label text="👥" style="-fx-font-size: 30px;" />
+                    <VBox style="-fx-background-color: #398F6C; -fx-padding: 20; -fx-spacing: 10; -fx-min-width: 200; -fx-alignment: center; -fx-background-radius: 8;">
+                        <Label text="👥" style="-fx-font-size: 30px; -fx-text-fill: white;" />
                         <Label text="Total Guests" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" />
                         <Label text="1,247" style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;" />
-                        <Label text="+12 this week" style="-fx-text-fill: #ecf0f1; -fx-font-size: 11px;" />
+                        <Label text="12,000 total guests" style="-fx-text-fill: #ecf0f1; -fx-font-size: 11px;" />
                     </VBox>
                 </VBox>
 
                 <!-- Total Revenue -->
                 <VBox spacing="10" alignment="CENTER">
-                    <VBox style="-fx-background-color: #27ae60; -fx-padding: 20; -fx-spacing: 10; -fx-min-width: 200; -fx-alignment: center;">
-                        <Label text="💰" style="-fx-font-size: 30px;" />
+                    <VBox style="-fx-background-color: #398F6C; -fx-padding: 20; -fx-spacing: 10; -fx-min-width: 200; -fx-alignment: center; -fx-background-radius: 8;">
+                        <Label text="💰" style="-fx-font-size: 30px; -fx-text-fill: white;" />
                         <Label text="Total Revenue" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" />
                         <Label text="R 245,800" style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;" />
-                        <Label text="+R 15,200 this month" style="-fx-text-fill: #ecf0f1; -fx-font-size: 11px;" />
+                        <Label text="R 1,200,000 total revenue" style="-fx-text-fill: #ecf0f1; -fx-font-size: 11px;" />
                     </VBox>
                 </VBox>
 
                 <!-- Occupancy Rate -->
                 <VBox spacing="10" alignment="CENTER">
-                    <VBox style="-fx-background-color: #16a085; -fx-padding: 20; -fx-spacing: 10; -fx-min-width: 200; -fx-alignment: center;">
-                        <Label text="📊" style="-fx-font-size: 30px;" />
+                    <VBox style="-fx-background-color: #398F6C; -fx-padding: 20; -fx-spacing: 10; -fx-min-width: 200; -fx-alignment: center; -fx-background-radius: 8;">
+                        <Label text="📊" style="-fx-font-size: 30px; -fx-text-fill: white;" />
                         <Label text="Occupancy Rate" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" />
                         <Label text="72%" style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;" />
-                        <Label text="+5% from last month" style="-fx-text-fill: #ecf0f1; -fx-font-size: 11px;" />
+                        <Label text="Avg. last 12 months" style="-fx-text-fill: #ecf0f1; -fx-font-size: 11px;" />
                     </VBox>
                 </VBox>
             </HBox>
