@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.chart.*?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.college.controller.OverviewController"
+            fitToWidth="true" fitToHeight="true"
+            style="-fx-background: #ecf0f1;">
+
+    <AnchorPane style="-fx-padding: 20;">
+        <VBox spacing="40" alignment="CENTER" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+
+            <!-- Header -->
+            <Label text="Dashboard Overview"
+                   style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+
+            <!-- Top Row: 3 Statistic Blocks -->
+            <HBox spacing="30" alignment="CENTER">
+                <!-- Total Guests -->
+                <VBox spacing="10" alignment="CENTER">
+                    <VBox style="-fx-background-color: #3498db; -fx-padding: 20; -fx-spacing: 10; -fx-min-width: 200; -fx-alignment: center;">
+                        <Label text="👥" style="-fx-font-size: 30px;" />
+                        <Label text="Total Guests" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" />
+                        <Label text="1,247" style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;" />
+                        <Label text="+12 this week" style="-fx-text-fill: #ecf0f1; -fx-font-size: 11px;" />
+                    </VBox>
+                </VBox>
+
+                <!-- Total Revenue -->
+                <VBox spacing="10" alignment="CENTER">
+                    <VBox style="-fx-background-color: #27ae60; -fx-padding: 20; -fx-spacing: 10; -fx-min-width: 200; -fx-alignment: center;">
+                        <Label text="💰" style="-fx-font-size: 30px;" />
+                        <Label text="Total Revenue" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" />
+                        <Label text="R 245,800" style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;" />
+                        <Label text="+R 15,200 this month" style="-fx-text-fill: #ecf0f1; -fx-font-size: 11px;" />
+                    </VBox>
+                </VBox>
+
+                <!-- Occupancy Rate -->
+                <VBox spacing="10" alignment="CENTER">
+                    <VBox style="-fx-background-color: #16a085; -fx-padding: 20; -fx-spacing: 10; -fx-min-width: 200; -fx-alignment: center;">
+                        <Label text="📊" style="-fx-font-size: 30px;" />
+                        <Label text="Occupancy Rate" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" />
+                        <Label text="72%" style="-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold;" />
+                        <Label text="+5% from last month" style="-fx-text-fill: #ecf0f1; -fx-font-size: 11px;" />
+                    </VBox>
+                </VBox>
+            </HBox>
+
+            <!-- Bottom Row: 3 Charts -->
+            <HBox spacing="30" alignment="CENTER">
+                <!-- Total Guests Chart -->
+                <BarChart fx:id="totalGuestsChart" prefWidth="300" prefHeight="250" title="Total Guests">
+                    <xAxis>
+                        <CategoryAxis label="Month" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Number of Guests" />
+                    </yAxis>
+                </BarChart>
+
+                <!-- Revenue Chart -->
+                <BarChart fx:id="revenueBarChart" prefWidth="300" prefHeight="250" title="Revenue">
+                    <xAxis>
+                        <CategoryAxis label="Month" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Revenue (R)" />
+                    </yAxis>
+                </BarChart>
+
+                <!-- Occupancy Chart -->
+                <PieChart fx:id="occupancyPieChart" prefWidth="300" prefHeight="250" title="Occupancy Breakdown" />
+            </HBox>
+
+        </VBox>
+    </AnchorPane>
+</ScrollPane>

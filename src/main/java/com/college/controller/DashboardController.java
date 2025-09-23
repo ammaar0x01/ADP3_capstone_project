@@ -30,8 +30,8 @@ public class DashboardController {
     }
 
     @FXML
-    public void showHome() {
-        safeLoadView("/view/overview.fxml", "Home");
+    public void showOverview() {
+        safeLoadView("/view/overview1.fxml", "Overview");
     }
 
     @FXML
@@ -66,7 +66,6 @@ public class DashboardController {
 
     private void safeLoadView(String fxmlPath, String viewName) {
         try {
-            // Check if the file exists
             if (getClass().getResource(fxmlPath) == null) {
                 throw new Exception("File not found: " + fxmlPath);
             }
@@ -77,7 +76,6 @@ public class DashboardController {
         } catch (Exception e) {
             System.out.println("Error loading " + viewName + " view: " + e.getMessage());
 
-            // Show simple label instead of crashing
             contentArea.getChildren().clear();
             Label messageLabel = new Label(viewName + " view is under construction");
             messageLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: #2c3e50;");
