@@ -52,28 +52,35 @@
             <!-- Bottom Row: 3 Charts -->
             <HBox spacing="30" alignment="CENTER">
                 <!-- Total Guests Chart -->
-                <BarChart fx:id="totalGuestsChart" prefWidth="300" prefHeight="250" title="Total Guests">
-                    <xAxis>
-                        <CategoryAxis label="Month" />
-                    </xAxis>
-                    <yAxis>
-                        <NumberAxis label="Number of Guests" />
-                    </yAxis>
-                </BarChart>
+                <VBox style="-fx-background-color: #ffffff; -fx-border-color: #27ae60; -fx-border-width: 2; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;">
+                    <BarChart fx:id="totalGuestsChart" prefWidth="300" prefHeight="250" title="Total Guests">
+                        <xAxis>
+                            <CategoryAxis label="Month" />
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Number of Guests" />
+                        </yAxis>
+                    </BarChart>
+                </VBox>
 
                 <!-- Revenue Chart -->
-                <BarChart fx:id="revenueBarChart" prefWidth="300" prefHeight="250" title="Revenue">
-                    <xAxis>
-                        <CategoryAxis label="Month" />
-                    </xAxis>
-                    <yAxis>
-                        <NumberAxis label="Revenue (R)" />
-                    </yAxis>
-                </BarChart>
+                <VBox style="-fx-background-color: #ffffff; -fx-border-color: #27ae60; -fx-border-width: 2; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;">
+                    <BarChart fx:id="revenueBarChart" prefWidth="300" prefHeight="250" title="Revenue">
+                        <xAxis>
+                            <CategoryAxis label="Month" />
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Revenue (R)" />
+                        </yAxis>
+                    </BarChart>
+                </VBox>
 
                 <!-- Occupancy Chart -->
-                <PieChart fx:id="occupancyPieChart" prefWidth="300" prefHeight="250" title="Occupancy Breakdown" />
+                <VBox style="-fx-background-color: #ffffff; -fx-border-color: #27ae60; -fx-border-width: 2; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;">
+                    <PieChart fx:id="occupancyPieChart" prefWidth="300" prefHeight="250" title="Occupancy Breakdown" />
+                </VBox>
             </HBox>
+
 
         </VBox>
     </AnchorPane>
