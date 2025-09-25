@@ -13,117 +13,112 @@ import java.time.LocalTime;
 //@Setter
 @Entity
 public class Employee {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int employeeId;
 
-    private String firstNames;
-    private String lastName;
-//    private LocalTime startDate;
-//    private LocalDateTime registerDateTime;
-    private String formattedDateTime;
-
-
-    private String gender;
+    private String name;
+    private String surname;
     private int age;
+    private String jobType;
+    private String gender;
+    private LocalDate startDate;
 
-    public Employee(){}
-    public Employee(String empFirstName, String empLastName, String dateTime) {
-        this.firstNames = empFirstName;
-        this.lastName = empLastName;
-//        this.registerDateTime = dateTime;
-        this.formattedDateTime = dateTime;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user; // FK to User entity
+
+    public Employee() {
     }
 
-//    public Employee(String empFirstName, String empLastName) {
-//        this.firstNames = empFirstName;
-//        this.lastName = empLastName;
-//    }
-
-//    public Employee(
-//            String firstNames,
-//            String lastName,
-//            String gender,
-//            int age,
-//            LocalTime empStartDate
-//    ) {
-//        this.firstNames = firstNames;
-//        this.lastName = lastName;
-//        this.gender = gender;
-//        this.age = age;
-//        this.empStartDate = empStartDate;
-//    }
-    // -------------------------------------
-
-    // getters
-
-    public String getFormattedDateTime() {
-        return formattedDateTime;
+    public Employee(String name, String surname, int age, String jobType, String gender, LocalDate startDate,
+            User user) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.jobType = jobType;
+        this.gender = gender;
+        this.startDate = startDate;
+        this.user = user;
     }
 
-    public void setFormattedDateTime(String formattedDateTime) {
-        this.formattedDateTime = formattedDateTime;
+    // Getters
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public int getId() {
-        return id;
+    public String getName() {
+        return name;
     }
 
-    public String getFirstNames() {
-        return firstNames;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getGender() {
-        return gender;
+    public String getSurname() {
+        return surname;
     }
 
     public int getAge() {
         return age;
     }
 
-
-//    public LocalDateTime getRegisterDateTime() {
-//        return registerDateTime;
-//    }
-
-//    public void setRegisterDateTime(LocalDateTime registerDateTime) {
-//        this.registerDateTime = registerDateTime;
-//    }
-
-
-    // setters
-
-    public void setId(int id) {
-        this.id = id;
+    public String getJobType() {
+        return jobType;
     }
 
-    public void setFirstNames(String firstNames) {
-        this.firstNames = firstNames;
+    public String getGender() {
+        return gender;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public User getUser() {
+        return user;
+    }
+
+    // Setters
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public void setAge(int age) {
         this.age = age;
     }
 
+    public void setJobType(String jobType) {
+        this.jobType = jobType;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+ // Cant declare user_id in toString because there in got get user id in user class
     @Override
     public String toString() {
         return "Employee{" +
-                "formattedDateTime=" + formattedDateTime +
-                ", lastName='" + lastName + '\'' +
-                ", firstNames='" + firstNames + '\'' +
-                ", id=" + id +
+                "employeeId=" + employeeId +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", age=" + age +
+                ", jobType='" + jobType + '\'' +
+                ", gender='" + gender + '\'' +
+                ", startDate=" + startDate +
                 '}';
     }
 }

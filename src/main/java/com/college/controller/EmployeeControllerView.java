@@ -25,128 +25,152 @@ import java.util.Optional;
 public class EmployeeControllerView {
 
     @FXML
-    private TableView<Employee> foodWorkerTable;
+    private TableView<Employee> employeeTable;
     @FXML
-    private TableColumn<Employee, Integer> colId;
+    private TableColumn<Employee, Integer> colEmployeeId;
     @FXML
-    private TableColumn<Employee, String> colType;
+    private TableColumn<Employee, String> colName;
     @FXML
-    private TableColumn<Employee, String> colSpecialization;
-
+    private TableColumn<Employee, String> colSurname;
     @FXML
-    private TableColumn<Employee, LocalTime> time;
+    private TableColumn<Employee, Integer> colAge;
+    @FXML
+    private TableColumn<Employee, String> colJobType;
+    @FXML
+    private TableColumn<Employee, String> colGender;
+    @FXML
+    private TableColumn<Employee, LocalDate> colStartDate;
+    @FXML
+    private TableColumn<Employee, Integer> colUserId;
 
     @Autowired
     private EmployeeRepository repo;
 //    private IFoodWorkerService foodWorkerService;
 
-    private ObservableList<Employee> workers = FXCollections.observableArrayList();
-//    private ObservableList<FoodWorker> workers = FXCollections.observableArrayList();
-
-
-
-//    private String firstNames;
-//    private String lastName;
-//    private LocalTime startDate;
+    private ObservableList<Employee> employees = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colType.setCellValueFactory(new PropertyValueFactory<>("firstNames"));
-        colSpecialization.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-//        time.setCellValueFactory(new PropertyValueFactory<>("registerDateTime"));
-        time.setCellValueFactory(new PropertyValueFactory<>("formattedDateTime"));
+        colEmployeeId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        colAge.setCellValueFactory(new PropertyValueFactory<>("age"));
+        colJobType.setCellValueFactory(new PropertyValueFactory<>("jobType"));
+        colGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        colStartDate.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        colUserId.setCellValueFactory(cellData -> {
+            Employee emp = cellData.getValue();
+            return new javafx.beans.property.SimpleIntegerProperty(
+                emp.getUser() != null ? emp.getUser().getId() : 0
+            ).asObject();
+        });
 
-        loadWorkers();
+        loadEmployees();
     }
 
-    private void loadWorkers() {
-        workers.clear();
-
-        System.out.println("\nAll EMPLOYEE records");
-        for (Employee e : repo.findAll()){
-            System.out.println("- " + e);
-        }
-        workers.addAll(repo.findAll());
-        foodWorkerTable.setItems(workers);
+    private void loadEmployees() {
+        employees.clear();
+        employees.addAll(repo.findAll());
+        employeeTable.setItems(employees);
     }
 
 
     @FXML
-    private void addWorker() {
+    private void addEmployee() {
         TextInputDialog dialog = new TextInputDialog();
 
         dialog.setTitle("Add Employee");
-        dialog.setHeaderText("First names:");
-        Optional<String> typeResult = dialog.showAndWait();
-        if (typeResult.isEmpty()) return;
+        dialog.setHeaderText("Name:");
+        Optional<String> nameResult = dialog.showAndWait();
+        if (nameResult.isEmpty()) return;
 
-        dialog.setHeaderText("Last name:");
-        Optional<String> specResult = dialog.showAndWait();
-//        Optional<String> specResult = dialog.show();
-        if (specResult.isEmpty()) return;
+        dialog.setHeaderText("Surname:");
+        Optional<String> surnameResult = dialog.showAndWait();
+        if (surnameResult.isEmpty()) return;
 
-//        FoodWorker worker = new FoodWorker.FoodWorkerBuilder()
-//                .type(typeResult.get())
-//                .specialization(specResult.get())
-//                .build();
+        dialog.setHeaderText("Age:");
+        Optional<String> ageResult = dialog.showAndWait();
+        if (ageResult.isEmpty()) return;
 
-//        LocalDate currentDate = LocalDate.now();
-//        LocalTime currentTime = LocalTime.now();
-//        LocalDateTime currentDateTime = LocalDateTime.now();
+        dialog.setHeaderText("Job Type:");
+        Optional<String> jobTypeResult = dialog.showAndWait();
+        if (jobTypeResult.isEmpty()) return;
 
-        // formatted date and time
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy");
-        String formattedDateTime = now.format(formatter);
-        System.out.println("Current Date and Time: " + formattedDateTime);
+        dialog.setHeaderText("Gender:");
+        Optional<String> genderResult = dialog.showAndWait();
+        if (genderResult.isEmpty()) return;
 
+        dialog.setHeaderText("Start Date (yyyy-MM-dd):");
+        Optional<String> startDateResult = dialog.showAndWait();
+        if (startDateResult.isEmpty()) return;
+
+        // For simplicity, user is set to null here. You can add user selection logic if needed.
         Employee employee = new Employee(
-                typeResult.get(),
-                specResult.get(),
-//                currentDateTime,
-                formattedDateTime
+            nameResult.get(),
+            surnameResult.get(),
+            Integer.parseInt(ageResult.get()),
+            jobTypeResult.get(),
+            genderResult.get(),
+            LocalDate.parse(startDateResult.get()),
+            null
         );
         repo.save(employee);
-        loadWorkers();
+        loadEmployees();
     }
 
     @FXML
-    private void updateWorker() {
-        Employee selected = foodWorkerTable.getSelectionModel().getSelectedItem();
+    private void updateEmployee() {
+        Employee selected = employeeTable.getSelectionModel().getSelectedItem();
         if (selected == null) {
-            showAlert("Please select a employee to update.");
+            showAlert("Please select an employee to update.");
             return;
         }
 
-        TextInputDialog typeDialog = new TextInputDialog(selected.getFirstNames());
-        typeDialog.setTitle("Update Employee");
-        typeDialog.setHeaderText("Update First names:");
-        Optional<String> typeResult = typeDialog.showAndWait();
-        if (typeResult.isEmpty()) return;
+        TextInputDialog dialog = new TextInputDialog(selected.getName());
+        dialog.setTitle("Update Employee");
+        dialog.setHeaderText("Update Name:");
+        Optional<String> nameResult = dialog.showAndWait();
+        if (nameResult.isEmpty()) return;
 
-        TextInputDialog specDialog = new TextInputDialog(selected.getLastName());
-        specDialog.setTitle("Update Employee");
-        specDialog.setHeaderText("Update Last name:");
-        Optional<String> specResult = specDialog.showAndWait();
-        if (specResult.isEmpty()) return;
+        dialog.setHeaderText("Update Surname:");
+        Optional<String> surnameResult = dialog.showAndWait();
+        if (surnameResult.isEmpty()) return;
 
-        selected.setFirstNames(typeResult.get());
-        selected.setLastName(specResult.get());
+        dialog.setHeaderText("Update Age:");
+        Optional<String> ageResult = dialog.showAndWait();
+        if (ageResult.isEmpty()) return;
+
+        dialog.setHeaderText("Update Job Type:");
+        Optional<String> jobTypeResult = dialog.showAndWait();
+        if (jobTypeResult.isEmpty()) return;
+
+        dialog.setHeaderText("Update Gender:");
+        Optional<String> genderResult = dialog.showAndWait();
+        if (genderResult.isEmpty()) return;
+
+        dialog.setHeaderText("Update Start Date (yyyy-MM-dd):");
+        Optional<String> startDateResult = dialog.showAndWait();
+        if (startDateResult.isEmpty()) return;
+
+        selected.setName(nameResult.get());
+        selected.setSurname(surnameResult.get());
+        selected.setAge(Integer.parseInt(ageResult.get()));
+        selected.setJobType(jobTypeResult.get());
+        selected.setGender(genderResult.get());
+        selected.setStartDate(LocalDate.parse(startDateResult.get()));
         repo.save(selected);
-        loadWorkers();
+        loadEmployees();
     }
 
     @FXML
-    private void deleteWorker() {
-        Employee selected = foodWorkerTable.getSelectionModel().getSelectedItem();
+    private void deleteEmployee() {
+        Employee selected = employeeTable.getSelectionModel().getSelectedItem();
         if (selected == null) {
-            showAlert("Please select a worker to delete.");
+            showAlert("Please select an employee to delete.");
             return;
         }
-
-        repo.deleteById(selected.getId());
-        loadWorkers();
+        repo.deleteById(selected.getEmployeeId());
+        loadEmployees();
     }
 
     private void showAlert(String message) {
