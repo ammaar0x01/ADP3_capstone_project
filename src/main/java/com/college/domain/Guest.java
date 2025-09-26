@@ -17,6 +17,7 @@ public class Guest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int guestID;
+
     private String name;
     private String surname;
     private String contactNumber;
@@ -40,6 +41,19 @@ public class Guest {
     }
 
 
+    // -----------------------------------
+    // Connection to Payment (FK)
+    @OneToOne(mappedBy="guest", cascade = CascadeType.ALL)
+    private Payment payment;
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
+    // -----------------------------------
 
 
 
@@ -47,7 +61,9 @@ public class Guest {
 
 
 
-    protected Guest() {}
+
+
+    public Guest() {}
     private Guest(GuestBuilder builder) {
         this.paymentDetails = builder.paymentDetails;
         this.email = builder.email;

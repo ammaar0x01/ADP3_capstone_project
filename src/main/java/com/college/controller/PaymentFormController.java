@@ -1,6 +1,8 @@
 package com.college.controller;
 
+import com.college.domain.Guest;
 import com.college.domain.Payment;
+import com.college.service.GuestService;
 import com.college.service.PaymentService;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -21,7 +23,18 @@ public class PaymentFormController {
     @Autowired
     private PaymentService paymentService;
 
+    @Autowired
+    private GuestService guestService;
+
     private Payment payment;
+
+
+    // FK for guest //
+    private Integer guestId;
+    public void setGuestId(Integer guestId) {
+        this.guestId = guestId;
+    }
+    // ------------------------------------
 
     @FXML
     public void initialize() {
@@ -82,7 +95,35 @@ public class PaymentFormController {
                         .setPaymentDate(datePicker.getValue())
                         .build();
 
+
+//                Guest guest = new Guest();
+//                Guest guest = guestService.read(2);
+//                newPayment.setGuest(guest);
+
+
+                // ----------------------------------------------------
+                // ✨ FIX: Use the guestId passed from the calling context
+                // ----------------------------------------------------
+                if (this.guestId == null) {
+                    showAlert(Alert.AlertType.ERROR, "Guest association error: Guest ID is missing.");
+                    return;
+                }
+
+                // Retrieve the Guest object using the stored PK
+                Guest guest = guestService.read(this.guestId);
+                if (guest == null) {
+                    showAlert(Alert.AlertType.ERROR, "Guest association error: Could not find Guest with ID " + this.guestId);
+                    return;
+                }
+
+                System.out.println("attempting to save payment...");
+                newPayment.setGuest(guest);
+                // ----------------------------------------------------
+
+
                 paymentService.create(newPayment);
+                System.out.println(newPayment);
+                System.out.println("payment saved.");
                 showAlert(Alert.AlertType.INFORMATION, "Payment created successfully!");
             } else {
                 // Update existing payment

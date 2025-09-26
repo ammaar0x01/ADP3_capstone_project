@@ -37,6 +37,15 @@ public class PaymentViewController {
 
     private ObservableList<Payment> payments = FXCollections.observableArrayList();
 
+    private Payment payment;
+
+    // FK for guest //
+    private Integer guestId;
+    public void setGuestId(Integer guestId) {
+        this.guestId = guestId;
+    }
+
+
     @FXML
     public void initialize() {
         colId.setCellValueFactory(new PropertyValueFactory<>("paymentId"));
@@ -119,6 +128,7 @@ public class PaymentViewController {
 
             PaymentFormController controller = loader.getController();
             controller.setPayment(payment);
+            controller.setGuestId(guestId);
 
             stage.showAndWait();
             loadPayments(); // Refresh the table

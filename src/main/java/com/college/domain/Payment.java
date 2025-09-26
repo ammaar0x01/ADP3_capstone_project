@@ -132,9 +132,23 @@ public class Payment {
     private String paymentStatus;
     private LocalDate paymentDate;
 
-    public Payment() {}
 
-    // Full constructor
+    // ----------------------------------
+    // FK to Guest
+    @OneToOne
+    @JoinColumn(name = "guest_id", nullable = false)
+    private Guest guest;
+    public Guest getGuest() {
+        return guest;
+    }
+
+    public void setGuest(Guest guest) {
+        this.guest = guest;
+    }
+    // ----------------------------------
+
+
+    public Payment() {}
     public Payment(int paymentId, double paymentAmount, String paymentMethod, String paymentStatus, LocalDate paymentDate) {
         this.paymentId = paymentId;
         this.paymentAmount = paymentAmount;

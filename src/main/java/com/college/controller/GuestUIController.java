@@ -34,16 +34,19 @@ public class GuestUIController {
     @FXML
     private TableColumn<Guest, String> colPayment;
 
+
+    // used for the payment FK connection //
+    private Guest currentGuest;
+
     private final GuestUIServiceNaked guestService;
     private final GuestRepository guestRepository;
-
-
 
     @Autowired
     public GuestUIController(GuestRepository guestRepository) {
         this.guestRepository = guestRepository;
         this.guestService = new GuestUIServiceNaked(guestRepository);
     }
+    // ----------------------------------
 
     @FXML
     public void initialize() {
@@ -108,12 +111,22 @@ public class GuestUIController {
             try {
                 // SAVE GUEST FIRST
                 Guest savedGuest = guestService.addGuest(guest);
+                System.out.println("\nGuest: " + savedGuest);
+                System.out.println("Guest id: " + savedGuest.getGuestID());
+
+                // add FK in payment entity (child) //
+//                PaymentFormController paymentFormController = new PaymentFormController();
+//                paymentFormController.setGuestId(savedGuest.getGuestID());
+
 
                 // Refresh guest table
                 loadGuests();
 
                 // THEN open reservation page
                 openReservationPage(savedGuest);
+
+                // open payment page
+                handleOpenPaymentForm(savedGuest);
 
             } catch (Exception e) {
                 showAlert("Error", "Failed to add guest: " + e.getMessage());
@@ -138,6 +151,52 @@ public class GuestUIController {
         } catch (Exception e) {
             e.printStackTrace();
             showAlert("Error", "Could not open Reservation page: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleOpenPaymentForm(Guest currentGuest) {
+//    private void handleOpenPaymentForm() {
+        // ... FXML loading for payment form
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/paymentFinal.fxml"));
+//        loader.setControllerFactory(MainFinal.getSpringContext()::getBean);
+//        // ... load scene and stage
+//
+//        PaymentFormController controller = loader.getController();
+//
+//        // 🔑 THE CRITICAL STEP: Pass the PK of the current Guest to the Payment controller
+//        controller.setGuestId(currentGuest.getGuestID());
+//
+//        stage.show();
+
+
+        try {
+//            safeLoadViewOtherPages("/scenes/paymentFinal.fxml", "Payments");
+
+            System.out.println("Loading payment-section...");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/paymentFinal.fxml"));
+            loader.setControllerFactory(MainFinal.getSpringContext()::getBean);
+            Stage stage = new Stage();
+            stage.setTitle("Payment");
+            stage.setScene(new Scene(loader.load()));
+            System.out.println("Success.\n");
+
+            System.out.println("loading payment view...");
+            PaymentViewController controller = loader.getController();
+//            PaymentFormController controller = loader.getController();
+            controller.setGuestId(currentGuest.getGuestID());
+            System.out.println("success.");
+
+            System.out.println();
+            System.out.println(controller);
+            System.out.println(currentGuest);
+            System.out.println(currentGuest.getGuestID());
+
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Error", "Could not open Payment page: " + e.getMessage());
         }
     }
 
