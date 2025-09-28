@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 
+<?import javafx.scene.shape.Circle?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.college.controller.DashboardController">
 
@@ -15,11 +18,24 @@
                       AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
                       AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
 
-                    <!-- User Profile -->
                     <VBox spacing="10" alignment="CENTER">
-                        <Label text="👤" style="-fx-text-fill: white; -fx-font-size: 40px;" />
-                        <Label text="John Doe" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" />
-                        <Label text="Administrator" style="-fx-text-fill: #FFFFFF; -fx-font-size: 12px;" />
+                        <!-- Profile Image with Circle Clip -->
+                        <ImageView fx:id="profileImage" fitWidth="80" fitHeight="80">
+                            <image>
+                                <Image url="@/characters/download3.jpg" />
+                            </image>
+                            <clip>
+                                <Circle centerX="40" centerY="40" radius="40"/>
+                            </clip>
+                        </ImageView>
+
+                        <!-- User Name -->
+                        <Label text="John Doe"
+                               style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" />
+
+                        <!-- Role -->
+                        <Label text="Administrator"
+                               style="-fx-text-fill: #FFFFFF; -fx-font-size: 12px;" />
                     </VBox>
 
                     <Separator />
