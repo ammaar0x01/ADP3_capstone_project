@@ -26,7 +26,7 @@
             <children>
 
                <!-- Amount -->
-               <Label layoutY="5.0" text="Amount:" />
+               <Label layoutY="5.0" text="Amount :" />
                <TextField fx:id="txtAmount" layoutX="100.0" prefWidth="200.0" />
 
                <!-- Method -->
