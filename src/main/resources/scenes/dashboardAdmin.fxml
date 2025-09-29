@@ -3,7 +3,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="com.college.controller.DashboardController" stylesheets="@/css/styles.css">
+
+<BorderPane stylesheets="@/css/styles.css" xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.college.controller.DashboardController">
 
     <left>
         <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background: #FFFFFF; -fx-border-color: #FFFFFF;" styleClass="scroll-pane" vbarPolicy="AS_NEEDED">
@@ -14,8 +17,8 @@
                     <!-- User Profile -->
                     <VBox alignment="CENTER" spacing="10">
                         <Label style="-fx-text-fill: white; -fx-font-size: 40px;" text="👤" />
-                        <Label style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" text="John Doe" />
-                        <Label style="-fx-text-fill: #FFFFFF; -fx-font-size: 12px;" text="SUPER ADMIN PAGE" />
+                        <Label fx:id="usernameSlot" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" text="John Doe" />
+                        <Label fx:id="roleSlot" style="-fx-text-fill: #FFFFFF; -fx-font-size: 12px;" text="SUPER ADMIN PAGE" />
                     </VBox>
 
                     <Separator />

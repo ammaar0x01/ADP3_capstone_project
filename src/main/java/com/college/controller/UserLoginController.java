@@ -83,7 +83,8 @@ public class UserLoginController {
 
         // Redirect to proper dashboard based on role
         Stage stage = (Stage) loginButton.getScene().getWindow();
-        dashboardHandler.redirectToDashboard(stage, auth);
+//        dashboardHandler.redirectToDashboard(stage, auth);
+        dashboardHandler.redirectToDashboard(stage, auth, email);
     }
 
 
@@ -138,6 +139,7 @@ public class UserLoginController {
             //THIS IS NO LONGER USED OR CALLED, this change page method is deprecated
             if ("ADMIN".equals(role)) {
                 fxmlToLoad = "/scenes/dashboardAdmin.fxml";
+
             } else if ("MANAGER".equals(role)) {
                 fxmlToLoad = "/scenes/dashboard.fxml";
             } else if ("USER".equals(role)) {  //

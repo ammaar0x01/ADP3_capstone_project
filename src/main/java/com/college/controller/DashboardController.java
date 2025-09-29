@@ -18,6 +18,23 @@ import java.util.Optional;
 @Controller
 public class DashboardController {
 
+    // ------------------------------------------
+    @FXML
+    private Label usernameSlot;
+
+    @FXML
+    private Label roleSlot;
+
+    public void setUsername(String username) {
+        usernameSlot.setText(username);
+    }
+
+    public void setRole(String role) {
+        roleSlot.setText(role);
+    }
+    // ------------------------------------------
+
+
     @FXML
     private StackPane contentArea;
 
