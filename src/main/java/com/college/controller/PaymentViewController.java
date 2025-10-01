@@ -63,7 +63,7 @@ public class PaymentViewController {
         paymentTable.setItems(payments);
 
         // Debug: Check if Spring injection worked
-        System.out.println("PaymentViewController initialized");
+        System.out.println("\nPaymentViewController initialized");
         System.out.println("PaymentService injected: " + (paymentService != null));
         System.out.println("ApplicationContext injected: " + (applicationContext != null));
 
@@ -138,9 +138,24 @@ public class PaymentViewController {
 
             controller.setGuest(this.guest);
 
+//            stage.showAndWait();
+//            loadPayments(); // Refresh the table
+
+
             stage.showAndWait();
-            loadPayments(); // Refresh the table
-        } catch (Exception e) {
+
+            if (controller.isSaved()) {
+                // Payment was saved — close main Payment view
+                Stage mainStage = (Stage) paymentTable.getScene().getWindow();
+                mainStage.close();
+            } else {
+                // Reload table just in case
+                loadPayments();
+            }
+
+
+        }
+        catch (Exception e) {
             e.printStackTrace();
             showAlert("Error opening form: " + e.getMessage());
         }

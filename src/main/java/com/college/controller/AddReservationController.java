@@ -200,6 +200,8 @@ public class AddReservationController {
     }
 
     private void openAddPaymentPage(Guest guest) {
+        Stage modalStage = null;
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/paymentFinal.fxml"));
             loader.setControllerFactory(MainFinal.getSpringContext()::getBean);
@@ -208,15 +210,22 @@ public class AddReservationController {
             PaymentViewController paymentController = loader.getController();
             paymentController.setGuest(guest);
 
-            Stage modalStage = new Stage();
+//            Stage modalStage = new Stage();
+            modalStage = new Stage();
             modalStage.setWidth(1000);
             modalStage.setHeight(600);
             modalStage.initModality(Modality.APPLICATION_MODAL);
 
             modalStage.setScene(new Scene(root));
-            modalStage.showAndWait();
+            modalStage.show();
+//            modalStage.showAndWait();
+//            modalStage.close();
+
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        finally {
+            modalStage.close();
         }
     }
 

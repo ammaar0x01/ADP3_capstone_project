@@ -3,6 +3,7 @@ package com.college.controller;
 import com.college.domain.Guest;
 import com.college.domain.Payment;
 import com.college.service.PaymentService;
+import com.college.utilities.TextFileWriter;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -34,6 +35,14 @@ public class PaymentFormController {
     }
 
 
+    // --------------------------
+    // newer
+    private boolean saved = false;
+
+    public boolean isSaved() {
+        return saved;
+    }
+    // --------------------------
 
 
     @FXML
@@ -101,8 +110,23 @@ public class PaymentFormController {
 
                 showAlert(Alert.AlertType.INFORMATION, "Payment created successfully!");
 
+                // ---------------------------------
+                // Saving to text file
+                TextFileWriter writer = new TextFileWriter("records/payments.txt");
 
-            } else {
+                for (Payment p : paymentService.getAll()){
+                    System.out.println("-" + p);
+                    writer.writeLine("\n-" + p);
+
+                }
+                System.out.println("Successfully wrote to file");
+                // ---------------------------------
+
+                System.out.println("\n***Closing section...");
+                closeWindow();
+            }
+
+            else {
                 // Update existing payment
                 payment.setPaymentAmount(amount);
                 payment.setPaymentMethod(choiceMethod.getValue());
@@ -111,9 +135,13 @@ public class PaymentFormController {
 
                 paymentService.update(payment);
                 showAlert(Alert.AlertType.INFORMATION, "Payment updated successfully!");
+
+                System.out.println("\n***Closing section...");
+                closeWindow();
+
             }
 
-            closeWindow();
+//            closeWindow();
 
         } catch (NumberFormatException e) {
             showAlert("Please enter a valid numeric amount");

@@ -278,4 +278,11 @@ public class ReservationUIController implements Initializable {
             labelFeedback.setText("Error opening Edit Reservation form.");
         }
     }
+
+
+
+//    private void closeWindow() {
+//
+//        ((Stage) txtAmount.getScene().getWindow()).close();
+//    }
 }

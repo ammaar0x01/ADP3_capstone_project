@@ -1,0 +1,16 @@
+
+-Payment{paymentId=1, paymentAmount=3000.0, paymentMethod='Card', paymentStatus='Pending', paymentDate=2025-09-29}
+
+-Payment{paymentId=2, paymentAmount=1000.0, paymentMethod='Select an option', paymentStatus='Select an option', paymentDate=2025-10-01}
+
+-Payment{paymentId=3, paymentAmount=3341.0, paymentMethod='Cash', paymentStatus='Pending', paymentDate=2025-10-01}
+
+-Payment{paymentId=4, paymentAmount=3341.0, paymentMethod='Cash', paymentStatus='Pending', paymentDate=2025-10-01}
+
+-Payment{paymentId=5, paymentAmount=6800.0, paymentMethod='Cash', paymentStatus='Completed', paymentDate=2025-10-01}
+
+-Payment{paymentId=6, paymentAmount=4500.0, paymentMethod='Cash', paymentStatus='Pending', paymentDate=2025-10-01}
+
+-Payment{paymentId=7, paymentAmount=8999.0, paymentMethod='Select an option', paymentStatus='Select an option', paymentDate=2025-10-01}
+
+-Payment{paymentId=8, paymentAmount=2333.0, paymentMethod='Cash', paymentStatus='Pending', paymentDate=2025-10-01}

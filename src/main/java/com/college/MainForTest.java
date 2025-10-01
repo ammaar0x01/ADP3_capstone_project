@@ -1,20 +1,16 @@
 package com.college;
 
-import com.college.domain.subclasses.FoodWorker;
-import com.college.factory.FoodWorkerFactory;
+import com.college.domain.Payment;
+import com.college.service.PaymentService;
+import com.college.utilities.TextFileWriter;
 
 public class MainForTest {
     public static void main(String[] args) {
+        TextFileWriter writer = new TextFileWriter("records/output.txt");
+        writer.writeLine("Hello, world!");
+        System.out.println("Successfully wrote to file");
 
-//        FoodWorker worker = new FoodWorker.FoodWorkerBuilder()
-//                .id(1)
-//                .type("Chef")
-//                .specialization("Italian Cuisine")
-//                .build();
-//
-//        System.out.println("a " + worker);
 
-        FoodWorker worker1 = FoodWorkerFactory.createFoodWorker("Chef", "Italian Cuisine");
-        System.out.println(worker1);
+
     }
 }
