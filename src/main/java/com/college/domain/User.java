@@ -8,9 +8,8 @@ import java.util.List;
 @Entity
 @Table(name = "users") // better to avoid reserved keyword "user"
 public class User {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // auto-increment PK
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
 
     private String email;
@@ -25,7 +24,7 @@ public class User {
 
 
 
-    //FK TO EMPLOYEE
+    // FK TO EMPLOYEE
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Employee employee;
 
@@ -39,14 +38,10 @@ public class User {
 
 
 
-    //FK BRIDGE TABLE
+    // FK BRIDGE TABLE
     // Bridge table: User to Role
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserRole> userRoles = new ArrayList<>();
-
-
-
-
 
 
     //  constructor for builder

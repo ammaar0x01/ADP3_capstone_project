@@ -1,13 +1,9 @@
 ## Project: 	Hotel-booking System
 - Started: 	12.03.25
-- Updated: 	16.09.25
+- Updated: 	08.10.25
 - Status: 	work-in-progress
-- Branch:	master-dev1
+- Branch:	___
 ---
-
-### Software-class Diagram
-![hms_erd.drawio.png](hms_erd.drawio.png)
-=======
 
 ### About project
 - A Java project for managing a hotel-reservation system, created using the IntelliJ IDE 

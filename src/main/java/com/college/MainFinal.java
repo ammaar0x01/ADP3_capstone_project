@@ -26,7 +26,10 @@ public class MainFinal extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/window-sign-upFinal.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/experimental/window-login-d1.fxml"));
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/experimental/window-signup-d1.fxml"));
+
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/window-sign-upFinal.fxml"));
         loader.setControllerFactory(springContext::getBean);
         Parent root = loader.load();
 
@@ -39,12 +42,13 @@ public class MainFinal extends Application {
         scene.getStylesheets().add(getClass().getResource("/css/buttonStyle.css").toExternalForm());
 
     // remove this and it will deafult back to default
-        stage.setWidth(616);
-        stage.setHeight(442);
+//        stage.setWidth(616);
+//        stage.setHeight(442);
 
 
         stage.setScene(scene);
         stage.setTitle("HMS - Room Management");
+        stage.setResizable(false);
         stage.show();
 
         System.out.println("Stage width: " + stage.getWidth());

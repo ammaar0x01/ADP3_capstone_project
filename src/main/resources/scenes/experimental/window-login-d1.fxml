@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox alignment="CENTER" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.college.controller.UserLoginController">
+   <children>
+      <VBox alignment="CENTER" fillWidth="false" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #45b6fe;">
+         <children>
+            <ImageView fitHeight="186.0" fitWidth="177.0" pickOnBounds="true" style="-fx-background-color: black;" VBox.vgrow="ALWAYS">
+               <image>
+                  <Image url="@../../images/c.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" prefHeight="21.0" prefWidth="187.0" text="Hotel Management System" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutY="50.0" text="HMS" textAlignment="CENTER" textFill="WHITE" />
+         </children>
+      </VBox>
+      <Pane prefWidth="300.0" style="-fx-background-color: white;">
+         <children>
+            <VBox alignment="CENTER" layoutX="35.0" layoutY="30.0" style="-fx-background-color: white;">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" text="Log in">
+                     <font>
+                        <Font name="DejaVuMathTeXGyre-Regular" size="30.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="username" alignment="CENTER" prefHeight="38.0" prefWidth="150.0" promptText="Username">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </TextField>
+                  <PasswordField fx:id="password" alignment="CENTER" promptText="Password">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </PasswordField>
+                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#handleLoginAuth" prefHeight="39.0" prefWidth="212.0" style="-fx-background-color: #45b6fe;" text="Log in" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+      
+                                    </Button>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="230.0" text="I don't have an account" textAlignment="CENTER" underline="true">
+                     <font>
+                        <Font name="DejaVuMathTeXGyre-Regular" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets top="30.0" />
+               </padding>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</HBox>

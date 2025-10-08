@@ -18,9 +18,9 @@
                     <VBox spacing="10" alignment="CENTER">
                         <!-- Profile Image with Circle Clip -->
                         <ImageView fx:id="profileImage" fitWidth="80" fitHeight="80">
-                            <image>
-                                <Image url="/images/characters/download.jpg" />
-                            </image>
+<!--                            <image>-->
+<!--                                <Image url="/images/characters/download.jpg" />-->
+<!--                            </image>-->
                             <clip>
                                 <Circle centerX="40" centerY="40" radius="40"/>
                             </clip>

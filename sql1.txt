@@ -1,0 +1,177 @@
+
+-- (1)
+-- users -- rename to user
+INSERT INTO `hms`.`users`
+(`user_id`, `age`, `email`, `gender`, `name`, `password`, `role`, `start_date`, `surname`)
+VALUES
+(1, 28, 'jane.doe@example.com', 'Female', 'Jane', 'pass123', 'Doctor', '2022-01-10', 'Doe'),
+(2, 35, 'john.smith@example.com', 'Male', 'John', 'secure456', 'Nurse', '2021-06-15', 'Smith'),
+(3, 40, 'emily.jones@example.com', 'Female', 'Emily', 'mypassword', 'Admin', '2023-03-22', 'Jones'),
+(4, 30, 'michael.brown@example.com', 'Male', 'Michael', 'admin123', 'Receptionist', '2022-09-01', 'Brown'),
+(5, 26, 'lisa.taylor@example.com', 'Female', 'Lisa', 'testpass', 'Pharmacist', '2023-11-12', 'Taylor');
+
+-- (2)
+-- user_role_seq
+INSERT INTO `hms`.`user_role_seq` (`next_val`) VALUES
+(6),
+(7),
+(8),
+(9),
+(10);
+
+-- (3)
+-- user_role
+INSERT INTO `hms`.`user_role`
+(`id`, `specification`, `role_role_id`, `user_user_id`)
+VALUES
+(1, 'Cardiologist', 101, 1),
+(2, 'ICU Nurse', 102, 2),
+(3, 'System Administrator', 103, 3),
+(4, 'Front Desk', 104, 4),
+(5, 'Dispensing Pharmacist', 105, 5);
+
+-- (4)
+-- shift
+INSERT INTO `hms`.`shift`
+(`shift_id`, `shift_day`, `shift_end_time`, `shift_overtime`, `shift_start_time`, `employee_id`)
+VALUES
+(1, 'Monday', '17:00:00', '00:30:00', '08:00:00', 1),
+(2, 'Tuesday', '16:00:00', '00:00:00', '08:00:00', 2),
+(3, 'Wednesday', '18:00:00', '01:00:00', '09:00:00', 3),
+(4, 'Thursday', '17:30:00', '00:15:00', '08:00:00', 4),
+(5, 'Friday', '16:30:00', '00:45:00', '07:30:00', 5);
+
+-- (5)
+-- room
+INSERT INTO `hms`.`room`
+(`roomid`, `availability`, `features`, `price_per_night`, `room_type`, `employee_id`, `reservation_id`)
+VALUES
+(101, TRUE, 'TV, Wi-Fi, AC', 1200.00, 'Single', 1, 201),
+(102, FALSE, 'Wi-Fi, Mini Bar', 1500.00, 'Double', 2, 202),
+(103, TRUE, 'TV, Wi-Fi, AC, Bathtub', 1800.00, 'Deluxe', 3, NULL),
+(104, TRUE, 'Wi-Fi, Desk', 1000.00, 'Single', 4, NULL),
+(105, FALSE, 'TV, AC', 1100.00, 'Standard', 5, 203);
+
+-- (6)
+-- roles -- rename to role
+INSERT INTO `hms`.`roles`
+(`role_id`, `role_name`)
+VALUES
+(101, 'Doctor'),
+(102, 'Nurse'),
+(103, 'Administrator'),
+(104, 'Receptionist'),
+(105, 'Pharmacist');
+
+-- (7)
+-- reservation
+INSERT INTO `hms`.`reservation`
+(`reservation_id`, `reservation_date_time_end`, `reservation_date_time_start`, `guest_id`)
+VALUES
+(201, '2025-10-10 10:00:00', '2025-10-08 14:00:00', 1),
+(202, '2025-10-15 11:00:00', '2025-10-12 13:00:00', 2),
+(203, '2025-10-12 09:00:00', '2025-10-10 16:00:00', 5),
+(204, '2025-10-18 12:00:00', '2025-10-16 15:00:00', 3),
+(205, '2025-10-20 10:30:00', '2025-10-18 17:00:00', 4);
+
+
+-- (8)
+-- payment
+INSERT INTO `hms`.`payment`
+(`payment_id`, `payment_amount`, `payment_date`, `payment_method`, `payment_status`, `guest_id`)
+VALUES
+(301, 2400.00, '2025-10-08', 'Card', 'Paid', 1),
+(302, 4500.00, '2025-10-12', 'EFT', 'Pending', 2),
+(303, 2200.00, '2025-10-10', 'Cash', 'Paid', 5),
+(304, 3600.00, '2025-10-16', 'Card', 'Paid', 3),
+(305, 4200.00, '2025-10-18', 'EFT', 'Paid', 4);
+
+-- (9)
+-- maintenance_worker
+INSERT INTO `hms`.`maintenance_worker`
+(`maintenance_id`, `company`, `external`, `type`, `employee_id`)
+VALUES
+(401, 'FixIt Co.', TRUE, 'Electrician', 1),
+(402, 'CleanUp Ltd.', TRUE, 'Cleaner', 2),
+(403, NULL, FALSE, 'Technician', 3),
+(404, NULL, FALSE, 'Plumber', 4),
+(405, 'HVAC Experts', TRUE, 'Aircon Specialist', 5);
+
+-- (10)
+-- housekeeper
+INSERT INTO `hms`.`housekeeper`
+(`housekeeper_id`, `housekeeper_name`, `housekeeper_surname`, `domain`, `type`, `employee_id`)
+VALUES
+(501, 'Samantha', 'Ngema', 'Room Cleaning', 'Full-time', 1),
+(502, 'Thabo', 'Mokoena', 'Laundry', 'Part-time', 2),
+(503, 'Lerato', 'Peters', 'General Cleaning', 'Full-time', 3),
+(504, 'Daniel', 'Nkosi', 'Disinfection', 'Contract', 4),
+(505, 'Ayanda', 'Zulu', 'Bathroom Cleaning', 'Full-time', 5);
+
+-- (11)
+-- guest
+INSERT INTO `hms`.`guest`
+(`guestid`, `contact_number`, `email`, `name`, `payment_details`, `surname`)
+VALUES
+(601, '0711234567', 'guest1@example.com', 'Alice', 'Visa ****1234', 'Daniels'),
+(602, '0723456789', 'guest2@example.com', 'Brian', 'Mastercard ****5678', 'Lee'),
+(603, '0739876543', 'guest3@example.com', 'Cynthia', 'EFT Ref#7890', 'Muller'),
+(604, '0741122334', 'guest4@example.com', 'David', 'Cash', 'Smith'),
+(605, '0759988776', 'guest5@example.com', 'Elaine', 'PayPal: elaine@example.com', 'Singh');
+
+-- (12)
+-- food_worker
+INSERT INTO `hms`.`food_worker`
+(`id`, `specialization`, `type`, `employee_id`)
+VALUES
+(701, 'Pastry Chef', 'Full-time', 1),
+(702, 'Sous Chef', 'Part-time', 2),
+(703, 'Line Cook', 'Contract', 3),
+(704, 'Kitchen Assistant', 'Full-time', 4),
+(705, 'Head Chef', 'Full-time', 5);
+
+-- (13)
+-- event
+INSERT INTO `hms`.`event`
+(`event_id`, `description`, `reason`, `reservation_id`)
+VALUES
+(801, 'Wedding Reception', 'Guest request', 201),
+(802, 'Conference Setup', 'Business booking', 202),
+(803, 'Birthday Party', 'Family celebration', 203),
+(804, 'Health & Safety Inspection', 'Scheduled maintenance', 204),
+(805, 'Staff Training', 'Internal event', 205);
+
+-- (14)
+-- employee
+INSERT INTO `hms`.`employee`
+(`employee_id`, `job_type`, `start_date`, `user_id`)
+VALUES
+(1, 'Doctor', '2022-01-10', 1),
+(2, 'Nurse', '2021-06-15', 2),
+(3, 'Administrator', '2023-03-22', 3),
+(4, 'Receptionist', '2022-09-01', 4),
+(5, 'Pharmacist', '2023-11-12', 5);
+
+-- (15)
+-- employee_salary
+INSERT INTO `hms`.`employee_salary`
+(`salary_id`, `amount`, `date`, `method`, `employee_id`)
+VALUES
+(1001, 25000.00, '2025-10-01', 'EFT', 1),
+(1002, 18000.00, '2025-10-01', 'Cash', 2),
+(1003, 22000.00, '2025-10-01', 'EFT', 3),
+(1004, 20000.00, '2025-10-01', 'Card', 4),
+(1005, 27000.00, '2025-10-01', 'EFT', 5);
+
+-- (16)
+-- employee_shift
+INSERT INTO `hms`.`employee_shift`
+(`id`, `end_time`, `is_overtime`, `start_time`)
+VALUES
+(901, '17:00:00', TRUE, '08:00:00'),
+(902, '16:00:00', FALSE, '08:00:00'),
+(903, '18:00:00', TRUE, '09:00:00'),
+(904, '17:30:00', FALSE, '08:00:00'),
+(905, '16:30:00', TRUE, '07:30:00');
+
+-- -----------------------------------------------------

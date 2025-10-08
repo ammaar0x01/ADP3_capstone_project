@@ -27,6 +27,8 @@ Muaath Slamong      | Housekeeper classes           |
 
 package com.college;
 
+import com.college.domain.subclasses.FoodWorker;
+import com.college.factory.FoodWorkerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -34,6 +36,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Main {
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
+
+//        FoodWorker worker1 = FoodWorkerFactory.createFoodWorker("Chef", "Italian Cuisine");
+//        System.out.println(worker1);
     }
 }
 
