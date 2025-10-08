@@ -1,5 +1,6 @@
 package com.college.controller;
 
+import com.college.domain.Employee;
 import com.college.domain.Role;
 import com.college.domain.User;
 import com.college.service.RoleService;
@@ -8,14 +9,18 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class UserTableController {
@@ -73,6 +78,59 @@ public class UserTableController {
             e.printStackTrace();
         }
     }
+
+    // --------------------------------------
+    @FXML
+    private void updateEmployee() {
+//        Employee selected = employeeTable.getSelectionModel().getSelectedItem();
+        User selected = userTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showAlert("Please select an employee to update.");
+            return;
+        }
+
+        TextInputDialog dialog = new TextInputDialog(selected.getName());
+        dialog.setTitle("Update Name");
+        dialog.setHeaderText("Update Name");
+        Optional<String> name = dialog.showAndWait();
+        if (name.isEmpty()) return;
+
+        TextInputDialog dialog1 = new TextInputDialog(selected.getSurname());
+        dialog1.setTitle("Update Surname");
+        dialog1.setHeaderText("Update Surname");
+        Optional<String> surname = dialog1.showAndWait();
+        if (surname.isEmpty()) return;
+
+        TextInputDialog dialog2 = new TextInputDialog(selected.getName());
+        dialog2.setTitle("Update Email address");
+        dialog2.setHeaderText("Update Email address");
+        Optional<String> email = dialog2.showAndWait();
+        if (email.isEmpty()) return;
+//
+//        dialog.setHeaderText("Update Start Date (yyyy-MM-dd):");
+//        Optional<String> startDateResult = dialog.showAndWait();
+//        if (startDateResult.isEmpty()) return;
+
+
+        // updating details //
+//        selected.setJobType(jobTypeResult.get());
+        selected.setName(name.get());
+        selected.setSurname(surname.get());
+        selected.setEmail(email.get());
+//        selected.setStartDate(LocalDate.parse(startDateResult.get()));
+
+        userService.create(selected);
+//        repo.save(selected);
+        loadUsers();
+    }
+
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+    // -----------------------
 
     @FXML
     public void addUser() {

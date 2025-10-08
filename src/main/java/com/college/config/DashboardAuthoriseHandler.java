@@ -74,10 +74,10 @@ public class DashboardAuthoriseHandler {
             stage.setScene(scene);
 
             //DASHBOARD SIZING HERE
-            stage.setWidth(1220);
+            stage.setWidth(1200);
             stage.setHeight(600);
             stage.centerOnScreen();
-            stage.setResizable(false);
+//            stage.setResizable(false);
             stage.show();
 
         } catch (IOException e) {
