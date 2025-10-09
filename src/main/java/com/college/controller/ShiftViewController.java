@@ -138,7 +138,7 @@ public class ShiftViewController {
 
     private void openForm(Shift shift) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Add_Shift.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/_trash/Add_Shift.fxml"));
 
             // This is the key fix: Use Spring to create the controller
             loader.setControllerFactory(applicationContext::getBean);

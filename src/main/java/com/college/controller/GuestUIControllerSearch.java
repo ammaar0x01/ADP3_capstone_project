@@ -230,7 +230,7 @@ public class GuestUIControllerSearch {
     @FXML
     private void handleOpenEventScreen() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/window-event.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/_trash/window-event.fxml"));
             loader.setControllerFactory(MainFinal.getSpringContext()::getBean); // use Spring context
             Scene scene = new Scene(loader.load());
             Stage stage = new Stage();

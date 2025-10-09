@@ -1,7 +1,6 @@
 package com.college.controller;
 
 import com.college.MainFinal;
-import com.college.domain.Employee;
 import com.college.domain.EmployeeSalary;
 import com.college.service.EmployeeSalaryService;
 import javafx.application.Platform;
@@ -108,7 +107,7 @@ public class EmployeeSalaryController {
 
     private void openForm(EmployeeSalary employeeSalary) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/Add_EmployeeSalary.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/_trash/Add_EmployeeSalary.fxml"));
 
             // Use Spring to inject the controller
             loader.setControllerFactory(MainFinal.getSpringContext()::getBean);

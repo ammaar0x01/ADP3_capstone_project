@@ -90,7 +90,7 @@ public class MaintenanceWorkerViewController {
 
     private void openForm(MaintenanceWorker worker) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Add_MaintenanceWorker.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/_trash/Add_MaintenanceWorker.fxml"));
             loader.setControllerFactory(applicationContext::getBean);
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);

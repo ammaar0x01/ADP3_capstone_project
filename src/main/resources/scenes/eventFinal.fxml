@@ -17,9 +17,9 @@
 
                 <!-- Logo at top -->
                 <ImageView>
-                    <image>
-                        <Image url="/images/c.png"/>
-                    </image>
+<!--                    <image>-->
+<!--                        <Image url="/images/c.png"/>-->
+<!--                    </image>-->
                 </ImageView>
 
                 <!-- Reason input, false visible at first-->
