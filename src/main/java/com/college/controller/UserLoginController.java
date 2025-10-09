@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,6 +22,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 
 @Component
@@ -202,4 +204,50 @@ public class UserLoginController {
         stage.show();
     }
 
+    @FXML
+//    private void handleGoBackMouse(MouseEvent event) throws IOException {
+////    private void handleGoBackMouse(MouseEvent event) throws IOException {
+//        // Load the register window FXML
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/window-sign-upFinal.fxml"));
+//        loader.setControllerFactory(com.college.MainFinal.getSpringContext()::getBean); // spring context aware
+//        Parent registerRoot = loader.load();
+//
+//        // Get current stage
+//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//
+//        // Replace scene with the register window
+//        Scene scene = new Scene(registerRoot);
+//        scene.getStylesheets().add(getClass().getResource("/css/buttonStyle.css").toExternalForm()); // keep styling
+//
+//        stage.setScene(scene);
+//        stage.setTitle("HMS - User Login");
+//        stage.show();
+//    }
+
+    public void handleGoBackMouse(javafx.scene.input.MouseEvent event) throws IOException{
+        // Load the register window FXML
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/window-sign-upFinal.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/experimental/window-signup-d1.fxml"));
+
+        loader.setControllerFactory(com.college.MainFinal.getSpringContext()::getBean); // spring context aware
+        Parent registerRoot = loader.load();
+
+        // Get current stage
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        // Replace scene with the register window
+        Scene scene = new Scene(registerRoot);
+//        scene.getStylesheets().add(getClass().getResource("/css/buttonStyle.css").toExternalForm()); // keep styling
+
+
+        stage.setScene(scene);
+        stage.setTitle("HMS - Create an account");
+
+//        stage.initStyle(StageStyle.DECORATED);
+        stage.show();
+
+        System.out.println("\nWindow: Create account");
+        System.out.println("Stage width: " + stage.getWidth());
+        System.out.println("Stage height: " + stage.getHeight());
+    }
 }

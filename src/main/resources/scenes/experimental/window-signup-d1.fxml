@@ -8,7 +8,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="mainFrame" minHeight="600.0" minWidth="360.0" prefHeight="600.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.college.controller.UserRegisterController">
+<BorderPane fx:id="mainFrame" minHeight="600.0" minWidth="360.0" prefHeight="600.0"
+            prefWidth="360.0" xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.college.controller.UserRegisterController">
     <center>
         <!-- Right white panel with input fields -->
         <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: WHITE;">
@@ -55,7 +58,7 @@
                 </cursor>
             </Button>
 
-            <Hyperlink alignment="CENTER" onAction="#goToLogin" text="Already have an account?" textAlignment="CENTER">
+            <Hyperlink alignment="CENTER" onAction="#goToLogin" text="I already have an account" textAlignment="CENTER">
             <VBox.margin>
                <Insets top="10.0" />
             </VBox.margin></Hyperlink>

@@ -198,20 +198,31 @@ public class UserRegisterController {
     @FXML
     private void goToLogin() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/window-login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/experimental/window-login-d1.fxml"));
+
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/window-login.fxml"));
             loader.setControllerFactory(MainFinal.getSpringContext()::getBean);
 
             Parent loginPage = loader.load();
             Stage stage = (Stage) username.getScene().getWindow();
             stage.getScene().setRoot(loginPage);
 
-            String stylesheet = getClass().getResource("/css/buttonStyle.css").toExternalForm();
-            Scene scene = stage.getScene();
-            if (!scene.getStylesheets().contains(stylesheet)) {
-                scene.getStylesheets().add(stylesheet);
-            }
+            stage.setWidth(616);
+            stage.setHeight(440);
 
-        } catch (IOException e) {
+//            Scene scene = stage.getScene();
+
+//            String stylesheet = getClass().getResource("/css/buttonStyle.css").toExternalForm();
+//            if (!scene.getStylesheets().contains(stylesheet)) {
+//                scene.getStylesheets().add(stylesheet);
+//            }
+//            stage.centerOnScreen();
+
+            System.out.println("\nWindow: Login");
+            System.out.println("Stage width: " + stage.getWidth());
+            System.out.println("Stage height: " + stage.getHeight());
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
     }

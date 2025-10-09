@@ -17,6 +17,8 @@ public class Guest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int guestID;
+//    private int guestId;
+
     private String name;
     private String surname;
     private String contactNumber;

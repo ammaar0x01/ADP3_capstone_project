@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -39,7 +40,7 @@ public class MainFinal extends Application {
 
         Scene scene = new Scene(root);
 
-        scene.getStylesheets().add(getClass().getResource("/css/buttonStyle.css").toExternalForm());
+//        scene.getStylesheets().add(getClass().getResource("/css/buttonStyle.css").toExternalForm());
 
     // remove this and it will deafult back to default
 //        stage.setWidth(616);
@@ -47,8 +48,10 @@ public class MainFinal extends Application {
 
 
         stage.setScene(scene);
-        stage.setTitle("HMS - Room Management");
+        stage.setTitle("HMS - Login");
         stage.setResizable(false);
+//        stage.initStyle(StageStyle.UNDECORATED);
+//        stage.centerOnScreen();
         stage.show();
 
         System.out.println("Stage width: " + stage.getWidth());

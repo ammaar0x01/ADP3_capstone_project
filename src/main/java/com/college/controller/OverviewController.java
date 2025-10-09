@@ -1,5 +1,8 @@
 package com.college.controller;
 
+import com.college.domain.Employee;
+import com.college.domain.User;
+import com.college.repository.UserRepository;
 import com.college.service.EmployeeService;
 import com.college.service.PaymentService;
 import com.college.service.ReservationService;
@@ -14,7 +17,9 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.Region;
 import javafx.util.Duration;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +29,15 @@ import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.util.Optional;
 
 @Component
 public class OverviewController {
+    @FXML
+    private CategoryAxis revenueXAxis;
 
-
-
-    @FXML private CategoryAxis revenueXAxis;
-    @FXML private NumberAxis revenueYAxis;
+    @FXML
+    private NumberAxis revenueYAxis;
 
 
     //shift chart live
@@ -46,9 +52,11 @@ public class OverviewController {
     @FXML
     private Label clockLabel;
 
+    @FXML
+    private CategoryAxis totalGuestsChartXAxis;
 
-    @FXML private CategoryAxis totalGuestsChartXAxis;
-    @FXML private NumberAxis totalGuestsChartYAxis;
+    @FXML
+    private NumberAxis totalGuestsChartYAxis;
 
     @FXML
     private Label revenueLabel;
@@ -60,6 +68,9 @@ public class OverviewController {
     private Label  userEmailLabel;
 
     @FXML
+    private Label nameLabel;
+
+    @FXML
     private Label  roleLabel;
 
     @FXML
@@ -67,6 +78,18 @@ public class OverviewController {
 
     @FXML
     private Label EmployeeLabel;
+
+
+    // charts
+    @FXML
+    private BarChart<String, Number> monthlyEarningsBarChart;
+
+    @FXML
+    private CategoryAxis monthsAxis;
+
+    @FXML
+    private NumberAxis earningsAxis;
+    // ----------------------------------------------
 
     @Autowired
     private ReservationService reservationService;
@@ -80,29 +103,19 @@ public class OverviewController {
     @Autowired
     PaymentService paymentService;
 
-
-    @FXML
-    private BarChart<String, Number> monthlyEarningsBarChart;
-
-    @FXML
-    private CategoryAxis monthsAxis;
-
-    @FXML
-    private NumberAxis earningsAxis;
-
+    @Autowired
+    UserRepository userRepository;
+    // ----------------------------------------------
 
     @FXML
     public void initialize() {
 //        setupOccupancyChart();
-
         setupEmployeePieChart();
         setupReservationsPieChart();
         setupShiftHoursChart();
 
-
         //get live card data via db
         //this live updates when adding new res, therefore it breaks when u call user dash as user dash doesnt use it but ur calling the method
-
         updateCurrentGuestsLabel();
         
         updateEmployeeCount();
@@ -111,14 +124,11 @@ public class OverviewController {
 
         setupRevenueChart();
 
-
-
         //call clock method
         startClock();
     }
+    // ----------------------------------------------
 
-    @FXML
-    private Label nameLabel; // link this to FXML
 
     public void setName(String name) {
         nameLabel.setText(name);
@@ -156,8 +166,6 @@ public class OverviewController {
         }
     }
 
-
-    //also a custom method
     private void updateRevenue() {
         Double total = paymentService.getTotalAmount(); // use wrapper Double, since service may return null
 
@@ -168,9 +176,54 @@ public class OverviewController {
             System.out.println("totalRevenue label is null (not available in this dashboard)");
         }
     }
+    // --------------------------------------
 
+    @FXML
+    private void updateEmail() {
+        System.out.println("\nonMouseClicked");
 
+        Optional<User> userObj = userRepository.findByEmail(userEmailLabel.getText());
+        System.out.println("User: " + userObj);
 
+        TextInputDialog dialog = new TextInputDialog(userEmailLabel.getText());
+        dialog.setTitle("Update Email");
+        dialog.setHeaderText("Update Email");
+
+        Optional<String> email = dialog.showAndWait();
+        if (email.isEmpty()) return;
+
+        userObj.get().setEmail(email.get());
+        setUserEmail(email.get());
+
+        userRepository.save(userObj.get());
+        System.out.println("User updated");
+        System.out.println(userObj.get());
+    }
+
+    @FXML
+    private void updateName() {
+        System.out.println("\nonMouseClicked");
+        String nameString = nameLabel.getText();
+
+        Optional<User> userObj = userRepository.findByEmail(userEmailLabel.getText());
+        System.out.println("User: " + userObj);
+
+//        TextInputDialog dialog = new TextInputDialog();
+        TextInputDialog dialog = new TextInputDialog(nameString);
+        dialog.setTitle("Update Name");
+        dialog.setHeaderText("Update Name");
+
+        Optional<String> name = dialog.showAndWait();
+        if (name.isEmpty()) return;
+
+        userObj.get().setName(name.get());
+        setName(name.get());
+
+        userRepository.save(userObj.get());
+        System.out.println("User updated");
+        System.out.println(userObj.get());
+    }
+    // --------------------------------------
 
 
     private void setupEmployeePieChart() {
@@ -200,8 +253,6 @@ public class OverviewController {
         });
     }
 
-
-
     private void setupShiftHoursChart() {
         if (shiftHoursChart == null) return;
 
@@ -223,10 +274,6 @@ public class OverviewController {
             series.getData().forEach(data -> data.getNode().setStyle("-fx-bar-fill: #e67e22;"));
         });
     }
-
-
-
-
 
     private void setupReservationsPieChart() {
         // Get current reservations from your existing card or service
@@ -256,7 +303,6 @@ public class OverviewController {
         });
     }
 
-
     private void startClock() {
         // Define the format you want
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE, MMM dd yyyy  HH:mm:ss");
@@ -272,8 +318,6 @@ public class OverviewController {
         clock.setCycleCount(Timeline.INDEFINITE); // Repeat forever
         clock.play();
     }
-
-
 
     private void setupRevenueChart() {
         Double totalRevenue = paymentService.getTotalAmount();
@@ -321,8 +365,6 @@ public class OverviewController {
 
 
     }
-
-
 
     private void styleBarChartLegend(BarChart<String, Number> chart, String color) {
         chart.getData().forEach(series -> series.getData().forEach(data -> {

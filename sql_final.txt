@@ -67,11 +67,11 @@ VALUES
 INSERT INTO `hms`.`employee_shift`
 (`id`, `end_time`, `is_overtime`, `start_time`)
 VALUES
-(101, '17:00:00', TRUE, '08:00:00'),
-(102, '16:00:00', FALSE, '08:00:00'),
-(103, '18:00:00', TRUE, '09:00:00'),
-(104, '17:30:00', FALSE, '08:00:00'),
-(105, '16:30:00', TRUE, '07:30:00');
+(1, '17:00:00', TRUE, '08:00:00'),
+(2, '16:00:00', FALSE, '08:00:00'),
+(3, '18:00:00', TRUE, '09:00:00'),
+(4, '17:30:00', FALSE, '08:00:00'),
+(5, '16:30:00', TRUE, '07:30:00');
 
 -- OR
 
@@ -100,11 +100,11 @@ VALUES
 INSERT INTO `hms`.`roles`
 (`role_id`, `role_name`)
 VALUES
-(101, 'Doctor'),
-(102, 'Nurse'),
-(103, 'Administrator'),
-(104, 'Receptionist'),
-(105, 'Pharmacist');
+(1, 'Doctor'),
+(2, 'Nurse'),
+(3, 'Administrator'),
+(4, 'Receptionist'),
+(5, 'Pharmacist');
 
 
 
@@ -114,22 +114,22 @@ VALUES
 INSERT INTO `hms`.`maintenance_worker`
 (`maintenance_id`, `company`, `external`, `type`, `employee_id`)
 VALUES
-(101, 'FixIt Co.', TRUE, 'Electrician', 1),
-(102, 'CleanUp Ltd.', TRUE, 'Cleaner', 2),
-(103, NULL, FALSE, 'Technician', 3),
-(104, NULL, FALSE, 'Plumber', 4),
-(105, 'HVAC Experts', TRUE, 'Aircon Specialist', 5);
+(1, 'FixIt Co.', TRUE, 'Electrician', 1),
+(2, 'CleanUp Ltd.', TRUE, 'Cleaner', 2),
+(3, NULL, FALSE, 'Technician', 3),
+(4, NULL, FALSE, 'Plumber', 4),
+(5, 'HVAC Experts', TRUE, 'Aircon Specialist', 5);
 
 -- (10)
 -- housekeeper
 INSERT INTO `hms`.`housekeeper`
 (`housekeeper_id`, `housekeeper_name`, `housekeeper_surname`, `domain`, `type`, `employee_id`)
 VALUES
-(101, 'Samantha', 'Ngema', 'Room Cleaning', 'Full-time', 1),
-(102, 'Thabo', 'Mokoena', 'Laundry', 'Part-time', 2),
-(103, 'Lerato', 'Peters', 'General Cleaning', 'Full-time', 3),
-(104, 'Daniel', 'Nkosi', 'Disinfection', 'Contract', 4),
-(105, 'Ayanda', 'Zulu', 'Bathroom Cleaning', 'Full-time', 5);
+(1, 'Samantha', 'Ngema', 'Room Cleaning', 'Full-time', 1),
+(2, 'Thabo', 'Mokoena', 'Laundry', 'Part-time', 2),
+(3, 'Lerato', 'Peters', 'General Cleaning', 'Full-time', 3),
+(4, 'Daniel', 'Nkosi', 'Disinfection', 'Contract', 4),
+(5, 'Ayanda', 'Zulu', 'Bathroom Cleaning', 'Full-time', 5);
 
 
 -- (12)
@@ -137,11 +137,11 @@ VALUES
 INSERT INTO `hms`.`food_worker`
 (`id`, `specialization`, `type`, `employee_id`)
 VALUES
-(101, 'Pastry Chef', 'Full-time', 1),
-(102, 'Sous Chef', 'Part-time', 2),
-(103, 'Line Cook', 'Contract', 3),
-(104, 'Kitchen Assistant', 'Full-time', 4),
-(105, 'Head Chef', 'Full-time', 5);
+(1, 'Pastry Chef', 'Full-time', 1),
+(2, 'Sous Chef', 'Part-time', 2),
+(3, 'Line Cook', 'Contract', 3),
+(4, 'Kitchen Assistant', 'Full-time', 4),
+(5, 'Head Chef', 'Full-time', 5);
 -- ------------------------------------------------
 
 
@@ -151,55 +151,55 @@ VALUES
 INSERT INTO `hms`.`guest`
 (`guestid`, `contact_number`, `email`, `name`, `payment_details`, `surname`)
 VALUES
-(101, '0711234567', 'guest1@example.com', 'Alice', 'Visa ****1234', 'Daniels'),
-(102, '0723456789', 'guest2@example.com', 'Brian', 'Mastercard ****5678', 'Lee'),
-(103, '0739876543', 'guest3@example.com', 'Cynthia', 'EFT Ref#7890', 'Muller'),
-(104, '0741122334', 'guest4@example.com', 'David', 'Cash', 'Smith'),
-(105, '0759988776', 'guest5@example.com', 'Elaine', 'PayPal: elaine@example.com', 'Singh');
+(1, '0711234567', 'guest1@example.com', 'Alice', 'Visa ****1234', 'Daniels'),
+(2, '0723456789', 'guest2@example.com', 'Brian', 'Mastercard ****5678', 'Lee'),
+(3, '0739876543', 'guest3@example.com', 'Cynthia', 'EFT Ref#7890', 'Muller'),
+(4, '0741122334', 'guest4@example.com', 'David', 'Cash', 'Smith'),
+(5, '0759988776', 'guest5@example.com', 'Elaine', 'PayPal: elaine@example.com', 'Singh');
 
 -- (8)
 -- reservation
 INSERT INTO `hms`.`reservation`
 (`reservation_id`, `reservation_date_time_end`, `reservation_date_time_start`, `guest_id`)
 VALUES
-(101, '2025-10-10 10:00:00', '2025-10-08 14:00:00', 1),
-(102, '2025-10-15 11:00:00', '2025-10-12 13:00:00', 2),
-(103, '2025-10-12 09:00:00', '2025-10-10 16:00:00', 5),
-(104, '2025-10-18 12:00:00', '2025-10-16 15:00:00', 3),
-(105, '2025-10-20 10:30:00', '2025-10-18 17:00:00', 4);
+(1, '2025-10-10 10:00:00', '2025-10-08 14:00:00', 1),
+(2, '2025-10-15 11:00:00', '2025-10-12 13:00:00', 2),
+(3, '2025-10-12 09:00:00', '2025-10-10 16:00:00', 5),
+(4, '2025-10-18 12:00:00', '2025-10-16 15:00:00', 3),
+(5, '2025-10-20 10:30:00', '2025-10-18 17:00:00', 4);
 
 -- (9)
 -- room
 INSERT INTO `hms`.`room`
 (`roomid`, `availability`, `features`, `price_per_night`, `room_type`, `employee_id`, `reservation_id`)
 VALUES
-(101, TRUE, 'TV, Wi-Fi, AC', 1200.00, 'Single', 1, 201),
-(102, FALSE, 'Wi-Fi, Mini Bar', 1500.00, 'Double', 2, 202),
-(103, TRUE, 'TV, Wi-Fi, AC, Bathtub', 1800.00, 'Deluxe', 3, NULL),
-(104, TRUE, 'Wi-Fi, Desk', 1000.00, 'Single', 4, NULL),
-(105, FALSE, 'TV, AC', 1100.00, 'Standard', 5, 203);
+(1, TRUE, 'TV, Wi-Fi, AC', 1200.00, 'Single', 1, 201),
+(2, FALSE, 'Wi-Fi, Mini Bar', 1500.00, 'Double', 2, 202),
+(3, TRUE, 'TV, Wi-Fi, AC, Bathtub', 1800.00, 'Deluxe', 3, NULL),
+(4, TRUE, 'Wi-Fi, Desk', 1000.00, 'Single', 4, NULL),
+(5, FALSE, 'TV, AC', 1100.00, 'Standard', 5, 203);
 
 -- (10)
 -- event
 INSERT INTO `hms`.`event`
 (`event_id`, `description`, `reason`, `reservation_id`)
 VALUES
-(101, 'Wedding Reception', 'Guest request', 201),
-(102, 'Conference Setup', 'Business booking', 202),
-(103, 'Birthday Party', 'Family celebration', 203),
-(104, 'Health & Safety Inspection', 'Scheduled maintenance', 204),
-(105, 'Staff Training', 'Internal event', 205);
+(1, 'Wedding Reception', 'Guest request', 201),
+(2, 'Conference Setup', 'Business booking', 202),
+(3, 'Birthday Party', 'Family celebration', 203),
+(4, 'Health & Safety Inspection', 'Scheduled maintenance', 204),
+(5, 'Staff Training', 'Internal event', 205);
 
 -- (11)
 -- payment
 INSERT INTO `hms`.`payment`
 (`payment_id`, `payment_amount`, `payment_date`, `payment_method`, `payment_status`, `guest_id`)
 VALUES
-(101, 2400.00, '2025-10-08', 'Card', 'Paid', 1),
-(102, 4500.00, '2025-10-12', 'EFT', 'Pending', 2),
-(103, 2200.00, '2025-10-10', 'Cash', 'Paid', 5),
-(104, 3600.00, '2025-10-16', 'Card', 'Paid', 3),
-(105, 4200.00, '2025-10-18', 'EFT', 'Paid', 4);
+(1, 2400.00, '2025-10-08', 'Card', 'Paid', 1),
+(2, 4500.00, '2025-10-12', 'EFT', 'Pending', 2),
+(3, 2200.00, '2025-10-10', 'Cash', 'Paid', 5),
+(4, 3600.00, '2025-10-16', 'Card', 'Paid', 3),
+(5, 4200.00, '2025-10-18', 'EFT', 'Paid', 4);
 -- ------------------------------------------------
 
 -- ================================================

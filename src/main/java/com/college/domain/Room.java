@@ -13,6 +13,7 @@ public class Room {
 
     @Id
     private int roomID;
+//    private int roomId;
 
     private String roomType;
     private float pricePerNight;
