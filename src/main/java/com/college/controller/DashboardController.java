@@ -40,6 +40,14 @@ public class DashboardController {
     @FXML
     private Label roleLabel;
 
+    // --------------------------------------
+//    @FXML
+//    private Label managerEmailLabel;
+//
+//    @FXML
+//    private Label managerNameLabel;
+    // --------------------------------------
+
     String name;
 
     @FXML
@@ -58,6 +66,9 @@ public class DashboardController {
         }
     }
 
+    public void setUserInfo(String email) {
+        emailLabel.setText(email);
+    }
     public void setUserInfo(String email, String role) {
         emailLabel.setText(email);
         roleLabel.setText(role);
@@ -219,23 +230,37 @@ public class DashboardController {
 
     @FXML
     public void showOverviewManager() {
+        System.out.println("\nManager. Overview***");
         try {
             String fxmlPath = "/scenes/overviewManager.fxml";
-            String viewName = "Overview";
+
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             loader.setControllerFactory(MainFinal.getSpringContext()::getBean);
             Parent view = loader.load();
 
             // Pass the current logged-in user's email and role to the OverviewController
+//            String email = managerEmailLabel.getText();
+//            String name = managerNameLabel.getText();
+
             String email = emailLabel.getText();
             String role = roleLabel.getText();
 
             OverviewController controller = loader.getController();
+            controller.setUserRole(role); // ?
+
+//            controller.setManagerName(name);
+//            controller.setManagerName("namesadafaf");
+//            controller.setManagerEmail(email);
             controller.setUserEmail(email);
-            controller.setUserRole(role);
-            controller.setDashboardController(this); // for callbacks
             controller.setName(name);
+            controller.setUserRole(role);
+
+            System.out.println("Email text: " + email);
+            System.out.println("name text: " + name);
+            System.out.println("role text: " + role);
+
+    //            controller.setDashboardController(this); // for callbacks
 
             // **Update the dashboard image here, not in OverviewController**
             byte[] userImage = userService.getUserPhoto(email);
@@ -247,9 +272,50 @@ public class DashboardController {
             System.out.println("Error loading " + " view: " + e.getMessage());
             e.printStackTrace();
         }
+        System.out.println("-----------------------\n");
     }
 
 
+    // ---------------------------------------
+    @FXML
+    public void showOverviewManager1() {
+        System.out.println("\nManager. Overview***");
+        try {
+            String fxmlPath = "/scenes/profileManagerFinal.fxml";
+//            safeLoadView("/scenes/profileManagerFinal.fxml", "My Profile");
+
+//            String viewName = "Overview";
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            loader.setControllerFactory(MainFinal.getSpringContext()::getBean);
+            Parent view = loader.load();
+
+            String email = emailLabel.getText();
+            String role = roleLabel.getText();
+
+            OverviewController controller = loader.getController();
+            controller.setUserRole(role); // ?
+
+            controller.setUserEmail(email);
+            controller.setName(name);
+            controller.setUserRole(role);
+
+            System.out.println("Email text: " + email);
+            System.out.println("name text: " + name);
+            System.out.println("role text: " + role);
+
+            byte[] userImage = userService.getUserPhoto(email);
+            setProfileImage(userImage); // DashboardController method
+
+            contentArea.getChildren().setAll(view);
+
+        } catch (Exception e) {
+            System.out.println("Error loading " + " view: " + e.getMessage());
+            e.printStackTrace();
+        }
+        System.out.println("-----------------------\n");
+    }
+    // ---------------------------------------
 
 
 

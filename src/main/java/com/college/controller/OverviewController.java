@@ -8,6 +8,7 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
@@ -67,7 +68,15 @@ public class OverviewController {
     private PieChart totalEmployeesPieChart;
 
     @FXML
-    private Label  userEmailLabel;
+    private Label userEmailLabel;
+
+    // --------------------------------------
+//    @FXML
+//    private Label managerEmailLabel;
+//
+//    @FXML
+//    private Label managerNameLabel;
+    // --------------------------------------
 
     @FXML
     private Label  roleLabel;
@@ -143,17 +152,31 @@ public class OverviewController {
     private Label nameLabel; // link this to FXML
 
     String userEmail;
-
     public void setName(String name) {
         nameLabel.setText(name);
+//        managerNameLabel.setText(name);
     }
-
     public void setUserEmail(String email) {
         //receives email from dashboard
         userEmailLabel.setText(email);
+//        managerEmailLabel.setText(email);
+
         this.userEmail = email;
 
     }
+
+    // -------------------------------------
+//    String managerEmail;
+//    public void setManagerName(String name) {
+//        managerNameLabel.setText(name);
+//    }
+//
+//    public void setManagerEmail(String email) {
+//        managerEmailLabel.setText(email);
+//        this.managerEmail = email;
+//        this.userEmail = email;
+//    }
+    // ----------------------------------------------------
 
     public void setUserRole(String role) {
         roleLabel.setText(role);
@@ -241,9 +264,68 @@ public class OverviewController {
         setName(name.get());
 
         userRepository.save(userObj.get());
+
+        // --------------------
+//        String fxmlToLoad = "scenes/default-dashboard.fxml";
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlToLoad));
+//        DashboardController controller = loader.getController();
+////        controller.setUserInfo(userObj.get().getName(), "role");
+////        controller.setUserInfo(name.get(), "role");
+//        controller.setUserInfo(name.get());
+        // --------------------
+
         System.out.println("User updated");
         System.out.println(userObj.get());
     }
+
+    // --------------------------------------
+//    @FXML
+//    private void updateEmailManager() {
+//        System.out.println("\nonMouseClicked");
+//
+//        Optional<User> userObj = userRepository.findByEmail(userEmailLabel.getText());
+//        System.out.println("Email: " + userEmailLabel.getText());
+//        System.out.println("User: " + userObj);
+//
+//        TextInputDialog dialog = new TextInputDialog(userEmailLabel.getText());
+//        dialog.setTitle("Update Email");
+//        dialog.setHeaderText("Update Email");
+//
+//        Optional<String> email = dialog.showAndWait();
+//        if (email.isEmpty()) return;
+//
+//        userObj.get().setEmail(email.get());
+//        setUserEmail(email.get());
+//
+//        userRepository.save(userObj.get());
+//        System.out.println("User updated");
+//        System.out.println(userObj.get());
+//    }
+//
+//    @FXML
+//    private void updateNameManager() {
+//        System.out.println("\nonMouseClicked");
+//        String nameString = nameLabel.getText();
+//
+//        Optional<User> userObj = userRepository.findByEmail(userEmailLabel.getText());
+//        System.out.println("name: " + nameString);
+//        System.out.println("User: " + userObj);
+//
+//        TextInputDialog dialog = new TextInputDialog(nameString);
+//        dialog.setTitle("Update Name");
+//        dialog.setHeaderText("Update Name");
+//
+//        Optional<String> name = dialog.showAndWait();
+//        if (name.isEmpty()) return;
+//        System.out.println("updated name: " + name);
+//
+//        userObj.get().setName(name.get());
+//        setName(name.get());
+//
+//        userRepository.save(userObj.get());
+//        System.out.println("User updated");
+//        System.out.println(userObj.get());
+//    }
     // --------------------------------------
 
 

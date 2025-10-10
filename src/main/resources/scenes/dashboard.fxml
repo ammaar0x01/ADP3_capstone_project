@@ -6,7 +6,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.shape.Circle?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="com.college.controller.DashboardController" stylesheets="@/css/styles.css">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12"
+            fx:controller="com.college.controller.DashboardController"
+            stylesheets="@/css/styles.css">
 
     <left>
         <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background: #FFFFFF; -fx-border-color: #FFFFFF;" styleClass="scroll-pane" vbarPolicy="AS_NEEDED">
@@ -19,7 +21,7 @@
                         <!-- Profile Image with Circle Clip -->
                         <ImageView fx:id="profileImage" fitWidth="80" fitHeight="80">
                             <image>
-                                <Image url="/images/characters/download3.jpg" />
+                                <Image url="@/images/characters/download3.jpg" />
                             </image>
                             <clip>
                                 <Circle centerX="40" centerY="40" radius="40"/>
@@ -41,10 +43,11 @@
                     <VBox spacing="5">
                         <Button onAction="#showOverviewManager" styleClass="menu-button" text="Overview" />
 
-                        <Button onAction="#showProfileManager" styleClass="menu-button" text="My Profile" />
+                        <Button onAction="#showOverviewManager1" styleClass="menu-button" text="My Profile" />
+
+<!--                        <Button onAction="#showProfileManager" styleClass="menu-button" text="My Profile" />-->
 
                         <Button onAction="#showGuestsGreen" styleClass="menu-button" text="Add Reservations" />
-
 
                         <Button onAction="#showGuestSolo" styleClass="menu-button" text="Manage Guests" />
                         <Button onAction="#showReservationSolo" styleClass="menu-button" text="Manage Reservation" />

@@ -55,7 +55,8 @@ public class DashboardAuthoriseHandler {
                 User user = userOpt.get();
                 String name = user.getName();
                 String surname = user.getSurname();
-                System.out.println("User full name: " + name + " " + surname);
+                System.out.println("\nUser full name: " + name + " " + surname);
+                System.out.println("User: " + user);
             } else {
                 System.out.println("User not found for email: " + email);
             }
@@ -66,6 +67,7 @@ public class DashboardAuthoriseHandler {
 
             if (userOpt.isPresent()) {
                 controller.setName(userOpt.get().getName()); // pass the name to dashboardC then to overviewC using setter
+                System.out.println("NAME: " + userOpt.get().getName()); // pass the name to dashboardC then to overviewC using setter
             } else {
                 controller.setName("Unknown");
             }

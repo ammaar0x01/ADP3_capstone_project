@@ -46,7 +46,7 @@
                     </VBox>
                 </VBox>
 
-                <!-- Total Revenue -->
+                <!-- name -->
                 <VBox alignment="CENTER" spacing="10">
                     <VBox styleClass="card-box" style=" -fx-background-color: linear-gradient(from 0% 0% to 100% 100%,
                     rgba(220, 220, 220, 0.3),   /* lighter grey */
