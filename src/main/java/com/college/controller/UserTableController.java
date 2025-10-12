@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -41,7 +42,6 @@ public class UserTableController {
     RoleService roleService;
 
     private final ObservableList<User> userList = FXCollections.observableArrayList();
-
 
     @FXML
     public void initialize() {
@@ -82,105 +82,159 @@ public class UserTableController {
         System.out.println("Add User clicked - implement form here");
     }
 
-
-
-
-
-
-
-
     @FXML
     private void updateEmployee() {
-//        Employee selected = employeeTable.getSelectionModel().getSelectedItem();
         User selected = userTable.getSelectionModel().getSelectedItem();
         if (selected == null) {
-            showAlert("Please select an employee to update.");
+            showAlert("Selection Required", "Please select a user to update.");
             return;
         }
 
+        // Get all the updates first
         TextInputDialog dialog = new TextInputDialog(selected.getName());
         dialog.setTitle("Update Name");
-        dialog.setHeaderText("Update Name");
+        dialog.setHeaderText("Update Name:");
         Optional<String> name = dialog.showAndWait();
         if (name.isEmpty()) return;
 
         TextInputDialog dialog1 = new TextInputDialog(selected.getSurname());
         dialog1.setTitle("Update Surname");
-        dialog1.setHeaderText("Update Surname");
+        dialog1.setHeaderText("Update Surname:");
         Optional<String> surname = dialog1.showAndWait();
         if (surname.isEmpty()) return;
 
-        TextInputDialog dialog2 = new TextInputDialog(selected.getName());
-        dialog2.setTitle("Update Email address");
-        dialog2.setHeaderText("Update Email address");
+        TextInputDialog dialog2 = new TextInputDialog(selected.getEmail());
+        dialog2.setTitle("Update Email");
+        dialog2.setHeaderText("Update Email Address:");
         Optional<String> email = dialog2.showAndWait();
         if (email.isEmpty()) return;
-//
-//        dialog.setHeaderText("Update Start Date (yyyy-MM-dd):");
-//        Optional<String> startDateResult = dialog.showAndWait();
-//        if (startDateResult.isEmpty()) return;
 
+        // Validate email format
+        if (!isValidEmail(email.get())) {
+            showAlert("Validation Error", "Please enter a valid email address.");
+            return;
+        }
 
-        // updating details //
-//        selected.setJobType(jobTypeResult.get());
-        selected.setName(name.get());
-        selected.setSurname(surname.get());
-        selected.setEmail(email.get());
-//        selected.setStartDate(LocalDate.parse(startDateResult.get()));
+        // Show confirmation as the LAST step with all changes summarized
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Confirm User Update");
+        confirmationAlert.setHeaderText("Please confirm the following changes:");
+        confirmationAlert.setContentText(
+                "Are you sure you want to update this user?\n\n" +
+                        "User ID: " + selected.getUserId() + "\n\n" +
+                        "Changes:\n" +
+                        "• Name: " + selected.getName() + " → " + name.get() + "\n" +
+                        "• Surname: " + selected.getSurname() + " → " + surname.get() + "\n" +
+                        "• Email: " + selected.getEmail() + " → " + email.get() + "\n\n" +
+                        "Click OK to save these changes."
+        );
 
-        userService.create(selected);
-//        repo.save(selected);
-        loadUsers();
+        Optional<ButtonType> result = confirmationAlert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // Apply the updates only after confirmation
+            selected.setName(name.get());
+            selected.setSurname(surname.get());
+            selected.setEmail(email.get());
+
+            try {
+                userService.create(selected);
+                loadUsers();
+                showSuccessAlert("User updated successfully!");
+            } catch (Exception e) {
+                showAlert("Error", "Failed to update user: " + e.getMessage());
+            }
+        } else {
+            showAlert("Update Cancelled", "User update was cancelled. No changes were made.");
+        }
     }
 
-    private void showAlert(String message) {
+    @FXML
+    public void deleteUser() {
+        User selected = userTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showAlert("Selection Required", "Please select a user to delete.");
+            return;
+        }
+
+        // Show confirmation as the LAST step with user details
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Confirm User Deletion");
+        confirmationAlert.setHeaderText("Please confirm deletion:");
+        confirmationAlert.setContentText(
+                "Are you sure you want to delete this user?\n\n" +
+                        "User Details:\n" +
+                        "• User ID: " + selected.getUserId() + "\n" +
+                        "• Name: " + selected.getName() + " " + selected.getSurname() + "\n" +
+                        "• Email: " + selected.getEmail() + "\n" +
+                        "• Role: " + (selected.getRole() != null ? selected.getRole() : "N/A") + "\n\n" +
+                        "This action will:\n" +
+                        "• Permanently delete the user\n" +
+                        "• Clean up any unused roles\n" +
+                        "• Cannot be undone!\n\n" +
+                        "Click OK to proceed with deletion."
+        );
+
+        Optional<ButtonType> result = confirmationAlert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            proceedWithDeleteUser(selected);
+        } else {
+            showAlert("Deletion Cancelled", "User deletion was cancelled. No changes were made.");
+        }
+    }
+
+    private void proceedWithDeleteUser(User selected) {
+        try {
+            boolean deleted = userService.delete(selected.getUserId());
+
+            if (deleted) {
+                // Clean up orphaned roles
+                List<Role> allRoles = roleService.getAll();
+                int rolesCleaned = 0;
+                for (Role role : allRoles) {
+                    boolean used = roleService.isRoleUsed(role.getId());
+                    if (!used) {
+                        roleService.delete(role.getId());
+                        rolesCleaned++;
+                    }
+                }
+
+                userList.remove(selected);
+                showSuccessAlert("User deleted successfully!" +
+                        (rolesCleaned > 0 ? " (" + rolesCleaned + " unused roles cleaned up)" : ""));
+                System.out.println("Deleted user: " + selected.getName() + " and cleaned up unused roles.");
+            } else {
+                showAlert("Error", "Failed to delete user.");
+            }
+
+        } catch (Exception e) {
+            showAlert("Error", "Error deleting user: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+        return email.matches(emailRegex);
+    }
+
+    private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
     }
 
-//    @FXML
-//    public void updateUser() {
-//        User selected = userTable.getSelectionModel().getSelectedItem();
-//        if (selected != null) {
-//            System.out.println("Update User: " + selected.getName());
-//        } else {
-//            System.out.println("Select a user to update.");
-//        }
-//    }
-
-    @FXML
-    public void deleteUser() {
-        User selected = userTable.getSelectionModel().getSelectedItem();
-        if (selected != null) {
-            try {
-                boolean deleted = userService.delete(selected.getUserId());
-
-                if (deleted) {
-                    // Clean up orphaned roles
-                    List<Role> allRoles = roleService.getAll();
-                    for (Role role : allRoles) {
-                        boolean used = roleService.isRoleUsed(role.getId());
-                        if (!used) {
-                            roleService.delete(role.getId());
-                        }
-                    }
-
-                    userList.remove(selected);
-                    System.out.println("Deleted user: " + selected.getName() + " and cleaned up unused roles.");
-                } else {
-                    System.out.println("Failed to delete user.");
-                }
-
-            } catch (Exception e) {
-                System.out.println("Error deleting user: " + e.getMessage());
-                e.printStackTrace();
-            }
-
-        } else {
-            System.out.println("Select a user to delete.");
-        }
+    private void showSuccessAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
+    // Overloaded method for backward compatibility
+    private void showAlert(String message) {
+        showAlert("Information", message);
+    }
 }

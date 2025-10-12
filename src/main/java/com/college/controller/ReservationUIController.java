@@ -51,13 +51,10 @@ public class ReservationUIController implements Initializable {
     @FXML private TextField searchbar;
     @FXML private Label labelFeedback;
 
-
-
     private Stage stage;
     public void setStage(Stage stage) {
         this.stage = stage;
     }
-
 
     @Autowired
     PaymentService paymentService;
@@ -71,21 +68,13 @@ public class ReservationUIController implements Initializable {
     @Autowired
     RoomService roomService;
 
-
     private final ReservationService reservationService;
     private ObservableList<Reservation> reservationList;
-
-
-
-
-
-
 
     @Autowired
     public ReservationUIController(ReservationService reservationService) {
         this.reservationService = reservationService;
     }
-
 
     //FK GUEST SET HERE
     private Guest guest; // field to hold the actual Guest object
@@ -93,15 +82,6 @@ public class ReservationUIController implements Initializable {
     public void setGuest(Guest guest) {
         this.guest = guest;
     }
-
-
-
-
-
-
-
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -115,8 +95,7 @@ public class ReservationUIController implements Initializable {
         startTimeColumn.setCellValueFactory(new PropertyValueFactory<>("reservationDateTimeStart"));
         endTimeColumn.setCellValueFactory(new PropertyValueFactory<>("reservationDateTimeEnd"));
 
-
-// Room ID column
+        // Room ID column
         roomIdColumn.setCellValueFactory(cellData -> {
             Reservation r = cellData.getValue();
             Room room = r.getRoom();
@@ -125,15 +104,13 @@ public class ReservationUIController implements Initializable {
             ).asObject();
         });
 
-// Employee ID column
+        // Employee ID column
         employeeIdColumn.setCellValueFactory(cellData -> {
             Reservation r = cellData.getValue();
             Room room = r.getRoom();
             int empId = (room != null && room.getEmployee() != null) ? room.getEmployee().getEmployeeId() : 0;
             return new SimpleIntegerProperty(empId).asObject();
         });
-
-
 
         reservationList = FXCollections.observableArrayList();
         reservationTable.setItems(reservationList);
@@ -187,13 +164,6 @@ public class ReservationUIController implements Initializable {
         loadReservationData();
     }
 
-
-
-
-
-
-
-
     @FXML
     private void add() {
         try {
@@ -211,7 +181,6 @@ public class ReservationUIController implements Initializable {
             modalStage.setScene(new Scene(root));
             addController.setStage(modalStage); // set modal stage
 
-
             if (stage != null) {
                 stage.close();
             }
@@ -224,13 +193,6 @@ public class ReservationUIController implements Initializable {
         }
     }
 
-
-
-
-
-
-
-
     @FXML
     private void delete() {
         Reservation selectedReservation = reservationTable.getSelectionModel().getSelectedItem();
@@ -240,52 +202,69 @@ public class ReservationUIController implements Initializable {
             return;
         }
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirm Deletion");
-        alert.setHeaderText("Delete Reservation?");
-        alert.setContentText("Are you sure you want to delete reservation ID: " + selectedReservation.getReservationId() + "?");
+        // Show confirmation as the LAST step with reservation details
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Confirm Reservation Deletion");
+        confirmationAlert.setHeaderText("Please confirm deletion:");
+        confirmationAlert.setContentText(
+                "Are you sure you want to delete this reservation?\n\n" +
+                        "Reservation Details:\n" +
+                        "• Reservation ID: " + selectedReservation.getReservationId() + "\n" +
+                        "• Guest ID: " + selectedReservation.getGuest().getGuestId() + "\n" +
+                        "• Room ID: " + (selectedReservation.getRoom() != null ? selectedReservation.getRoom().getRoomID() : "Not assigned") + "\n" +
+                        "• Start Time: " + selectedReservation.getReservationDateTimeStart() + "\n" +
+                        "• End Time: " + selectedReservation.getReservationDateTimeEnd() + "\n\n" +
+                        "This action will also:\n" +
+                        "• Delete associated payments\n" +
+                        "• Delete associated guest record\n" +
+                        "• Remove employee assignment from room\n" +
+                        "• Delete associated events\n" +
+                        "• Cannot be undone!\n\n" +
+                        "Click OK to proceed with deletion."
+        );
 
-        Optional<ButtonType> result = alert.showAndWait();
+        Optional<ButtonType> result = confirmationAlert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            try {
-                //get fk from parent and child methods
-                int guestId = selectedReservation.getGuest().getGuestID();
-
-                if (selectedReservation.getEvent() != null) {
-                    eventService.deleteByReservationId(selectedReservation.getReservationId());
-                }
-
-                // Nullify employee FK in the room linked to this reservation
-                if (selectedReservation.getRoom() != null) {
-                    selectedReservation.getRoom().setEmployee(null);
-                    roomService.update(selectedReservation.getRoom()); // persist change
-                }
-
-                boolean deleted = reservationService.delete(selectedReservation.getReservationId());
-                //delete from other tables at the same time too
-                paymentService.deleteByGuestId(guestId);
-
-
-
-                if (deleted) {
-                    labelFeedback.setText("Reservation ID: " + selectedReservation.getReservationId() + " deleted successfully.");
-                    //delete from other tables at the same time too
-                    guestService.delete(guestId);
-                    loadReservationData();
-                } else {
-                    labelFeedback.setText("Failed to delete reservation ID: " + selectedReservation.getReservationId() + ".");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                labelFeedback.setText("Error deleting reservation: " + e.getMessage());
-            }
+            proceedWithDeleteReservation(selectedReservation);
         } else {
             labelFeedback.setText("Deletion cancelled.");
         }
+    }
 
+    private void proceedWithDeleteReservation(Reservation selectedReservation) {
+        try {
+            //get fk from parent and child methods
+            int guestId = selectedReservation.getGuest().getGuestID();
 
+            if (selectedReservation.getEvent() != null) {
+                eventService.deleteByReservationId(selectedReservation.getReservationId());
+            }
 
+            // Nullify employee FK in the room linked to this reservation
+            if (selectedReservation.getRoom() != null) {
+                selectedReservation.getRoom().setEmployee(null);
+                roomService.update(selectedReservation.getRoom()); // persist change
+            }
 
+            boolean deleted = reservationService.delete(selectedReservation.getReservationId());
+            //delete from other tables at the same time too
+            paymentService.deleteByGuestId(guestId);
+
+            if (deleted) {
+                labelFeedback.setText("Reservation ID: " + selectedReservation.getReservationId() + " deleted successfully.");
+                //delete from other tables at the same time too
+                guestService.delete(guestId);
+                loadReservationData();
+
+                // Show success message
+                showSuccessAlert("Reservation deleted successfully!");
+            } else {
+                labelFeedback.setText("Failed to delete reservation ID: " + selectedReservation.getReservationId() + ".");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            labelFeedback.setText("Error deleting reservation: " + e.getMessage());
+        }
     }
 
     @FXML
@@ -313,11 +292,33 @@ public class ReservationUIController implements Initializable {
             editController.setStage(modalStage);
 
             modalStage.showAndWait();
-            loadReservationData();
+
+            // Show confirmation after the edit modal closes
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Confirm Reservation Update");
+            confirmationAlert.setHeaderText("Update Completed");
+            confirmationAlert.setContentText(
+                    "Reservation ID: " + selectedReservation.getReservationId() + " has been updated.\n\n" +
+                            "Click OK to refresh the data and view the changes."
+            );
+
+            Optional<ButtonType> result = confirmationAlert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                loadReservationData();
+                showSuccessAlert("Reservation updated successfully!");
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
             labelFeedback.setText("Error opening Edit Reservation form.");
         }
+    }
+
+    private void showSuccessAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

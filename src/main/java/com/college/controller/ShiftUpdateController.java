@@ -1,14 +1,16 @@
 package com.college.controller;
 
+import com.college.domain.Shift;
+import com.college.service.ShiftService;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import java.time.LocalTime;
+
 import java.time.LocalDate;
-import com.college.domain.Shift;
-import com.college.service.ShiftService;
+import java.time.LocalTime;
+import java.util.Optional;
 
 @Controller
 public class ShiftUpdateController {
@@ -26,7 +28,7 @@ public class ShiftUpdateController {
     @FXML
     private CheckBox chkOvertime;
     @FXML
-    private Button cancelButton; // Add this field
+    private Button cancelButton;
 
     @Autowired
     private ShiftService shiftService;
@@ -38,20 +40,20 @@ public class ShiftUpdateController {
         // Default date = today
         datePicker.setValue(LocalDate.now());
 
+        // Configure spinners for 24-hour format
         spinnerStartHour.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, 8));
         spinnerStartMinute.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0));
         spinnerEndHour.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, 17));
         spinnerEndMinute.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0));
 
-        // Debug: confirm controller loaded
-        System.out.println("ShiftUpdateController initialized"); // Fixed name
+        // Debug logs
+        System.out.println("ShiftUpdateController initialized");
         System.out.println("ShiftService injected: " + (shiftService != null));
     }
 
     public void setShift(Shift shift) {
         this.shift = shift;
         if (shift != null) {
-            // Populate form with existing shift
             datePicker.setValue(shift.getShiftDay());
             spinnerStartHour.getValueFactory().setValue(shift.getShiftStartTime().getHour());
             spinnerStartMinute.getValueFactory().setValue(shift.getShiftStartTime().getMinute());
@@ -61,8 +63,12 @@ public class ShiftUpdateController {
         }
     }
 
-    @FXML // Add this annotation if called from FXML
+    @FXML
     private void updateShift() {
+        if (!showConfirmation("Confirm Update", "Are you sure you want to save changes to this shift?")) {
+            return; // User cancelled
+        }
+
         try {
             if (datePicker.getValue() == null) {
                 showAlert("Please select a shift date");
@@ -74,7 +80,7 @@ public class ShiftUpdateController {
             LocalTime end = LocalTime.of(spinnerEndHour.getValue(), spinnerEndMinute.getValue());
             boolean overtime = chkOvertime.isSelected();
 
-            // Update existing shift
+            // Update shift entity
             shift.setShiftDay(date);
             shift.setShiftStartTime(start);
             shift.setShiftEndTime(end);
@@ -91,6 +97,12 @@ public class ShiftUpdateController {
     }
 
     @FXML
+    private void handleCancel() {
+        if (showConfirmation("Confirm Cancel", "Are you sure you want to cancel? All unsaved changes will be lost.")) {
+            closeWindow();
+        }
+    }
+
     private void closeWindow() {
         ((Stage) cancelButton.getScene().getWindow()).close();
     }
@@ -103,4 +115,13 @@ public class ShiftUpdateController {
         Alert alert = new Alert(type, message, ButtonType.OK);
         alert.showAndWait();
     }
-} // Make sure all methods are inside the class
+
+    private boolean showConfirmation(String title, String message) {
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle(title);
+        confirm.setHeaderText(message);
+        confirm.setContentText("Click OK to confirm or Cancel to go back.");
+        Optional<ButtonType> result = confirm.showAndWait();
+        return result.isPresent() && result.get() == ButtonType.OK;
+    }
+}

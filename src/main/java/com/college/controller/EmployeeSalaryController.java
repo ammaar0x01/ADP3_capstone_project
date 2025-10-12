@@ -1,7 +1,6 @@
 package com.college.controller;
 
 import com.college.MainFinal;
-import com.college.domain.Employee;
 import com.college.domain.EmployeeSalary;
 import com.college.service.EmployeeSalaryService;
 import javafx.application.Platform;
@@ -31,8 +30,7 @@ public class EmployeeSalaryController {
     @FXML private TableColumn<EmployeeSalary, String> colMethod;
     @FXML private TableColumn<EmployeeSalary, LocalDate> colDate;
 
-
-    private ObservableList<EmployeeSalary> employeeSalaries = FXCollections.observableArrayList();
+    private final ObservableList<EmployeeSalary> employeeSalaries = FXCollections.observableArrayList();
 
     @Autowired
     private EmployeeSalaryService employeeSalaryService;
@@ -47,18 +45,16 @@ public class EmployeeSalaryController {
         colEmployee.setCellValueFactory(cellData -> {
             if (cellData.getValue().getEmployee() != null) {
                 return new SimpleStringProperty(
-                        String.valueOf(cellData.getValue().getEmployee().getEmployeeId())
+                        cellData.getValue().getEmployee().getUser().getName() + " " +
+                                cellData.getValue().getEmployee().getUser().getSurname()
                 );
             } else {
                 return new SimpleStringProperty("N/A");
             }
         });
 
-
         employeeSalaryTable.setItems(employeeSalaries);
         loadEmployeeSalaries();
-
-
     }
 
     private void loadEmployeeSalaries() {
@@ -76,14 +72,14 @@ public class EmployeeSalaryController {
 
     @FXML
     private void handleAddEmployeeSalary() {
-        openForm(null);
+        openForm(null); // Confirmation is inside the form
     }
 
     @FXML
     private void handleUpdateEmployeeSalary() {
         EmployeeSalary selected = employeeSalaryTable.getSelectionModel().getSelectedItem();
         if (selected != null) {
-            openForm(selected);
+            openForm(selected); // Confirmation is inside the form
         } else {
             showAlert("Please select an employee salary to update");
         }
@@ -92,7 +88,19 @@ public class EmployeeSalaryController {
     @FXML
     private void handleDeleteEmployeeSalary() {
         EmployeeSalary selected = employeeSalaryTable.getSelectionModel().getSelectedItem();
-        if (selected != null) {
+        if (selected == null) {
+            showAlert("Please select an employee salary to delete");
+            return;
+        }
+
+        // ✅ Confirmation before deleting
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle("Confirm Delete");
+        confirm.setHeaderText("Are you sure you want to delete this employee salary?");
+        confirm.setContentText("This action cannot be undone.");
+        var result = confirm.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
                 employeeSalaryService.delete(selected.getSalaryId());
                 showAlert(Alert.AlertType.INFORMATION, "Employee salary deleted successfully");
@@ -101,16 +109,12 @@ public class EmployeeSalaryController {
                 e.printStackTrace();
                 showAlert("Error deleting employee salary: " + e.getMessage());
             }
-        } else {
-            showAlert("Please select an employee salary to delete");
         }
     }
 
     private void openForm(EmployeeSalary employeeSalary) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/Add_EmployeeSalary.fxml"));
-
-            // Use Spring to inject the controller
             loader.setControllerFactory(MainFinal.getSpringContext()::getBean);
 
             Stage stage = new Stage();
@@ -118,7 +122,6 @@ public class EmployeeSalaryController {
             stage.setTitle(employeeSalary == null ? "Add Employee Salary" : "Update Employee Salary");
             stage.setScene(new Scene(loader.load()));
 
-            // Get controller directly
             AddEmployeeSalaryController controller = loader.getController();
             controller.setEmployeeSalary(employeeSalary);
 

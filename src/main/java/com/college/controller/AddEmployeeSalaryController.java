@@ -21,14 +21,12 @@ public class AddEmployeeSalaryController {
     @FXML private DatePicker datePicker;
     @FXML private Button btnSave;
     @FXML private Button btnCancel;
+    @FXML private ComboBox<Employee> employeeComboBox;
 
     private EmployeeSalary employeeSalary;
 
     @Autowired
     private EmployeeSalaryService employeeSalaryService;
-
-    @FXML
-    private ComboBox<Employee> employeeComboBox;
 
     @Autowired
     private EmployeeService empService;
@@ -38,12 +36,10 @@ public class AddEmployeeSalaryController {
         choiceMethod.getItems().addAll("Cash", "Card", "EFT");
         datePicker.setValue(LocalDate.now());
 
-        // Load employees into ComboBox
         try {
             var employees = empService.getAllEmployees();
             employeeComboBox.setItems(FXCollections.observableArrayList(employees));
 
-            // Show full name in the list
             employeeComboBox.setCellFactory(cb -> new ListCell<>() {
                 @Override
                 protected void updateItem(Employee emp, boolean empty) {
@@ -52,7 +48,6 @@ public class AddEmployeeSalaryController {
                 }
             });
 
-            // Show selected employee in button
             employeeComboBox.setButtonCell(new ListCell<>() {
                 @Override
                 protected void updateItem(Employee emp, boolean empty) {
@@ -78,6 +73,17 @@ public class AddEmployeeSalaryController {
 
     @FXML
     private void handleSave() {
+        // ✅ Confirmation before saving
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle("Confirm Save");
+        confirm.setHeaderText("Are you sure you want to save this employee salary?");
+        confirm.setContentText("Click OK to confirm or Cancel to go back.");
+        var result = confirm.showAndWait();
+
+        if (result.isEmpty() || result.get() != ButtonType.OK) {
+            return; // User cancelled the confirmation
+        }
+
         try {
             if (txtAmount.getText().trim().isEmpty()) {
                 showAlert("Please enter an amount");
@@ -94,19 +100,16 @@ public class AddEmployeeSalaryController {
 
             double amount = Double.parseDouble(txtAmount.getText().trim());
 
-            //CHECK IF employee was selected
             Employee selectedEmployee = employeeComboBox.getSelectionModel().getSelectedItem();
             if (selectedEmployee == null) {
                 showAlert("Please select an employee");
                 return;
             }
 
-            // Prevent adding duplicate salary by checking parents getSalary jpa
             if (selectedEmployee.getSalary() != null) {
                 showAlert("This employee already has a salary assigned!");
                 return;
             }
-
 
             if (employeeSalary == null) {
                 EmployeeSalary newSalary = new EmployeeSalary.Builder()
@@ -115,13 +118,9 @@ public class AddEmployeeSalaryController {
                         .setDate(datePicker.getValue())
                         .build();
 
-                    //add fk to object we just made
                 newSalary.setEmployee(selectedEmployee);
-
                 employeeSalaryService.create(newSalary);
-
                 showAlert(Alert.AlertType.INFORMATION, "Employee salary created successfully");
-
             } else {
                 employeeSalary.setAmount(amount);
                 employeeSalary.setMethod(choiceMethod.getValue());
@@ -141,7 +140,16 @@ public class AddEmployeeSalaryController {
 
     @FXML
     private void handleCancel() {
-        closeWindow();
+        // ✅ Confirmation before canceling
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle("Confirm Cancel");
+        confirm.setHeaderText("Are you sure you want to cancel?");
+        confirm.setContentText("All unsaved changes will be lost.");
+        var result = confirm.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            closeWindow();
+        }
     }
 
     private void closeWindow() {

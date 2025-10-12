@@ -12,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.util.List;
+import java.util.Optional;
 
 public class AddEditGuestDialog extends Dialog<Guest> {
 
@@ -67,7 +68,7 @@ public class AddEditGuestDialog extends Dialog<Guest> {
         txtName.setPromptText("Name");
         txtSurname.setPromptText("Surname");
         txtEmail.setPromptText("Email");
-        txtContact.setPromptText("Contact Number");
+        txtContact.setPromptText("Contact Numberssssssss");
         cbPayment.setPromptText("Select Payment Method");
 
         cbPayment.getItems().addAll("Cash", "Credit Card", "Debit Card", "EFT", "PayPal");
@@ -130,42 +131,114 @@ public class AddEditGuestDialog extends Dialog<Guest> {
         root.setPadding(new Insets(20));
         getDialogPane().setContent(root);
 
-        // Cancel closes dialog
-        cancelButton.setOnAction(e -> setResult(null));
+        // Cancel button with confirmation
+        cancelButton.setOnAction(e -> handleCancelAction());
 
-        // Save button validation & result
-        saveButton.setOnAction(e -> {
-            String name = capitalizeFirst(txtName.getText().trim());
-            String surname = capitalizeFirst(txtSurname.getText().trim());
-            String email = txtEmail.getText().trim();
-            String contact = txtContact.getText().replaceAll("\\s", "");
-            String payment = cbPayment.getValue();
+        // Save button with confirmation
+        saveButton.setOnAction(e -> handleSaveAction(guest));
+    }
 
-            if (name.isEmpty() || surname.isEmpty()) { showAlert("Validation Error", "Name and Surname cannot be empty."); return; }
-            if (!email.contains("@") || email.length() < 5) { showAlert("Validation Error", "Email must be valid."); return; }
-            if (!contact.matches("\\d{10}")) { showAlert("Validation Error", "Contact must be exactly 10 digits."); return; }
-            if (payment == null || payment.isEmpty()) { showAlert("Validation Error", "Please select a payment method."); return; }
+    private void handleSaveAction(Guest guest) {
+        // Create confirmation alert for saving
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Save Guest");
+        confirmationAlert.setHeaderText("Confirm Save Operation");
+        confirmationAlert.setContentText("Are you sure you would like to save this guest?");
 
-            try {
-                List<Guest> allGuests = guestService.getAllGuests();
-                boolean exists = allGuests.stream()
-                        .anyMatch(g -> g.getEmail().equalsIgnoreCase(email)
-                                && (guest == null || g.getGuestID() != guest.getGuestID()));
-                if (exists) { showAlert("Validation Error", "A guest with this email already exists."); return; }
-            } catch (Exception ignored) {}
+        // Customize button texts
+        ButtonType yesButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+        ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
+        confirmationAlert.getButtonTypes().setAll(yesButton, noButton);
 
-            Guest.GuestBuilder builder = new Guest.GuestBuilder()
-                    .setName(name)
-                    .setSurname(surname)
-                    .setEmail(email)
-                    .setContactNumber(txtContact.getText())
-                    .setPaymentDetails(payment);
+        // Show the alert and wait for user response
+        Optional<ButtonType> result = confirmationAlert.showAndWait();
 
-            if (guest != null) builder.setGuestID(guest.getGuestID());
-            savedGuest = builder.build();
-            if (onSaveCallback != null) onSaveCallback.run();
-            setResult(savedGuest);
-        });
+        if (result.isPresent() && result.get() == yesButton) {
+            // User clicked Yes, proceed with validation and saving
+            saveGuest(guest);
+        }
+        // If user clicks No, do nothing
+    }
+
+    private void handleCancelAction() {
+        // Create confirmation alert for cancellation
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Cancel Operation");
+        confirmationAlert.setHeaderText("Confirm Cancellation");
+        confirmationAlert.setContentText("Are you sure you would like to cancel? Any unsaved changes will be lost.");
+
+        // Customize button texts
+        ButtonType yesButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+        ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
+        confirmationAlert.getButtonTypes().setAll(yesButton, noButton);
+
+        // Show the alert and wait for user response
+        Optional<ButtonType> result = confirmationAlert.showAndWait();
+
+        if (result.isPresent() && result.get() == yesButton) {
+            // User clicked Yes, close the dialog
+            setResult(null);
+        }
+        // If user clicks No, do nothing (dialog stays open)
+    }
+
+    private void saveGuest(Guest guest) {
+        // Perform validation
+        String name = capitalizeFirst(txtName.getText().trim());
+        String surname = capitalizeFirst(txtSurname.getText().trim());
+        String email = txtEmail.getText().trim();
+        String contact = txtContact.getText().replaceAll("\\s", "");
+        String payment = cbPayment.getValue();
+
+        // Validation checks
+        if (name.isEmpty() || surname.isEmpty()) {
+            showAlert("Validation Error", "Name and Surname cannot be empty.");
+            return;
+        }
+        if (!email.contains("@") || email.length() < 5) {
+            showAlert("Validation Error", "Email must be valid.");
+            return;
+        }
+        if (!contact.matches("\\d{10}")) {
+            showAlert("Validation Error", "Contact must be exactly 10 digits.");
+            return;
+        }
+        if (payment == null || payment.isEmpty()) {
+            showAlert("Validation Error", "Please select a payment method.");
+            return;
+        }
+
+        // Check for duplicate email
+        try {
+            List<Guest> allGuests = guestService.getAllGuests();
+            boolean exists = allGuests.stream()
+                    .anyMatch(g -> g.getEmail().equalsIgnoreCase(email)
+                            && (guest == null || g.getGuestID() != guest.getGuestID()));
+            if (exists) {
+                showAlert("Validation Error", "A guest with this email already exists.");
+                return;
+            }
+        } catch (Exception ignored) {}
+
+        // Build and save guest
+        Guest.GuestBuilder builder = new Guest.GuestBuilder()
+                .setName(name)
+                .setSurname(surname)
+                .setEmail(email)
+                .setContactNumber(txtContact.getText())
+                .setPaymentDetails(payment);
+
+        if (guest != null) builder.setGuestID(guest.getGuestID());
+        savedGuest = builder.build();
+
+        // Call callback if set
+        if (onSaveCallback != null) onSaveCallback.run();
+
+        // Set result and close dialog
+        setResult(savedGuest);
+
+        // Show success message
+        showSuccessAlert(guest == null ? "Guest added successfully!" : "Guest updated successfully!");
     }
 
     private String capitalizeFirst(String text) {
@@ -187,6 +260,14 @@ public class AddEditGuestDialog extends Dialog<Guest> {
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void showSuccessAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();

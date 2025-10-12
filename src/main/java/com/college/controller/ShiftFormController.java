@@ -112,6 +112,17 @@ public class ShiftFormController {
 
     @FXML
     private void handleSave() {
+        // ✅ Confirmation before saving
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle("Confirm Save");
+        confirm.setHeaderText("Are you sure you want to save this shift?");
+        confirm.setContentText("Click OK to confirm or Cancel to go back.");
+        var result = confirm.showAndWait();
+
+        if (result.isEmpty() || result.get() != ButtonType.OK) {
+            return; // User cancelled the confirmation
+        }
+
         try {
             if (datePicker.getValue() == null) {
                 showAlert("Please select a shift date");
@@ -138,20 +149,13 @@ public class ShiftFormController {
                     return;
                 }
 
-
-                //HERE U CHECK: if the employee object, has a shift assigned to it. getShift of employee called. it returns shift object jpa
                 if (selectedEmployee.getShift() != null) {
                     showAlert("This employee already has a shift assigned!");
                     return;
                 }
 
                 newShift.setEmployee(selectedEmployee);
-
-
                 shiftService.create(newShift);
-
-
-
                 showAlert(Alert.AlertType.INFORMATION, "Shift created successfully!");
             } else {
                 // Update existing shift
@@ -159,7 +163,6 @@ public class ShiftFormController {
                 shift.setShiftStartTime(start);
                 shift.setShiftEndTime(end);
                 shift.setShiftOvertime(overtime);
-
                 shiftService.update(shift);
                 showAlert(Alert.AlertType.INFORMATION, "Shift updated successfully!");
             }
@@ -174,8 +177,18 @@ public class ShiftFormController {
 
     @FXML
     private void handleCancel() {
-        closeWindow();
+        // ✅ Confirmation before canceling
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle("Confirm Cancel");
+        confirm.setHeaderText("Are you sure you want to cancel?");
+        confirm.setContentText("All unsaved changes will be lost.");
+        var result = confirm.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            closeWindow();
+        }
     }
+
 
     private void closeWindow() {
         ((Stage) datePicker.getScene().getWindow()).close();
