@@ -1,8 +1,7 @@
 package com.college.controller;
 
 import com.college.domain.Employee;
-import com.college.domain.Reservation;
-import com.college.domain.subclasses.FoodWorker;
+import com.college.domain.employees.FoodWorker;
 import com.college.service.IFoodWorkerService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

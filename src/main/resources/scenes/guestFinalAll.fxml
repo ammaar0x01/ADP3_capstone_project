@@ -19,7 +19,7 @@
         <children>
             <ImageView layoutX="63.0" layoutY="26.0" preserveRatio="true" fitWidth="100">
                 <image>
-                    <Image url="/images/c.png" />
+                    <Image url="@/images/c.png" />
                 </image>
             </ImageView>
 

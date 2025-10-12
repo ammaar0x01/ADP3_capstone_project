@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="mainFrame"
+           xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.college.controller.UserLoginController"
+           style="-fx-background-color: black;">
+
+    <HBox fx:id="rootHBox" spacing="0" HBox.hgrow="ALWAYS">
+
+        <!-- LEFT BLUE PANEL -->
+        <VBox fx:id="leftPane"
+              alignment="CENTER"
+              spacing="15"
+              style="-fx-background-color: #45b6fe;"
+              HBox.hgrow="ALWAYS"
+              minWidth="200">
+            <children>
+                <ImageView fitHeight="180.0" fitWidth="180.0" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/c.png" />
+                    </image>
+                </ImageView>
+                <Label text="Hotel Management System" textFill="WHITE" textAlignment="CENTER">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Label>
+                <Label text="HMS" textFill="WHITE" />
+            </children>
+        </VBox>
+
+        <!-- RIGHT WHITE PANEL -->
+        <AnchorPane fx:id="pane1" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
+            <children>
+                <VBox alignment="CENTER" spacing="15"
+                      AnchorPane.topAnchor="20.0"
+                      AnchorPane.leftAnchor="20.0"
+                      AnchorPane.rightAnchor="20.0"
+                      AnchorPane.bottomAnchor="20.0">
+                    <children>
+
+                        <Label text="Log In">
+                            <font>
+                                <Font name="DejaVuMathTeXGyre-Regular" size="30.0" />
+                            </font>
+                        </Label>
+
+                        <GridPane hgap="10" vgap="10" alignment="CENTER">
+                            <columnConstraints>
+                                <ColumnConstraints halignment="RIGHT" />
+                                <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
+                            </columnConstraints>
+                            <children>
+                                <Label text="Username:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                                <TextField fx:id="username"
+                                           GridPane.rowIndex="0" GridPane.columnIndex="1"
+                                           prefHeight="38.0"
+                                           promptText="Enter username"
+                                           style="-fx-background-radius: 3; -fx-border-radius: 3;" />
+
+                                <Label text="Password:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                                <PasswordField fx:id="password"
+                                               GridPane.rowIndex="1" GridPane.columnIndex="1"
+                                               prefHeight="40.0"
+                                               promptText="Enter password" />
+                            </children>
+                        </GridPane>
+
+                        <!-- LOGIN BUTTON -->
+                        <Button fx:id="loginButton"
+                                onAction="#handleLoginAuth"
+                                text="Log in"
+                                style="-fx-background-color: #45b6fe; -fx-cursor: hand;"
+                                textFill="WHITE"
+                                prefHeight="40.0"
+                                maxWidth="250.0">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Button>
+
+                        <!-- BACK BUTTON -->
+                        <Button text="Back"
+                                onAction="#handleGoBack"
+                                style="-fx-background-color: #cc000a; -fx-cursor: hand;"
+                                textFill="WHITE"
+                                prefHeight="40.0"
+                                maxWidth="250.0">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Button>
+
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+
+    </HBox>
+</StackPane>

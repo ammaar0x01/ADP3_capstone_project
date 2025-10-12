@@ -9,7 +9,7 @@ package com.college.domain;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="Reservation")
+//@Table(name="Reservation")
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

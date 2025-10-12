@@ -18,7 +18,7 @@
                 <!-- Logo -->
                 <ImageView>
                     <image>
-                        <Image url="/images/c.png" />
+                        <Image url="@/images/c.png" />
                     </image>
                 </ImageView>
 

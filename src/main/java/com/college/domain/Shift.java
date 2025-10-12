@@ -12,7 +12,7 @@ import java.time.LocalTime;
 
 
 @Entity
-@Table(name = "shift")
+//@Table(name = "shift")
 public class Shift {
 
     @Id

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.college.controller.GuestUIController">
+   <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+      
+                <!-- Left Green Panel -->
+<!--          style="-fx-background-color: linear-gradient(rgba(34, 230, 77, 1), rgba(10, 97, 6, 1));">-->
+<!--          style="-fx-background-color: rgba(34, 230, 77, 1);">-->
+
+          <Pane fx:id="leftPane" prefWidth="200.0" style="-fx-background-color:  rgba(10, 97, 6, 0.8);">
+              <children>
+               <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="200.0" spacing="10.0">
+                  <children>
+                        <ImageView fitWidth="100" preserveRatio="true">
+                            <image>
+                                <Image url="@/images/c.png" />
+                            </image>
+                        <VBox.margin>
+                           <Insets bottom="200.0" top="10.0" />
+                        </VBox.margin>
+                        </ImageView>
+            
+                              <Button alignment="CENTER" onAction="#handleEditGuest" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: black;" text="Update Guest" textFill="WHITE">
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                        <font>
+                           <Font name="Berlin Sans FB" size="14.0" />
+                        </font>
+                     </Button>
+                  </children>
+                  <padding>
+                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  </padding>
+               </VBox>
+              </children>
+          </Pane>
+         <Pane prefWidth="800.0">
+            <children>
+               <VBox prefWidth="800.0">
+                  <children>
+                     <Label alignment="CENTER" prefWidth="800.0" text="Guests" textAlignment="CENTER">
+                        <font>
+                           <Font name="Berlin Sans FB" size="40.0" />
+                        </font>
+                        <VBox.margin>
+                           <Insets bottom="20.0" left="10.0" right="10.0" />
+                        </VBox.margin>
+                     </Label>
+                  
+                      <!-- Table -->
+                      <TableView fx:id="guestTable" prefHeight="450.0">
+                          <columns>
+                              <TableColumn fx:id="colGuestID" editable="false" maxWidth="200.0" minWidth="50.0" prefWidth="60" text="Id" />
+                              <TableColumn fx:id="colName" editable="false" maxWidth="200.0" minWidth="50.0" prefWidth="140.0" text="Name" />
+                              <TableColumn fx:id="colSurname" editable="false" maxWidth="200.0" minWidth="50.0" prefWidth="140.0" text="Surname" />
+                              <TableColumn fx:id="colEmail" editable="false" maxWidth="200.0" minWidth="50.0" prefWidth="140.0" text="Email address" />
+                              <TableColumn fx:id="colContact" editable="false" maxWidth="200.0" minWidth="50.0" prefWidth="140.0" text="Phone number" />
+                              <TableColumn fx:id="colPayment" editable="false" maxWidth="200.0" minWidth="50.0" prefWidth="140.0" text="Payment Method" />
+                          </columns>
+                      </TableView>
+                  </children>
+                  <padding>
+                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                  </padding>
+               </VBox>
+            </children>
+         </Pane>
+      </children>
+   </HBox>
+
+</AnchorPane>

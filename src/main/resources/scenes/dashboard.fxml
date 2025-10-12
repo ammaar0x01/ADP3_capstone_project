@@ -19,7 +19,7 @@
                         <!-- Profile Image with Circle Clip -->
                         <ImageView fx:id="profileImage" fitWidth="80" fitHeight="80">
                             <image>
-                                <Image url="/images/characters/download3.jpg" />
+                                <Image url="@/images/characters/download3.jpg" />
                             </image>
                             <clip>
                                 <Circle centerX="40" centerY="40" radius="40"/>

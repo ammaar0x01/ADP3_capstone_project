@@ -1,0 +1,14 @@
+
+INSERT INTO Room (roomID, room_type, price_Per_Night, availability, features, reservation_id)
+VALUES
+(51, 'Single', 500.00, TRUE, 'AC, TV, Wifi', NULL),
+(52, 'Single', 500.00, TRUE, 'AC, TV, Wifi', NULL),
+(53, 'Double', 800.00, TRUE, 'AC, TV, Wifi', NULL),
+(54, 'Double', 800.00, TRUE, 'AC, TV, Wifi', NULL),
+(55, 'Suite', 1200.00, TRUE, 'AC, TV, Wifi, Mini Bar', NULL),
+(56, 'Suite', 1200.00, TRUE, 'AC, TV, Wifi, Mini Bar', NULL),
+(57, 'Deluxe', 1500.00, TRUE, 'AC, TV, Wifi, Mini Bar, Balcony', NULL),
+(58, 'Deluxe', 1500.00, TRUE, 'AC, TV, Wifi, Mini Bar, Balcony', NULL),
+(59, 'Presidential', 2500.00, TRUE, 'AC, TV, Wifi, Mini Bar, Balcony, Jacuzzi', NULL);
+xqo-mvap-yrd
+

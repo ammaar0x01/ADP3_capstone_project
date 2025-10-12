@@ -10,9 +10,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -25,6 +24,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @Component
 public class UserLoginController {
@@ -54,11 +54,11 @@ public class UserLoginController {
     @FXML
     private HBox rootHBox;
 
-    @FXML
-    public void initialize() {
-        // Bind left panel width to 40% of the HBox width
-        leftPane.prefWidthProperty().bind(rootHBox.widthProperty().multiply(0.4));
-    }
+//    @FXML
+//    public void initialize() {
+//        // Bind left panel width to 40% of the HBox width
+//        leftPane.prefWidthProperty().bind(rootHBox.widthProperty().multiply(0.4));
+//    }
 
 
     // signIn Button click, Sec Auth
@@ -217,5 +217,43 @@ public class UserLoginController {
         stage.setTitle("HMS - User Login");
         stage.show();
     }
+
+    // --------------------------------------------
+    // new //
+    @FXML
+    public void exitApplication(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exit Application");
+//        alert.setHeaderText("Are you sure you want to exit?");
+        alert.setContentText("Are you sure you want to exit?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.close();
+        }
+    }
+
+    @FXML
+    public void handleHoverEnter(MouseEvent event) {
+        System.out.println("\nhover in");
+        Button hoveredButton = (Button) event.getSource();
+        hoveredButton.setStyle(
+                "-fx-background-color: black; " +
+                        "-fx-text-fill: white;"
+        );
+    }
+
+
+    @FXML
+    public void handleHoverExit(MouseEvent event) {
+        System.out.println("hover out");
+        Button hoveredButton = (Button) event.getSource();
+        hoveredButton.setStyle(
+                "-fx-background-color:  rgba(69, 150, 255, 1);" +
+                        " -fx-text-fill: white;"
+        );
+    }
+    // --------------------------------------------
 
 }

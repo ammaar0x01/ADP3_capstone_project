@@ -8,7 +8,7 @@ package com.college.domain;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="Room")
+//@Table(name="Room")
 public class Room {
 
     @Id

@@ -1,13 +1,11 @@
 package com.college.service;
 
 import com.college.Main;
-import com.college.domain.Housekeeper;
+import com.college.domain.employees.Housekeeper;
 import com.college.domain.Reservation;
 import com.college.domain.Room;
 import com.college.factory.HousekeeperFactory;
-import com.college.factory.ReservationFactory;
 import com.college.factory.RoomFactory;
-import com.college.repository.HousekeeperRepository;
 import com.college.repository.RoomRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

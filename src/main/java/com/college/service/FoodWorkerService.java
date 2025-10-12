@@ -1,6 +1,6 @@
 package com.college.service;
 
-import com.college.domain.subclasses.FoodWorker;
+import com.college.domain.employees.FoodWorker;
 import com.college.repository.FoodWorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

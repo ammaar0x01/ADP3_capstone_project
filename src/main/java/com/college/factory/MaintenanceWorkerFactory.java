@@ -1,6 +1,6 @@
 package com.college.factory;
 
-import com.college.domain.MaintenanceWorker;
+import com.college.domain.employees.MaintenanceWorker;
 
 public class MaintenanceWorkerFactory {
 

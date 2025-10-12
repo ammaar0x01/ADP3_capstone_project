@@ -5,12 +5,13 @@
 */
 
 
-package com.college.domain;
+package com.college.domain.employees;
 
+import com.college.domain.Employee;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="Housekeeper")
+//@Table(name="Housekeeper")
 public class Housekeeper {
 
     @Id

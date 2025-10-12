@@ -1,4 +1,4 @@
-package com.college.domain.subclasses;
+package com.college.domain.employees;
 
 import com.college.domain.Employee;
 import jakarta.persistence.*;

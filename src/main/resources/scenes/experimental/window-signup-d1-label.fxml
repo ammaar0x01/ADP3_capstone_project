@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<!--<HBox fx:id="mainFrame" maxHeight="600.0" maxWidth="600.0" minHeight="550.0" minWidth="600.0" prefHeight="550.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.college.controller.UserRegisterController">-->
+<!--</HBox>-->
+
+<BorderPane fx:id="mainFrame" prefHeight="600.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.college.controller.UserRegisterController">
+      <center>
+      
+          <!-- Right white panel with input fields -->
+          <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: WHITE;">
+              <Label alignment="TOP_CENTER" prefWidth="400.0" text="Sign Up" textFill="BLACK">
+                  <font>
+                      <Font size="30" />
+                  </font>
+            <VBox.margin>
+               <Insets bottom="10.0" />
+            </VBox.margin>
+              </Label>
+      
+              <!-- Input fields -->
+              <VBox alignment="CENTER" prefWidth="400.0" spacing="10.0">
+               <HBox alignment="TOP_CENTER">
+                  <children>
+                     <Label alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="60.0" text="First name" />
+                        <TextField fx:id="username" prefHeight="30" prefWidth="150.0" promptText="First name" style="-fx-background-radius: 3;  -fx-border-radius: 3">
+                        <HBox.margin>
+                           <Insets left="20.0" />
+                        </HBox.margin>
+                     </TextField>
+                  </children>
+                  <VBox.margin>
+                     <Insets left="10.0" right="10.0" top="2.0" />
+                  </VBox.margin>
+               </HBox>
+               <HBox alignment="TOP_CENTER">
+                  <children>
+                     <Label alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="60.0" text="Surname" />
+                     <TextField fx:id="username1" prefHeight="30" prefWidth="150.0" promptText="Surname" style="-fx-background-radius: 3;  -fx-border-radius: 3">
+                        <HBox.margin>
+                           <Insets left="20.0" />
+                        </HBox.margin>
+                     </TextField>
+                  </children>
+                  <VBox.margin>
+                     <Insets left="10.0" right="10.0" top="2.0" />
+                  </VBox.margin>
+               </HBox>
+               <HBox alignment="TOP_CENTER">
+                  <children>
+                     <Label alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="60.0" text="Email" />
+                     <TextField fx:id="username2" prefHeight="30" prefWidth="150.0" promptText="Email" style="-fx-background-radius: 3;  -fx-border-radius: 3">
+                        <HBox.margin>
+                           <Insets left="20.0" />
+                        </HBox.margin>
+                     </TextField>
+                  </children>
+                  <VBox.margin>
+                     <Insets left="10.0" right="10.0" top="2.0" />
+                  </VBox.margin>
+               </HBox>
+               <HBox alignment="TOP_CENTER">
+                  <children>
+                     <Label alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="60.0" text="Password" />
+                     <PasswordField prefHeight="30.0" prefWidth="150.0" promptText="Password">
+                        <HBox.margin>
+                           <Insets left="20.0" />
+                        </HBox.margin>
+                     </PasswordField>
+                  </children>
+                  <VBox.margin>
+                     <Insets left="10.0" right="10.0" top="2.0" />
+                  </VBox.margin>
+               </HBox>
+               <HBox alignment="TOP_CENTER">
+                  <children>
+                     <Label alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="60.0" text="Age" />
+                     <TextField fx:id="username4" prefHeight="30" prefWidth="150.0" promptText="Age" style="-fx-background-radius: 3;  -fx-border-radius: 3">
+                        <HBox.margin>
+                           <Insets left="20.0" />
+                        </HBox.margin>
+                     </TextField>
+                  </children>
+                  <VBox.margin>
+                     <Insets left="10.0" right="10.0" top="2.0" />
+                  </VBox.margin>
+               </HBox>
+               <HBox alignment="TOP_CENTER">
+                  <children>
+                     <Label alignment="BASELINE_LEFT" prefHeight="30.0" prefWidth="60.0" text="Gender" />
+                     <TextField fx:id="username5" prefHeight="30" prefWidth="150.0" promptText="Gender" style="-fx-background-radius: 3;  -fx-border-radius: 3">
+                        <HBox.margin>
+                           <Insets left="20.0" />
+                        </HBox.margin>
+                     </TextField>
+                  </children>
+                  <VBox.margin>
+                     <Insets left="10.0" right="10.0" top="2.0" />
+                  </VBox.margin>
+               </HBox>
+              </VBox>
+      
+              <!-- ComboBox -->
+              <ComboBox fx:id="roleComboBox" prefHeight="30" prefWidth="230.0" style="-fx-background-radius: 0; -fx-border-radius: 0;" value="Select Role">
+                  <items>
+                      <FXCollections fx:factory="observableArrayList">
+                          <String fx:value="ADMIN" />
+                          <String fx:value="MANAGER" />
+                          <String fx:value="USER" />
+                      </FXCollections>
+                  </items>
+              </ComboBox>
+      
+              <ComboBox fx:id="otherRoleComboBox" prefHeight="30" prefWidth="230.0" style="-fx-background-radius: 0; -fx-border-radius: 0;" value="Select User Type" visible="false">
+                  <items>
+                      <FXCollections fx:factory="observableArrayList">
+                          <String fx:value="FoodWorker" />
+                          <String fx:value="MaintenanceWorker" />
+                          <String fx:value="Housekeeper" />
+                      </FXCollections>
+                  </items>
+              </ComboBox>
+      
+              <Button onAction="#handleSignUp" prefHeight="35" prefWidth="230.0" style="-fx-background-color: #45b6fe; -fx-text-fill: white;" text="Sign Up">
+                  <cursor>
+                      <Cursor fx:constant="HAND" />
+                  </cursor>
+              </Button>
+      
+              <Hyperlink onAction="#goToLogin" text="I already have an account" />
+              <Button onAction="#handleExit" prefHeight="35" prefWidth="230.0" style="-fx-background-color: black; -fx-text-fill: white; -fx-background-radius: 0;" text="Exit">
+                  <cursor>
+                      <Cursor fx:constant="HAND" />
+                  </cursor>
+              </Button>
+          </VBox>
+      </center>
+   </BorderPane>

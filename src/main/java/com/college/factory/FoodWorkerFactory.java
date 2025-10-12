@@ -1,6 +1,6 @@
 
 package com.college.factory;
-import com.college.domain.subclasses.FoodWorker;
+import com.college.domain.employees.FoodWorker;
 
 public class FoodWorkerFactory {
 

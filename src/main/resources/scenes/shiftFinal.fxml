@@ -1,56 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="605.0" prefWidth="1030.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.12"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.college.controller.ShiftViewController">
-
-
-    <!-- Table -->
-    <TableView fx:id="shiftTable" layoutX="268.0" layoutY="114.0" prefHeight="332.0" prefWidth="710.0" style="-fx-background-color: white; -fx-border-color: transparent;">
-        <columns>
-            <TableColumn fx:id="colId" prefWidth="60"  text="ID" />
-            <TableColumn fx:id="colEmployee" prefWidth="150" text="Employee Id" />
-            <TableColumn fx:id="colDate" prefWidth="200" text="Date" />
-            <TableColumn fx:id="colStartTime" prefWidth="150"  text="Start Time" />
-            <TableColumn fx:id="colEndTime" prefWidth="150"  text="End Time" />
-            <TableColumn fx:id="colOvertime" prefWidth="150" text="Overtime" />
-
-        </columns>
-    </TableView>
-        <Pane layoutX="-7.0" layoutY="-1.0" prefHeight="606.0" prefWidth="230.0" style="-fx-background-color: #66BA88;">
-    <children>
-
-
-
-
-
-
-    <!-- Buttons -->
-    <Button layoutX="40.0" layoutY="350.0" onAction="#handleDeleteShift" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #E02850; -fx-background-radius: 15px;" stylesheets="/css/buttonStyle.css" text="Delete Shift" textFill="WHITE" />
-
-        <ImageView layoutX="63.0" layoutY="26.0">
-            <image>
-                <Image url="/images/c.png" />
-            </image>
-        </ImageView>
-        <Button layoutX="40.0" layoutY="275.0" onAction="#handleUpdateShift" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #398F6C;-fx-background-radius: 15px;" stylesheets="/css/buttonStyle.css" text="Update Shift" textFill="WHITE" />
-
-        <Button layoutX="41.0" layoutY="193.0" onAction="#handleAddShift" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #398F6C;-fx-background-radius: 15px;" stylesheets="/css/buttonStyle.css" text="Add Shift" textFill="WHITE" />
-
-
-
-
-
-
-    </children>
-        </Pane>
-    <Text fill="#383838" layoutX="529.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Shifts" textAlignment="CENTER" wrappingWidth="188.34881591796875">
-        <font>
-            <Font size="32.0" />
-        </font>
-    </Text>
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.college.controller.ShiftViewController">
+   <HBox prefWidth="1000.0">
+      <children>
+         <Pane fx:id="leftPane" prefWidth="200.0" style="-fx-background-color:  rgba(10, 147, 6, 0.8);">
+            <children>
+               <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="200.0" spacing="10.0">
+                  <children>
+                     <ImageView fitWidth="100" preserveRatio="true">
+                        <image>
+                           <Image url="@/images/c.png" />
+                        </image>
+                        <VBox.margin>
+                           <Insets bottom="150.0" top="10.0" />
+                        </VBox.margin>
+                     </ImageView>
+            
+                    <Button onAction="#handleAddShift" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: white;" stylesheets="/css/buttonStyle.css" text="Add Shift">
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                        <font>
+                           <Font name="Berlin Sans FB" size="13.0" />
+                        </font>
+                        <VBox.margin>
+                           <Insets bottom="10.0" />
+                        </VBox.margin>
+                     </Button>
+                    <Button onAction="#handleUpdateShift" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: white;" stylesheets="/css/buttonStyle.css" text="Update Shift">
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                        <font>
+                           <Font name="Berlin Sans FB" size="13.0" />
+                        </font>
+                        <VBox.margin>
+                           <Insets bottom="10.0" />
+                        </VBox.margin>
+                     </Button>
+            
+            
+            
+            
+            
+            
+                <!-- Buttons -->
+                <Button onAction="#handleDeleteShift" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: black;" stylesheets="/css/buttonStyle.css" text="Delete Shift" textFill="WHITE">
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                        <font>
+                           <Font name="Berlin Sans FB" size="13.0" />
+                        </font>
+                        <VBox.margin>
+                           <Insets bottom="10.0" />
+                        </VBox.margin>
+                     </Button>
+                  </children>
+                  <padding>
+                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  </padding>
+               </VBox>
+            </children>
+         </Pane>
+         <Pane prefWidth="800.0">
+            <children>
+               <VBox prefWidth="800.0">
+                  <children>
+                     <Label prefWidth="800.0" text="Employee Shifts" textAlignment="CENTER">
+                        <font>
+                           <Font name="Dubai Regular" size="30.0" />
+                        </font>
+                        <VBox.margin>
+                           <Insets bottom="10.0" left="10.0" right="10.0" />
+                        </VBox.margin>
+                     </Label>
+                  
+                  
+                      <!-- Table -->
+                      <TableView fx:id="shiftTable" prefHeight="450.0" prefWidth="700.0" style="-fx-border-color: transparent;">
+                          <columns>
+                              <TableColumn fx:id="colId" maxWidth="100.0" minWidth="50.0" prefWidth="60" text="Id" />
+                              <TableColumn fx:id="colEmployee" editable="false" maxWidth="200.0" minWidth="50.0" prefWidth="140.0" text="Employee Id" />
+                              <TableColumn fx:id="colDate" editable="false" maxWidth="200.0" minWidth="50.0" prefWidth="140.0" text="Date" />
+                              <TableColumn fx:id="colStartTime" editable="false" maxWidth="200.0" minWidth="50.0" prefWidth="140.0" text="Start Time" />
+                              <TableColumn fx:id="colEndTime" editable="false" maxWidth="200.0" minWidth="50.0" prefWidth="140.0" text="End Time" />
+                              <TableColumn fx:id="colOvertime" editable="false" maxWidth="200.0" minWidth="50.0" prefWidth="140.0" text="Overtime" />
+                  
+                          </columns>
+                        <VBox.margin>
+                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        </VBox.margin>
+                      </TableView>
+                  </children>
+                  <padding>
+                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                  </padding>
+               </VBox>
+            </children>
+         </Pane>
+      </children>
+   </HBox>
 </AnchorPane>

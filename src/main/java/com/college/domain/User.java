@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "users") // better to avoid reserved keyword "user"
+@Table(name="users") // better to avoid reserved keyword "user"
 public class User {
 
     @Id

@@ -1,6 +1,6 @@
 package com.college.controller;
 
-import com.college.domain.subclasses.FoodWorker;
+import com.college.domain.employees.FoodWorker;
 import com.college.service.IFoodWorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

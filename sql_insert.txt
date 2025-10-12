@@ -1,0 +1,172 @@
+/*
+NOTES
+- Pay attention to the order of adding the records
+- Ensure that the database is empty
+- Ensure that you add the correct name of the database in the query
+---
+
+todo
+- Need to alter some of the values for some of the fields
+---
+
+**NEWER**
+Started:    08-10-2025
+Updated:    11-10-2025
+Status:     WORKS
+---
+*/
+
+-- USER-RELATED --
+-- (3 tables)
+------------------
+-- users --
+INSERT INTO `hotel-ms`.`users`
+(`user_id`, `age`, `email`, `gender`, `name`, `password`, `role`, `start_date`, `surname`)
+VALUES
+(101, 28, 'jane.doe@example.com', 'Female', 'Jane', 'pass123', 'Doctor', '2022-01-10', 'Doe'),
+(102, 35, 'john.smith@example.com', 'Male', 'John', 'secure456', 'Nurse', '2021-06-15', 'Smith'),
+(103, 40, 'emily.jones@example.com', 'Female', 'Emily', 'mypassword', 'Admin', '2023-03-22', 'Jones'),
+(104, 30, 'michael.brown@example.com', 'Male', 'Michael', 'admin123', 'Receptionist', '2022-09-01', 'Brown'),
+(105, 26, 'lisa.taylor@example.com', 'Female', 'Lisa', 'testpass', 'Pharmacist', '2023-11-12', 'Taylor');
+
+-- role --
+INSERT INTO `hotel-ms`.`role` (`role_id`, `role_name`)
+VALUES
+(101, 'Admin'),
+(102, 'Manager'),
+(103, 'Receptionist'),
+(104, 'Housekeeping'),
+(105, 'Guest');
+
+-- user_role
+INSERT INTO `hotel-ms`.`user_role`
+(`id`, `specification`, `role_role_id`, `user_user_id`)
+VALUES
+(1, 'Cardiologist', 101, 101),
+(2, 'ICU Nurse', 102, 102),
+(3, 'System Administrator', 103, 103),
+(4, 'Front Desk', 104, 104),
+(5, 'Dispensing Pharmacist', 105, 105);
+-- ------------------------------------------------
+
+
+-- EMPLOYEE-RELATED --
+-- (6 tables)
+----------------------
+-- employee
+INSERT INTO `hotel-ms`.`employee`
+(`employee_id`, `job_type`, `start_date`, `user_id`)
+VALUES
+(101, 'Doctor', '2022-01-10', 101),
+(102, 'Nurse', '2021-06-15', 102),
+(103, 'Administrator', '2023-03-22', 103),
+(104, 'Receptionist', '2022-09-01', 104),
+(105, 'Pharmacist', '2023-11-12', 105);
+
+-- employee_salary
+INSERT INTO `hotel-ms`.`employee_salary`
+(`salary_id`, `amount`, `date`, `method`, `employee_id`)
+VALUES
+(101, 25000.00, '2025-10-01', 'EFT', 101),
+(102, 18000.00, '2025-10-01', 'Cash', 102),
+(103, 22000.00, '2025-10-01', 'EFT', 103),
+(104, 20000.00, '2025-10-01', 'Card', 104),
+(105, 27000.00, '2025-10-01', 'EFT', 105);
+
+-- shift --
+INSERT INTO `hotel-ms`.`shift`
+(`shift_id`, `shift_end_time`, `shift_overtime`, `shift_start_time`)
+VALUES
+(101, '17:00:00', 1, '08:00:00'),
+(102, '16:00:00', 0, '08:00:00'),
+(103, '18:00:00', 1, '09:00:00'),
+(104, '17:30:00', 0, '08:00:00'),
+(105, '16:30:00', 0, '07:30:00');
+
+-- maintenance_worker
+INSERT INTO `hotel-ms`.`maintenance_worker`
+(`maintenance_id`, `company`, `external`, `type`, `employee_id`)
+VALUES
+(101, 'FixIt Co.', TRUE, 'Electrician', 101),
+(102, 'CleanUp Ltd.', TRUE, 'Cleaner', 102),
+(103, NULL, FALSE, 'Technician', 103),
+(104, NULL, FALSE, 'Plumber', 104),
+(105, 'HVAC Experts', TRUE, 'Aircon Specialist', 105);
+
+-- housekeeper
+INSERT INTO `hotel-ms`.`housekeeper`
+(`housekeeper_id`, `housekeeper_name`, `housekeeper_surname`, `employee_id`)
+VALUES
+(101, 'Samantha', 'Ngema', 101),
+(102, 'Thabo', 'Mokoena',  102),
+(103, 'Lerato', 'Peters',  103),
+(104, 'Daniel', 'Nkosi', 104),
+(105, 'Ayanda', 'Zulu',  105);
+
+-- food_worker
+INSERT INTO `hotel-ms`.`food_worker`
+(`id`, `specialization`, `type`, `employee_id`)
+VALUES
+(101, 'Pastry Chef', 'Full-time', 101),
+(102, 'Sous Chef', 'Part-time', 102),
+(103, 'Line Cook', 'Contract', 103),
+(104, 'Kitchen Assistant', 'Full-time', 104),
+(105, 'Head Chef', 'Full-time', 105);
+-- ------------------------------------------------
+
+
+-- RESERVATION-RELATED --
+-- (5 tables)
+-------------------------
+-- guest
+INSERT INTO `hotel-ms`.`guest`
+(`guestid`, `contact_number`, `email`, `name`, `payment_details`, `surname`)
+VALUES
+(101, '0711234567', 'guest1@example.com', 'Alice', 'Visa ****1234', 'Daniels'),
+(102, '0723456789', 'guest2@example.com', 'Brian', 'Mastercard ****5678', 'Lee'),
+(103, '0739876543', 'guest3@example.com', 'Cynthia', 'EFT Ref#7890', 'Muller'),
+(104, '0741122334', 'guest4@example.com', 'David', 'Cash', 'Smith'),
+(105, '0759988776', 'guest5@example.com', 'Elaine', 'PayPal: elaine@example.com', 'Singh');
+
+-- reservation
+INSERT INTO `hotel-ms`.`reservation`
+(`reservation_id`, `reservation_date_time_end`, `reservation_date_time_start`, `guest_id`)
+VALUES
+(101, '2025-10-10 10:00:00', '2025-10-08 14:00:00', 101),
+(102, '2025-10-15 11:00:00', '2025-10-12 13:00:00', 102),
+(103, '2025-10-12 09:00:00', '2025-10-10 16:00:00', 105),
+(104, '2025-10-18 12:00:00', '2025-10-16 15:00:00', 103),
+(105, '2025-10-20 10:30:00', '2025-10-18 17:00:00', 104);
+
+-- room
+INSERT INTO `hotel-ms`.`room`
+(`roomid`, `availability`, `features`, `price_per_night`, `room_type`, `employee_id`, `reservation_id`)
+VALUES
+(101, TRUE, 'TV, Wi-Fi, AC', 1200.00, 'Single', 101, 101),
+(102, FALSE, 'Wi-Fi, Mini Bar', 1500.00, 'Double', 102, 102),
+(103, TRUE, 'TV, Wi-Fi, AC, Bathtub', 1800.00, 'Deluxe', 103, NULL),
+(104, TRUE, 'Wi-Fi, Desk', 1000.00, 'Single', 104, NULL),
+(105, FALSE, 'TV, AC', 1100.00, 'Standard', 105, 103);
+
+-- event
+INSERT INTO `hotel-ms`.`event`
+(`event_id`, `description`, `reason`, `reservation_id`)
+VALUES
+(101, 'Wedding Reception', 'Guest request', 101),
+(102, 'Conference Setup', 'Business booking', 102),
+(103, 'Birthday Party', 'Family celebration', 103),
+(104, 'Health & Safety Inspection', 'Scheduled maintenance', 104),
+(105, 'Staff Training', 'Internal event', 105);
+
+-- payment
+INSERT INTO `hotel-ms`.`payment`
+(`payment_id`, `payment_amount`, `payment_date`, `payment_method`, `payment_status`, `guest_id`)
+VALUES
+(101, 2400.00, '2025-10-08', 'Card', 'Paid', 101),
+(102, 4500.00, '2025-10-12', 'EFT', 'Pending', 102),
+(103, 2200.00, '2025-10-10', 'Cash', 'Paid', 105),
+(104, 3600.00, '2025-10-16', 'Card', 'Paid', 103),
+(105, 4200.00, '2025-10-18', 'EFT', 'Paid', 104);
+-- ------------------------------------------------
+
+-- ================================================

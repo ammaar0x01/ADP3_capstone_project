@@ -1,8 +1,8 @@
 ## Project: 	Hotel-booking System
 - Started: 	12.03.25
-- Updated: 	16.09.25
+- Updated: 	12.10.25
 - Status: 	work-in-progress
-- Branch:	master-dev1
+- Branch:	___
 ---
 
 ### Software-class Diagram

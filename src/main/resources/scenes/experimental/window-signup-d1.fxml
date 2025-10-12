@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="mainFrame" minHeight="600.0" minWidth="360.0" prefHeight="600.0"
+            prefWidth="360.0" xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.college.controller.UserRegisterController">
+    <center>
+        <!-- Right white panel with input fields -->
+        <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: WHITE;">
+            <Label alignment="CENTER" text="Sign Up" textFill="BLACK">
+                <font>
+                    <Font size="30" />
+                </font>
+            </Label>
+
+            <!-- Input fields -->
+            <VBox alignment="CENTER" prefWidth="380.0" spacing="10.0">
+                <TextField fx:id="username" maxWidth="220" prefHeight="30" prefWidth="220" promptText="Email" style="-fx-background-radius: 3;  -fx-border-radius: 3" />
+                <PasswordField fx:id="password" maxWidth="220" prefHeight="30" prefWidth="220" promptText="Password" style="-fx-background-radius: 3;  -fx-border-radius: 3" />
+                <TextField fx:id="nameField" maxWidth="220" prefHeight="30" prefWidth="220" promptText="First Name" style="-fx-background-radius: 3;  -fx-border-radius: 3" />
+                <TextField fx:id="surnameField" maxWidth="220" prefHeight="30" prefWidth="220" promptText="Surname" style="-fx-background-radius: 3;  -fx-border-radius: 3" />
+                <TextField fx:id="ageField" maxWidth="220" prefHeight="30" prefWidth="220" promptText="Age" style="-fx-background-radius: 3;  -fx-border-radius: 3" />
+                <TextField fx:id="genderField" maxWidth="220" prefHeight="30" prefWidth="220" promptText="Gender" style="-fx-background-radius: 3;  -fx-border-radius: 3" />
+            </VBox>
+
+            <!-- ComboBox -->
+            <ComboBox fx:id="roleComboBox" prefHeight="30" prefWidth="220" value="Select Role">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="ADMIN" />
+                        <String fx:value="MANAGER" />
+                        <String fx:value="USER" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <ComboBox fx:id="otherRoleComboBox" prefHeight="30" prefWidth="220" style="-fx-background-radius: 0; -fx-border-radius: 0;" value="Select User Type" visible="false">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="FoodWorker" />
+                        <String fx:value="MaintenanceWorker" />
+                        <String fx:value="Housekeeper" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <Button onAction="#handleSignUp" prefHeight="35" prefWidth="220" style="-fx-background-color: #45b6fe; -fx-text-fill: white; -fx-background-radius: 0;" text="Sign Up">
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+            </Button>
+
+            <Hyperlink alignment="CENTER" onAction="#goToLogin" text="I already have an account" textAlignment="CENTER">
+            <VBox.margin>
+               <Insets top="10.0" />
+            </VBox.margin></Hyperlink>
+            <Button onAction="#handleExit" prefHeight="35" prefWidth="220" style="-fx-background-color: #cc000a; -fx-text-fill: white; -fx-background-radius: 0;" text="Exit">
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+            </Button>
+        </VBox>
+    </center>
+</BorderPane>

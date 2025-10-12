@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.college.controller.GuestUIController">
+   <HBox prefWidth="1000.0">
+      <children>
+              <Pane prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(rgba(34, 230, 77, 1), rgba(10, 97, 6, 1));">
+          <children>
+               <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="200.0">
+                  <children>
+            
+            
+            
+            
+            
+            
+                <!-- Buttons -->
+            <!--    <Button layoutX="40.0" layoutY="350.0" onAction="#handleDeleteGuest" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #E02850; -fx-background-radius: 15px;" stylesheets="/css/buttonStyle.css" text="Delete Guest" textFill="WHITE" />-->
+                    <ImageView>
+                        <image>
+                            <Image url="@/images/c.png" />
+                        </image>
+                        <VBox.margin>
+                           <Insets bottom="200.0" top="10.0" />
+                        </VBox.margin>
+                    </ImageView>
+            <!--        <Button layoutX="40.0" layoutY="275.0"  onAction="#handleEditGuest" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #398F6C;-fx-background-radius: 15px;" stylesheets="/css/buttonStyle.css" text="Update Guest" textFill="WHITE" />-->
+                    <Button alignment="CENTER" onAction="#handleAddGuest" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: black; -fx-background-radius: 0px;" stylesheets="/css/buttonStyle.css" text="Add Guest" textFill="WHITE">
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor></Button>
+                  </children>
+               </VBox>
+      
+      
+      
+      
+      
+      
+          </children>
+              </Pane>
+         <Pane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;">
+            <children>
+               <VBox alignment="CENTER_LEFT" prefWidth="800.0">
+                  <children>
+                     <Label alignment="CENTER" prefWidth="800.0" text="Guests" textFill="#87f018">
+                        <font>
+                           <Font size="32.0" />
+                        </font>
+                        <VBox.margin>
+                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        </VBox.margin>
+                     </Label>
+                  
+                  
+                      <!-- Table -->
+                      <TableView fx:id="guestTable" prefHeight="400.0" prefWidth="700.0">
+                          <columns>
+                              <TableColumn fx:id="colGuestID" editable="false" prefWidth="60" text="Guest Id" />
+                              <TableColumn fx:id="colName" editable="false" prefWidth="150" text="Name" />
+                              <TableColumn fx:id="colSurname" editable="false" prefWidth="150" text="Surname" />
+                              <TableColumn fx:id="colEmail" editable="false" prefWidth="150" text="Email" />
+                              <TableColumn fx:id="colContact" editable="false" prefWidth="200" text="Contact" />
+                              <TableColumn fx:id="colPayment" editable="false" prefWidth="200" text="Payment Method" />
+                          </columns>
+                        <VBox.margin>
+                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        </VBox.margin>
+                      </TableView>
+                  </children>
+                  <padding>
+                     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                  </padding>
+               </VBox>
+            </children>
+         </Pane>
+      </children>
+   </HBox>
+</AnchorPane>

@@ -26,9 +26,24 @@ public class MainFinal extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/window-sign-upFinal.fxml"));
+        // -----------------------------
+        // main scene
+//        String sceneName = "/scenes/window-sign-upFinal.fxml";
+
+
+        // other scenes
+        String sceneName = "/scenes/experimental/window-login-d1.fxml";
+//        String sceneName = "/scenes/experimental/window-signup-d1.fxml";
+//        String sceneName = "/scenes/experimental/stack.fxml";
+        // -----------------------------
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(sceneName));
         loader.setControllerFactory(springContext::getBean);
         Parent root = loader.load();
+//
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/window-sign-upFinal.fxml"));
+//        loader.setControllerFactory(springContext::getBean);
+//        Parent root = loader.load();
 
 
         Image icon = new Image(getClass().getResourceAsStream("/images/icons/bed.png"));
@@ -36,7 +51,7 @@ public class MainFinal extends Application {
 
         Scene scene = new Scene(root);
 
-        scene.getStylesheets().add(getClass().getResource("/css/buttonStyle.css").toExternalForm());
+//        scene.getStylesheets().add(getClass().getResource("/css/buttonStyle.css").toExternalForm());
 
     // remove this and it will deafult back to default
         stage.setWidth(616);
@@ -44,7 +59,8 @@ public class MainFinal extends Application {
 
 
         stage.setScene(scene);
-        stage.setTitle("HMS - Room Management");
+//        stage.setTitle("HMS - Room Management");
+        stage.setTitle("Login");
         stage.setResizable(true);
         stage.show();
 

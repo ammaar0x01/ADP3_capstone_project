@@ -3,7 +3,7 @@ package com.college.domain;
 import jakarta.persistence.*;  // Only if you're using JPA/Hibernate, otherwise remove
 
 @Entity
-@Table(name="Event")
+//@Table(name="Event")
 public class Event {
 
     @Id

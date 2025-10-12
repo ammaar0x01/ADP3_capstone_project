@@ -1,9 +1,10 @@
-package com.college.domain;
+package com.college.domain.employees;
 
+import com.college.domain.Employee;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="MaintenanceWorker")
+//@Table(name="MaintenanceWorker")
 public class MaintenanceWorker {
 
     @Id
