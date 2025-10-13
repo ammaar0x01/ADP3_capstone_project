@@ -1,7 +1,7 @@
 package com.college.repository;
 
 import com.college.domain.Employee;
-import com.college.domain.EmployeeSalary;
+import com.college.domain.employeeRelated.EmployeeSalary;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

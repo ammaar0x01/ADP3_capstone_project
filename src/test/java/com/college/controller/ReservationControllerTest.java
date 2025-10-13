@@ -1,9 +1,6 @@
 package com.college.controller;
 
-import com.college.domain.Reservation;
-import com.college.repository.ReservationRepository;
-import com.fasterxml.jackson.databind.ser.Serializers;
-import org.apache.coyote.Response;
+import com.college.domain.reservationRelated.Reservation;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
@@ -14,7 +11,6 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import static org.junit.jupiter.api.Assertions.*;
 

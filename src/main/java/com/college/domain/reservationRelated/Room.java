@@ -1,15 +1,16 @@
-/* CustomRoom.java
-Room Model class with image support
+/* Room.java
+Room Model class
 Author: joshua twigg (222153881)
 Date: 27 March 2025
 */
-package com.college.domain;
+package com.college.domain.reservationRelated;
 
+import com.college.domain.Employee;
 import jakarta.persistence.*;
 
 @Entity
-//@Table(name="CustomRoom")
-public class CustomRoom {
+//@Table(name="Room")
+public class Room {
 
     @Id
     private int roomID;
@@ -19,14 +20,18 @@ public class CustomRoom {
     private Boolean availability;
     private String features;
 
-    // New image attribute for DB storage
-    @Lob
-    private byte[] image;
+
+
+
+
 
     // FK to Reservation
     @OneToOne
     @JoinColumn(name = "reservation_id", referencedColumnName = "reservationId", nullable = true)
     private Reservation reservation;
+
+
+
 
     // FK to Employee, one to one means only one housekeeper per 1 room
     @OneToOne
@@ -41,33 +46,44 @@ public class CustomRoom {
         this.employee = employee;
     }
 
+
+
+
+
+
+
+
+
     public void setReservation(Reservation reservation) {
         this.reservation = reservation;
     }
+
+
 
     public void setAvailability(Boolean availability) {
         this.availability = availability;
     }
 
-    public CustomRoom(){}
 
-    public CustomRoom(int roomID, String roomType, float pricePerNight, Boolean availability, String features, byte[] image) {
+
+
+
+    public Room(){}
+    public Room(int roomID, String roomType, float pricePerNight, Boolean availability, String features) {
         this.roomID = roomID;
         this.roomType = roomType;
         this.pricePerNight = pricePerNight;
         this.availability = availability;
         this.features = features;
-        this.image = image;
     }
 
     /// Builder Constructor
-    private CustomRoom(CustomRoomBuilder builder){
+    private Room(RoomBuilder builder){
         this.roomID = builder.roomID;
         this.roomType = builder.roomType;
         this.pricePerNight = builder.pricePerNight;
         this.availability = builder.availability;
         this.features = builder.features;
-        this.image = builder.image;
     }
 
     public int getRoomID() {
@@ -90,8 +106,17 @@ public class CustomRoom {
         return features;
     }
 
-    public byte[] getImage() {
-        return image;
+
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "roomID='" + roomID + '\'' +
+                ", roomType='" + roomType + '\'' +
+                ", pricePerNight=" + pricePerNight +
+                ", availability=" + availability +
+                ", features='" + features + '\'' +
+                '}';
     }
 
     public void setRoomType(String roomType) {
@@ -106,83 +131,60 @@ public class CustomRoom {
         this.features = features;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
-
-    @Override
-    public String toString() {
-        return "CustomRoom{" +
-                "roomID='" + roomID + '\'' +
-                ", roomType='" + roomType + '\'' +
-                ", pricePerNight=" + pricePerNight +
-                ", availability=" + availability +
-                ", features='" + features + '\'' +
-                '}';
-    }
-
     /// Builder pattern
-    public static class CustomRoomBuilder{
+    public static class RoomBuilder{
         private int roomID;
         private String roomType;
         private float pricePerNight;
         private Boolean availability;
         private String features;
-        private byte[] image;
 
-        public CustomRoomBuilder(int roomID, String roomType, float pricePerNight, Boolean availability, String features, byte[] image) {
+        public RoomBuilder(int roomID, String roomType, float pricePerNight, Boolean availability, String features) {
             this.roomID = roomID;
             this.roomType = roomType;
             this.pricePerNight = pricePerNight;
             this.availability = availability;
             this.features = features;
-            this.image = image;
         }
 
-        public static CustomRoomBuilder copy(CustomRoom room) {
-            return new CustomRoomBuilder(
+        public static RoomBuilder copy(Room room) {
+            return new RoomBuilder(
                     room.getRoomID(),
                     room.getRoomType(),
                     room.getPricePerNight(),
                     room.getAvailability(),
-                    room.getFeatures(),
-                    room.getImage()
+                    room.getFeatures()
             );
         }
 
-        public CustomRoomBuilder setRoomID(int  roomID) {
+        public RoomBuilder setRoomID(int  roomID) {
             this.roomID = roomID;
             return this;
         }
 
-        public CustomRoomBuilder setRoomType(String roomType) {
+        public RoomBuilder setRoomType(String roomType) {
             this.roomType = roomType;
             return this;
         }
 
-        public CustomRoomBuilder setPricePerNight(float pricePerNight) {
+        public RoomBuilder  setPricePerNight(float pricePerNight) {
             this.pricePerNight = pricePerNight;
             return this;
         }
 
-        public CustomRoomBuilder setAvailability(Boolean availability) {
+        public RoomBuilder  setAvailability(Boolean availability) {
             this.availability = availability;
             return this;
         }
 
-        public CustomRoomBuilder setFeatures(String features) {
+        public RoomBuilder  setFeatures(String features) {
             this.features = features;
             return this;
         }
 
-        public CustomRoomBuilder setImage(byte[] image) {
-            this.image = image;
-            return this;
-        }
-
         // build method
-        public CustomRoom build(){
-            return new CustomRoom(this);
+        public Room build(){
+            return new Room(this);
         }
     }
 }

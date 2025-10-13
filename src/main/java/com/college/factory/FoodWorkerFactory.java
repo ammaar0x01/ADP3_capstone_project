@@ -1,6 +1,6 @@
 
 package com.college.factory;
-import com.college.domain.employees.FoodWorker;
+import com.college.domain.employeeRelated.FoodWorker;
 
 public class FoodWorkerFactory {
 

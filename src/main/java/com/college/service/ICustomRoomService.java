@@ -1,6 +1,6 @@
 package com.college.service;
 
-import com.college.domain.CustomRoom;
+import com.college.domain.reservationRelated.CustomRoom;
 
 import java.util.List;
 

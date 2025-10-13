@@ -1,6 +1,6 @@
 package com.college.controller;
 
-import com.college.domain.Reservation;
+import com.college.domain.reservationRelated.Reservation;
 import com.college.service.ReservationService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

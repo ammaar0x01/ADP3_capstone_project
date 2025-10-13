@@ -5,7 +5,7 @@
 */
 package com.college.repository;
 
-import com.college.domain.employees.Housekeeper;
+import com.college.domain.employeeRelated.Housekeeper;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

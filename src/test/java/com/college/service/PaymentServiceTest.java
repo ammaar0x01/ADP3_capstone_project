@@ -6,7 +6,7 @@
 //
 //package com.college.service;
 //
-//import com.college.domain.Payment;
+//import com.college.domain.employeeRelated.Payment;
 //import com.college.service.IPaymentService;
 //import org.junit.jupiter.api.*;
 //import org.springframework.beans.factory.annotation.Autowired;

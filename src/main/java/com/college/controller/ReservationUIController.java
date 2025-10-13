@@ -2,10 +2,9 @@ package com.college.controller;
 
 import com.college.MainFinal;
 import com.college.domain.Guest;
-import com.college.domain.Reservation;
-import com.college.domain.Room;
+import com.college.domain.reservationRelated.Reservation;
+import com.college.domain.reservationRelated.Room;
 import com.college.service.*;
-import com.college.utilities.ApplicationContextProvider;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,7 +19,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.net.URL;
@@ -197,7 +195,7 @@ public class ReservationUIController implements Initializable {
     @FXML
     private void add() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dialog_boxes/add-reservation.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/modals/add-reservation.fxml"));
             loader.setControllerFactory(MainFinal.getSpringContext()::getBean);
 
             Parent root = loader.load();
@@ -298,7 +296,7 @@ public class ReservationUIController implements Initializable {
         }
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dialog_boxes/edit-reservation.fxml")); // Use a dedicated FXML for editing
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/modals/edit-reservation.fxml")); // Use a dedicated FXML for editing
             loader.setControllerFactory(MainFinal.getSpringContext()::getBean);
 
             Parent root = loader.load();

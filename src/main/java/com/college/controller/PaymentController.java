@@ -6,7 +6,7 @@ Student Number: 221126082
 
 package com.college.controller;
 
-import com.college.domain.Payment;
+import com.college.domain.employeeRelated.Payment;
 import com.college.service.IPaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

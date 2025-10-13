@@ -1,6 +1,7 @@
-package com.college.domain;
+package com.college.domain.employeeRelated;
 
 
+import com.college.domain.Employee;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 

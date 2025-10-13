@@ -1,7 +1,7 @@
 package com.college.controller;
 
 import com.college.domain.Employee;
-import com.college.domain.employees.MaintenanceWorker;
+import com.college.domain.employeeRelated.MaintenanceWorker;
 import com.college.service.MaintenanceWorkerService;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;

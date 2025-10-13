@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import java.time.LocalTime;
 import java.time.LocalDate;
-import com.college.domain.Shift;
+import com.college.domain.employeeRelated.Shift;
 import com.college.service.ShiftService;
 
 @Controller

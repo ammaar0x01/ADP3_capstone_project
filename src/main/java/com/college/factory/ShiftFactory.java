@@ -1,8 +1,7 @@
 package com.college.factory;
 
-import com.college.domain.Shift;
+import com.college.domain.employeeRelated.Shift;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 

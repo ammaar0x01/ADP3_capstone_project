@@ -6,7 +6,7 @@
 
 package com.college.factory;
 
-import com.college.domain.employees.Housekeeper;
+import com.college.domain.employeeRelated.Housekeeper;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

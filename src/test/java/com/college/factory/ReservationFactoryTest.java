@@ -7,7 +7,7 @@ updated:    23.05.25
 
 package com.college.factory;
 
-import com.college.domain.Reservation;
+import com.college.domain.reservationRelated.Reservation;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

@@ -33,10 +33,23 @@ public class AddEditGuestDialog extends Dialog<Guest> {
 
     public AddEditGuestDialog(GuestRepository guestRepository, Guest guest) {
         this.guestService = new GuestUIServiceNaked(guestRepository);
-        setTitle(guest == null ? "Add Guest" : "Edit Guest");
+        setTitle(guest == null ? "Add Guest" : "Update Guest");
+
+
+
+        // Step 1: Add the CANCEL button type to support the [X] close button
+        getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+
+// Step 2: Get the actual button node from the dialog pane
+        Button cancelBtn = (Button) getDialogPane().lookupButton(ButtonType.CANCEL);
+
+// Step 3: Hide it (still functional when using [X])
+        cancelBtn.setVisible(false);
+        cancelBtn.setManaged(false); // Removes space it would occupy
+
 
         // Header
-        Label headerLabel = new Label(guest == null ? "Add Guest" : "Edit Guest");
+        Label headerLabel = new Label(guest == null ? "Add Guest" : "Update Guest");
         headerLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
         HBox headerBox = new HBox(headerLabel);
         headerBox.setAlignment(Pos.CENTER);

@@ -1,13 +1,11 @@
 package com.college.service;
 
-import com.college.domain.Room;
-import com.college.factory.RoomFactory;
+import com.college.domain.reservationRelated.Room;
 import com.college.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class RoomService implements IRoomService {

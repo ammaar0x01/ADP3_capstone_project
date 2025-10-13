@@ -1,11 +1,8 @@
 package com.college.controller;
 
-import com.college.domain.CustomRoom;
-import com.college.domain.Room;
+import com.college.domain.reservationRelated.CustomRoom;
 import com.college.factory.CustomRoomFactory;
-import com.college.factory.RoomFactory;
 import com.college.service.CustomRoomService;
-import com.college.service.RoomService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;

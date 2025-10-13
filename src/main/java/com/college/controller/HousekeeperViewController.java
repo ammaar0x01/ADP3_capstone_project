@@ -1,7 +1,7 @@
 package com.college.controller;
 
 import com.college.domain.Employee;
-import com.college.domain.employees.Housekeeper;
+import com.college.domain.employeeRelated.Housekeeper;
 import com.college.service.HousekeeperService;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -107,7 +107,7 @@ public class HousekeeperViewController {
 
     private void openForm(Housekeeper hk) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dialog_boxes/add-housekeeper.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/modals/add-housekeeper.fxml"));
             loader.setControllerFactory(applicationContext::getBean);
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);

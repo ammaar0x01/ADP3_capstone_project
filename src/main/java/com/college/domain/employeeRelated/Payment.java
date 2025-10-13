@@ -115,8 +115,9 @@ Author:     Talia Smuts
 Student Number: 221126082
 */
 
-package com.college.domain;
+package com.college.domain.employeeRelated;
 
+import com.college.domain.Guest;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 

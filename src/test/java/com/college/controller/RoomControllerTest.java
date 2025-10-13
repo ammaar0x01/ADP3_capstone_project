@@ -1,6 +1,6 @@
 package com.college.controller;
 
-import com.college.domain.Room;
+import com.college.domain.reservationRelated.Room;
 import com.college.factory.RoomFactory;
 import com.college.service.RoomService;
 import org.junit.jupiter.api.BeforeEach;

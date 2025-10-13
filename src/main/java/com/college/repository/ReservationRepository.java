@@ -6,7 +6,7 @@ Started:    20.05.25
 
 package com.college.repository;
 
-import com.college.domain.Reservation;
+import com.college.domain.reservationRelated.Reservation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

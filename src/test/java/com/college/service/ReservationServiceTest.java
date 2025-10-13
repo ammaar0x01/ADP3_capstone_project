@@ -1,7 +1,6 @@
 package com.college.service;
 
-import com.college.domain.Reservation;
-import com.college.repository.ReservationRepository;
+import com.college.domain.reservationRelated.Reservation;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;

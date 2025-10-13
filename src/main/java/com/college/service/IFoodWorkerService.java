@@ -1,6 +1,6 @@
 package com.college.service;
 
-import com.college.domain.employees.FoodWorker;
+import com.college.domain.employeeRelated.FoodWorker;
 
 import java.util.List;
 

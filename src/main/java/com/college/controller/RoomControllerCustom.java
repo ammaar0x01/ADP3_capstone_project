@@ -1,6 +1,6 @@
 package com.college.controller;
 
-import com.college.domain.CustomRoom;
+import com.college.domain.reservationRelated.CustomRoom;
 import com.college.service.CustomRoomService;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;

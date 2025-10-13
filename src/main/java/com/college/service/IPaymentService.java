@@ -1,6 +1,6 @@
 package com.college.service;
 
-import com.college.domain.Payment;
+import com.college.domain.employeeRelated.Payment;
 import java.util.List;
 import java.util.Optional;
 

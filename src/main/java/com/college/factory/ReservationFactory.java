@@ -6,7 +6,7 @@ Started:    12.03.25
 
 package com.college.factory;
 
-import com.college.domain.Reservation;
+import com.college.domain.reservationRelated.Reservation;
 import com.college.utilities.Helper;
 
 public class ReservationFactory {

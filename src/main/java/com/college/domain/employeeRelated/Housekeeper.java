@@ -5,7 +5,7 @@
 */
 
 
-package com.college.domain.employees;
+package com.college.domain.employeeRelated;
 
 import com.college.domain.Employee;
 import jakarta.persistence.*;

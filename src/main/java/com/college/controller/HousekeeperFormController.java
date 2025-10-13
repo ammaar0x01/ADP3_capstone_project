@@ -1,7 +1,7 @@
 package com.college.controller;
 
 import com.college.domain.Employee;
-import com.college.domain.employees.Housekeeper;
+import com.college.domain.employeeRelated.Housekeeper;
 import com.college.service.HousekeeperService;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

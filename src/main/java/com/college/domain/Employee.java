@@ -1,5 +1,8 @@
 package com.college.domain;
 
+import com.college.domain.employeeRelated.EmployeeSalary;
+import com.college.domain.employeeRelated.Shift;
+import com.college.domain.reservationRelated.Room;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;

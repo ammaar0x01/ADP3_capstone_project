@@ -1,4 +1,4 @@
-package com.college.domain;
+package com.college.domain.reservationRelated;
 
 import jakarta.persistence.*;  // Only if you're using JPA/Hibernate, otherwise remove
 

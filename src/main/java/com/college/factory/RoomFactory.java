@@ -6,7 +6,7 @@ Date: 27 March 2025
 
 package com.college.factory;
 
-import com.college.domain.Room;
+import com.college.domain.reservationRelated.Room;
 
 public class RoomFactory {
     public static Room createRoom(

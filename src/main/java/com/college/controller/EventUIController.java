@@ -1,9 +1,8 @@
 package com.college.controller;
 
 import com.college.MainFinal;
-import com.college.domain.Event;
-import com.college.domain.Reservation;
-import com.college.service.EventUIService;
+import com.college.domain.reservationRelated.Event;
+import com.college.domain.reservationRelated.Reservation;
 import com.college.service.EventUIServiceNaked;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;

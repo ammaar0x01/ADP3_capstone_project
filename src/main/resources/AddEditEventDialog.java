@@ -1,6 +1,6 @@
 package com.college.controller;
 
-import com.college.domain.Event;
+import com.college.domain.reservationRelated.Event;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;

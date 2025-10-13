@@ -1,6 +1,6 @@
 package com.college.service;
 
-import com.college.domain.employees.MaintenanceWorker;
+import com.college.domain.employeeRelated.MaintenanceWorker;
 import java.util.List;
 
 public interface IMaintenanceWorkerService extends IService<MaintenanceWorker, Integer> {

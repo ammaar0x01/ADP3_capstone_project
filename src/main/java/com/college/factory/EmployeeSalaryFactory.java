@@ -1,6 +1,6 @@
 package com.college.factory;
 
-import com.college.domain.EmployeeSalary;
+import com.college.domain.employeeRelated.EmployeeSalary;
 import java.time.LocalDate;
 
 

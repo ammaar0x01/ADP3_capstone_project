@@ -4,8 +4,9 @@ Author:     Talia Smuts
 Student Number: 221126082
 */
 
-package com.college.domain;
+package com.college.domain.employeeRelated;
 
+import com.college.domain.Employee;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -14,7 +15,6 @@ import java.time.LocalTime;
 @Entity
 //@Table(name = "shift")
 public class Shift {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int shiftId;

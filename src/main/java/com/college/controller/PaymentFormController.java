@@ -1,7 +1,7 @@
 package com.college.controller;
 
 import com.college.domain.Guest;
-import com.college.domain.Payment;
+import com.college.domain.employeeRelated.Payment;
 import com.college.service.PaymentService;
 import javafx.application.Platform;
 import javafx.fxml.FXML;

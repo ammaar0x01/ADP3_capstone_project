@@ -1,8 +1,7 @@
 package com.college.controller;
 
 import com.college.MainFinal;
-import com.college.domain.Employee;
-import com.college.domain.EmployeeSalary;
+import com.college.domain.employeeRelated.EmployeeSalary;
 import com.college.service.EmployeeSalaryService;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -108,7 +107,7 @@ public class EmployeeSalaryController {
 
     private void openForm(EmployeeSalary employeeSalary) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/Add_EmployeeSalary.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/modals/add_employeeSalary.fxml"));
 
             // Use Spring to inject the controller
             loader.setControllerFactory(MainFinal.getSpringContext()::getBean);
@@ -117,6 +116,7 @@ public class EmployeeSalaryController {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle(employeeSalary == null ? "Add Employee Salary" : "Update Employee Salary");
             stage.setScene(new Scene(loader.load()));
+            stage.setResizable(false);
 
             // Get controller directly
             AddEmployeeSalaryController controller = loader.getController();

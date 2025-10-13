@@ -1,7 +1,7 @@
 package com.college.service;
 
 import com.college.domain.Employee;
-import com.college.domain.EmployeeSalary;
+import com.college.domain.employeeRelated.EmployeeSalary;
 import com.college.repository.EmployeeSalaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

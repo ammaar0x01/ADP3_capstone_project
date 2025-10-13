@@ -1,6 +1,6 @@
 package com.college.controller;
 
-import com.college.domain.Event;
+import com.college.domain.reservationRelated.Event;
 import com.college.service.EventService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

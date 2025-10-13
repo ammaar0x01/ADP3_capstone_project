@@ -5,7 +5,7 @@
 */
 package com.college.factory;
 
-import com.college.domain.employees.Housekeeper;
+import com.college.domain.employeeRelated.Housekeeper;
 
 public class HousekeeperFactory {
     public static Housekeeper createHousekeeper(

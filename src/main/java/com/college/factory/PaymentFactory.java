@@ -6,7 +6,7 @@ Student Number:    221126082
 
 package com.college.factory;
 
-import com.college.domain.Payment;
+import com.college.domain.employeeRelated.Payment;
 
 import java.time.LocalDate;
 

@@ -7,7 +7,7 @@ package com.college.factory;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import com.college.domain.Room;
+import com.college.domain.reservationRelated.Room;
 
 import static org.junit.jupiter.api.Assertions.*;
 

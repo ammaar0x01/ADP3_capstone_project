@@ -7,7 +7,7 @@ package com.college.factory;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.college.domain.Payment;
+import com.college.domain.employeeRelated.Payment;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

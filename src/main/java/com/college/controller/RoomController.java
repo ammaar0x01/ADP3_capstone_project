@@ -1,14 +1,10 @@
 package com.college.controller;
 
-import com.college.domain.Room;
+import com.college.domain.reservationRelated.Room;
 import com.college.service.RoomService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -21,7 +17,6 @@ import javafx.scene.layout.VBox;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.Comparator;
 import java.util.List;

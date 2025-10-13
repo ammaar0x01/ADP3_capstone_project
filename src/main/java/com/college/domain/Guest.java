@@ -7,6 +7,7 @@ Date: 26 March 2025
 
 package com.college.domain;
 
+import com.college.domain.reservationRelated.Reservation;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;

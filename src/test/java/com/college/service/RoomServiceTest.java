@@ -1,9 +1,9 @@
 package com.college.service;
 
 import com.college.Main;
-import com.college.domain.employees.Housekeeper;
-import com.college.domain.Reservation;
-import com.college.domain.Room;
+import com.college.domain.employeeRelated.Housekeeper;
+import com.college.domain.reservationRelated.Reservation;
+import com.college.domain.reservationRelated.Room;
 import com.college.factory.HousekeeperFactory;
 import com.college.factory.RoomFactory;
 import com.college.repository.RoomRepository;

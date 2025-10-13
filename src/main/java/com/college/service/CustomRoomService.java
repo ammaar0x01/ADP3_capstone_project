@@ -1,7 +1,6 @@
 package com.college.service;
 
-import com.college.domain.CustomRoom;
-import com.college.factory.CustomRoomFactory;
+import com.college.domain.reservationRelated.CustomRoom;
 import com.college.repository.CustomRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

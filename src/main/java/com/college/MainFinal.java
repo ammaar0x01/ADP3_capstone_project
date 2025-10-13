@@ -46,7 +46,8 @@ public class MainFinal extends Application {
 //        Parent root = loader.load();
 
 
-        Image icon = new Image(getClass().getResourceAsStream("/images/icons/bed.png"));
+        Image icon = new Image(getClass().getResourceAsStream("/images/icons/i.png"));
+//        Image icon = new Image(getClass().getResourceAsStream("/images/icons/bedOld.png"));
         stage.getIcons().add(icon);
 
         Scene scene = new Scene(root);
@@ -60,7 +61,8 @@ public class MainFinal extends Application {
 
         stage.setScene(scene);
 //        stage.setTitle("HMS - Room Management");
-        stage.setTitle("Login");
+//        stage.setTitle("Login");
+        stage.setTitle("Hotel Management System");
         stage.setResizable(true);
         stage.show();
 

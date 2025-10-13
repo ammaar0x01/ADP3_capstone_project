@@ -1,7 +1,7 @@
 package com.college.repository;
 
-import com.college.domain.Reservation;
-import com.college.domain.CustomRoom;
+import com.college.domain.reservationRelated.Reservation;
+import com.college.domain.reservationRelated.CustomRoom;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

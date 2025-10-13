@@ -4,8 +4,9 @@ Author:     Ammaar
 Started:    12.03.25
 */
 
-package com.college.domain;
+package com.college.domain.reservationRelated;
 
+import com.college.domain.Guest;
 import jakarta.persistence.*;
 
 @Entity

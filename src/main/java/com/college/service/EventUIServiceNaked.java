@@ -1,6 +1,6 @@
 package com.college.service;
 
-import com.college.domain.Event;
+import com.college.domain.reservationRelated.Event;
 import com.college.repository.EventRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,7 +1,7 @@
 package com.college.controller;
 
 import com.college.domain.Employee;
-import com.college.domain.EmployeeSalary;
+import com.college.domain.employeeRelated.EmployeeSalary;
 import com.college.service.EmployeeSalaryService;
 import com.college.service.EmployeeService;
 import javafx.collections.FXCollections;
@@ -32,6 +32,12 @@ public class AddEmployeeSalaryController {
 
     @Autowired
     private EmployeeService empService;
+
+
+    // newer //
+    @FXML
+    private Label headerLabel;
+
 
     @FXML
     public void initialize() {
@@ -67,14 +73,32 @@ public class AddEmployeeSalaryController {
         }
     }
 
+//    public void setEmployeeSalary(EmployeeSalary employeeSalary) {
+//        this.employeeSalary = employeeSalary;
+//        if (employeeSalary != null) {
+//            txtAmount.setText(String.valueOf(employeeSalary.getAmount()));
+//            choiceMethod.setValue(employeeSalary.getMethod());
+//            datePicker.setValue(employeeSalary.getDate());
+//        }
+//    }
+
     public void setEmployeeSalary(EmployeeSalary employeeSalary) {
-        this.employeeSalary = employeeSalary;
-        if (employeeSalary != null) {
+        if (employeeSalary == null) {
+            headerLabel.setText("Add Employee Salary");
+        } else {
+            headerLabel.setText("Update Employee Salary");
+
             txtAmount.setText(String.valueOf(employeeSalary.getAmount()));
             choiceMethod.setValue(employeeSalary.getMethod());
             datePicker.setValue(employeeSalary.getDate());
+
+//            amountField.setText(String.valueOf(employeeSalary.getAmount()));
+//            datePicker.setValue(employeeSalary.getDate());
+//            methodComboBox.setValue(employeeSalary.getMethod());
+            // Add any other fields accordingly
         }
     }
+
 
     @FXML
     private void handleSave() {

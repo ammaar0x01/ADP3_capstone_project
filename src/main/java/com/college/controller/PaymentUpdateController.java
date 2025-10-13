@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.time.LocalDate;
-import com.college.domain.Payment;
+import com.college.domain.employeeRelated.Payment;
 import com.college.service.PaymentService;
 
 @Controller

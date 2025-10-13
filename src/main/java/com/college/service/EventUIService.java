@@ -1,6 +1,6 @@
 package com.college.service;
 
-import com.college.domain.Event;
+import com.college.domain.reservationRelated.Event;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

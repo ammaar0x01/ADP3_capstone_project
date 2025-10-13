@@ -1,7 +1,7 @@
 package com.college.service;
 
 import com.college.domain.Guest;
-import com.college.domain.Payment;
+import com.college.domain.employeeRelated.Payment;
 import com.college.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

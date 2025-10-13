@@ -1,6 +1,6 @@
 package com.college.service;
 
-import com.college.domain.Shift;
+import com.college.domain.employeeRelated.Shift;
 import java.util.List;
 import java.util.Optional;
 

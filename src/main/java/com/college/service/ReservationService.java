@@ -6,8 +6,8 @@ Started:    20.05.25
 
 package com.college.service;
 
-import com.college.domain.Reservation;
-import com.college.domain.Room;
+import com.college.domain.reservationRelated.Reservation;
+import com.college.domain.reservationRelated.Room;
 import com.college.repository.ReservationRepository;
 import com.college.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,11 +1,9 @@
 package com.college.service;
 
-import com.college.domain.Shift;
+import com.college.domain.employeeRelated.Shift;
 import com.college.repository.ShiftRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.List;
-import java.util.Optional;
 
 
 @Service

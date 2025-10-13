@@ -1,6 +1,6 @@
 package com.college.controller;
 
-import com.college.domain.employees.MaintenanceWorker;
+import com.college.domain.employeeRelated.MaintenanceWorker;
 import com.college.service.MaintenanceWorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

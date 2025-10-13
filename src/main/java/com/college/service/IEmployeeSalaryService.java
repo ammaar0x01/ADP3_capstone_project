@@ -1,6 +1,6 @@
 package com.college.service;
 
-import com.college.domain.EmployeeSalary;
+import com.college.domain.employeeRelated.EmployeeSalary;
 import java.util.List;
 import java.util.Optional;
 

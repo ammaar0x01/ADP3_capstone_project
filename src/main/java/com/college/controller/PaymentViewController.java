@@ -1,7 +1,7 @@
 package com.college.controller;
 
 import com.college.domain.Guest;
-import com.college.domain.Payment;
+import com.college.domain.employeeRelated.Payment;
 import com.college.repository.PaymentRepository;
 import com.college.service.PaymentService;
 import javafx.application.Platform;
@@ -22,7 +22,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.time.LocalDate;
@@ -154,7 +153,7 @@ public class PaymentViewController {
 
     private void openForm(Payment payment) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/dialog_boxes/add-payment.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/modals/add-payment.fxml"));
 
             // This is the key fix: Use Spring to create the controller
             loader.setControllerFactory(applicationContext::getBean);
