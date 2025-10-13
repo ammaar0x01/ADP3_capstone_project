@@ -1,93 +1,97 @@
-//package com.college.controller;
-//
-//import com.college.domain.User;
-//import com.college.service.UserService;
-//import javafx.event.ActionEvent;
-//import javafx.fxml.FXML;
-//import javafx.fxml.FXMLLoader;
-//import javafx.scene.Node;
-//import javafx.scene.Parent;
-//import javafx.scene.Scene;
-//import javafx.scene.control.PasswordField;
-//import javafx.scene.control.TextField;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.authentication.AuthenticationManager;
-//import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-//import org.springframework.stereotype.Component;
-//
-//import java.io.IOException;
-//
-//@Component
-//public class UserLoginController {
-//
-//    @FXML
-//    private TextField username;
-//
-//    @FXML
-//    private PasswordField password;
-//
-//    @Autowired
-//    private UserService userService;
-//
-//    public void setUserService(UserService userService) {
-//        this.userService = userService;
-//    }
-//
-//    // signup button click
-//    @FXML
-//    private void handleLogin(ActionEvent event) {
-//
-//        String user = username.getText();
-//        String pass = password.getText();
-//
-//        if(user.isEmpty() || pass.isEmpty()){
-//            System.out.println("Username and password are required!");
-//            return;
-//        }
-//
-//        try {
-//            User login = userService.login(user, pass);
-//
-//            if(login!=null){
-//                System.out.println("change page");
-//
-//                //go to dashboard if credentials were correct. user returned is not null
-//                //            changePage(event);
-//
-//                //do we need to implement auth provider, filterChain???
-//                //Auth uses tokens. pass and email in a token. and it can compare roles too.
-//            }
-//
-//
-//        } catch (Exception e){
-//            System.out.println("Error: " + e.getMessage());
-//        }
-//    }
-//
-//
-//    // signup button click, Manual login system
-//    @FXML
-//    private void handleLoginAuth(ActionEvent event) {
-//
-//        String user = username.getText();
-//        String pass = password.getText();
-//
-//        if(user.isEmpty() || pass.isEmpty()){
-//            System.out.println("Username and password are required!");
-//            return;
-//        }
-//
-//        try {
-//
-//            loginUser(user, pass);
-//
-//
-//        } catch (Exception e){
-//            System.out.println("Error: " + e.getMessage());
-//        }
-//    }
-//
-//
+package com.college.controller;
+
+import com.college.MainFinal;
+import com.college.config.DashboardAuthoriseHandler;
+import com.college.domain.User;
+import com.college.service.UserService;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+
+@Component
+public class UserLoginController {
+
+    @FXML
+    private Button loginButton;
+
+    @FXML
+    private TextField username;
+
+    @FXML
+    private PasswordField password;
+
+    @Autowired
+    private UserService userService;
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
+
+
+
+    // signIn Button click, Sec Auth
+    @FXML
+    private void handleLoginAuth(ActionEvent event) {
+
+        String user = username.getText();
+        String pass = password.getText();
+
+        if(user.isEmpty() || pass.isEmpty()){
+            System.out.println("Username and password are required!");
+            return;
+        }
+
+        try {
+
+            loginUser(user, pass);
+
+
+        } catch (Exception e){
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private DashboardAuthoriseHandler dashboardHandler;
+
+    public void loginUser(String email, String password) {
+        UsernamePasswordAuthenticationToken authToken =
+                new UsernamePasswordAuthenticationToken(email, password);
+
+        // Authenticate user
+        Authentication auth = authenticationManager.authenticate(authToken);
+
+        // Redirect to proper dashboard based on role
+        Stage stage = (Stage) loginButton.getScene().getWindow();
+        dashboardHandler.redirectToDashboard(stage, auth);
+    }
+
+
+
+
+
+
+
 //    //Auth Manager Method
 //    @Autowired
 //    private AuthenticationManager authenticationManager;
@@ -99,31 +103,103 @@
 //
 //        // THIS takes credentials from form, sends to securityConfig method Authmanager that uses this tokens email
 //        // then compares the hash to the token passed here.
-//        authenticationManager.authenticate(authToken);
+//        Authentication auth = authenticationManager.authenticate(authToken);
 //
 //        // If no exception, login succeeded
 //        System.out.println("User Authenticated Successfully with: " + email);
 //        System.out.println("logging in");
+//        changePage(auth);
+//
+//
 //    }
-//
-//
+
+
+
+
+
+
+
+    //just changes page
+    //THIS IS NO LONGER USED OR CALLED
+
+
+
+
 //    @FXML
-//    private void changePage(ActionEvent event) {
+//    private void changePage(Authentication auth) {
 //        try {
 //
-//            System.out.println(" load new page");
+//            // Determine which FXML to load
+//            String role = auth.getAuthorities().stream()
+//                    .map(GrantedAuthority::getAuthority)
+//                    .findFirst()
+//                    .orElse("");
 //
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/window-dashboard.fxml"));
-//            Parent newPage = loader.load();
+//            System.out.println("Role detected: '" + role + "'");
 //
-//            UserLoginController controller = loader.getController();
-////            controller.setUserService(this.userService);
+//            String fxmlToLoad;
 //
-//            Scene currentScene = ((Node) event.getSource()).getScene();
-//            currentScene.setRoot(newPage);
+//            //THIS IS NO LONGER USED OR CALLED, this change page method is deprecated
+//            if ("ADMIN".equals(role)) {
+//                fxmlToLoad = "/scenes/dashboardAdmin.fxml";
+//            } else if ("MANAGER".equals(role)) {
+//                fxmlToLoad = "/scenes/dashboard.fxml";
+//            } else if ("USER".equals(role)) {  //
+//                fxmlToLoad = "/scenes/dashboardUser.fxml";
+//            } else {
+//                fxmlToLoad = "/scenes/window-sign-upFinal.fxml"; // fallback
+//                System.out.println(fxmlToLoad);
+//            }
+//
+//
+//            System.out.println("Loading FXML: " + fxmlToLoad);
+//
+//            System.out.println("Load dashboard page: " + fxmlToLoad);
+//
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlToLoad));
+//            loader.setControllerFactory(MainFinal.getSpringContext()::getBean);
+//            Parent dashboardRoot = loader.load();
+//
+//            DashboardController controller = loader.getController();
+//
+//            Stage stage = (Stage) loginButton.getScene().getWindow();
+//
+//            // Create a new Scene or reuse current scene
+//            Scene currentScene = loginButton.getScene();
+//
+//            // Apply CSS only to dashboard
+//            currentScene.getStylesheets().clear(); // optional: remove any old styles
+//            currentScene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
+//
+//            // Swap root to dashboard
+//            currentScene.setRoot(dashboardRoot);
+//
+//            stage.setWidth(1100);
+//            stage.setHeight(600);
 //
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
 //    }
-//}
+
+
+    @FXML
+    private void handleGoBack(ActionEvent event) throws IOException {
+        // Load the register window FXML
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/window-sign-upFinal.fxml"));
+        loader.setControllerFactory(com.college.MainFinal.getSpringContext()::getBean); // spring context aware
+        Parent registerRoot = loader.load();
+
+        // Get current stage
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        // Replace scene with the register window
+        Scene scene = new Scene(registerRoot);
+        scene.getStylesheets().add(getClass().getResource("/css/buttonStyle.css").toExternalForm()); // keep styling
+
+        stage.setScene(scene);
+        stage.setTitle("HMS - User Login");
+        stage.show();
+    }
+
+}

@@ -1,9 +1,11 @@
 package com.college.service;
 
+import com.college.domain.Guest;
 import com.college.domain.Payment;
 import com.college.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,6 +38,22 @@ public class PaymentService implements IPaymentService {
     @Override
     public Optional<Payment> findById(Integer id) {
         return paymentRepository.findById(id);
+    }
+
+
+
+    public List<Payment> getPaymentsByGuest(Guest guest) {
+        return paymentRepository.findByGuest(guest);
+    }
+
+
+    @Transactional
+    public void deleteByGuestId(int guestId) {
+        paymentRepository.deleteByGuestId(guestId);
+    }
+
+    public Double getTotalAmount() {
+        return paymentRepository.getTotalAmount();
     }
 
     @Override

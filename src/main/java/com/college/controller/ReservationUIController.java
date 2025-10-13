@@ -1,8 +1,12 @@
 package com.college.controller;
 
+import com.college.MainFinal;
+import com.college.domain.Guest;
 import com.college.domain.Reservation;
-import com.college.service.ReservationService;
+import com.college.domain.Room;
+import com.college.service.*;
 import com.college.utilities.ApplicationContextProvider;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,6 +20,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,8 +33,13 @@ public class ReservationUIController implements Initializable {
 
     @FXML private TableView<Reservation> reservationTable;
     @FXML private TableColumn<Reservation, Integer> reservationIdColumn;
+    @FXML private TableColumn<Reservation, Integer> guestIdColumn;
+
     @FXML private TableColumn<Reservation, String> startTimeColumn;
     @FXML private TableColumn<Reservation, String> endTimeColumn;
+
+    @FXML private TableColumn<Reservation, Integer> roomIdColumn;
+    @FXML private TableColumn<Reservation, Integer> employeeIdColumn;
 
     @FXML private Button btnAdd;
     @FXML private Button btnEdit;
@@ -41,19 +51,89 @@ public class ReservationUIController implements Initializable {
     @FXML private TextField searchbar;
     @FXML private Label labelFeedback;
 
+
+
+    private Stage stage;
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+
+    @Autowired
+    PaymentService paymentService;
+
+    @Autowired
+    GuestService guestService;
+
+    @Autowired
+    EventUIServiceNaked eventService;
+
+    @Autowired
+    RoomService roomService;
+
+
     private final ReservationService reservationService;
     private ObservableList<Reservation> reservationList;
+
+
+
+
+
+
 
     @Autowired
     public ReservationUIController(ReservationService reservationService) {
         this.reservationService = reservationService;
     }
 
+
+    //FK GUEST SET HERE
+    private Guest guest; // field to hold the actual Guest object
+
+    public void setGuest(Guest guest) {
+        this.guest = guest;
+    }
+
+
+
+
+
+
+
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         reservationIdColumn.setCellValueFactory(new PropertyValueFactory<>("reservationId"));
+
+        reservationIdColumn.setCellValueFactory(new PropertyValueFactory<>("reservationId"));
+        guestIdColumn.setCellValueFactory(cellData ->
+                new SimpleIntegerProperty(cellData.getValue().getGuest().getGuestId()).asObject()
+        );
+
         startTimeColumn.setCellValueFactory(new PropertyValueFactory<>("reservationDateTimeStart"));
         endTimeColumn.setCellValueFactory(new PropertyValueFactory<>("reservationDateTimeEnd"));
+
+
+// Room ID column
+        roomIdColumn.setCellValueFactory(cellData -> {
+            Reservation r = cellData.getValue();
+            Room room = r.getRoom();
+            return new SimpleIntegerProperty(
+                    room != null ? room.getRoomID() : 0
+            ).asObject();
+        });
+
+// Employee ID column
+        employeeIdColumn.setCellValueFactory(cellData -> {
+            Reservation r = cellData.getValue();
+            Room room = r.getRoom();
+            int empId = (room != null && room.getEmployee() != null) ? room.getEmployee().getEmployeeId() : 0;
+            return new SimpleIntegerProperty(empId).asObject();
+        });
+
+
 
         reservationList = FXCollections.observableArrayList();
         reservationTable.setItems(reservationList);
@@ -64,7 +144,7 @@ public class ReservationUIController implements Initializable {
     @FXML
     private void loadReservationData() {
         labelFeedback.setText("");
-        List<Reservation> reservations = reservationService.getAll();
+        List<Reservation> reservations = reservationService.getAllWithRoomAndEmployee();
         reservationList.clear();
         reservationList.addAll(reservations);
         System.out.println("Data loaded into TableView. Total items: " + reservationList.size());
@@ -107,29 +187,49 @@ public class ReservationUIController implements Initializable {
         loadReservationData();
     }
 
+
+
+
+
+
+
+
     @FXML
     private void add() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/dialog_boxes/add-reservation.fxml"));
-            loader.setControllerFactory(ApplicationContextProvider.getApplicationContext()::getBean);
+            loader.setControllerFactory(MainFinal.getSpringContext()::getBean);
 
             Parent root = loader.load();
             AddReservationController addController = loader.getController();
+
+            addController.setGuest(this.guest); // pass guest to modal
 
             Stage modalStage = new Stage();
             modalStage.initModality(Modality.APPLICATION_MODAL);
             modalStage.setTitle("Add New Reservation");
             modalStage.setScene(new Scene(root));
-            addController.setStage(modalStage);
+            addController.setStage(modalStage); // set modal stage
+
+
+            if (stage != null) {
+                stage.close();
+            }
 
             modalStage.showAndWait();
-            loadReservationData();
 
         } catch (IOException e) {
             e.printStackTrace();
             labelFeedback.setText("Error opening Add Reservation form.");
         }
     }
+
+
+
+
+
+
+
 
     @FXML
     private void delete() {
@@ -148,9 +248,29 @@ public class ReservationUIController implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
+                //get fk from parent and child methods
+                int guestId = selectedReservation.getGuest().getGuestID();
+
+                if (selectedReservation.getEvent() != null) {
+                    eventService.deleteByReservationId(selectedReservation.getReservationId());
+                }
+
+                // Nullify employee FK in the room linked to this reservation
+                if (selectedReservation.getRoom() != null) {
+                    selectedReservation.getRoom().setEmployee(null);
+                    roomService.update(selectedReservation.getRoom()); // persist change
+                }
+
                 boolean deleted = reservationService.delete(selectedReservation.getReservationId());
+                //delete from other tables at the same time too
+                paymentService.deleteByGuestId(guestId);
+
+
+
                 if (deleted) {
                     labelFeedback.setText("Reservation ID: " + selectedReservation.getReservationId() + " deleted successfully.");
+                    //delete from other tables at the same time too
+                    guestService.delete(guestId);
                     loadReservationData();
                 } else {
                     labelFeedback.setText("Failed to delete reservation ID: " + selectedReservation.getReservationId() + ".");
@@ -162,6 +282,10 @@ public class ReservationUIController implements Initializable {
         } else {
             labelFeedback.setText("Deletion cancelled.");
         }
+
+
+
+
     }
 
     @FXML
@@ -175,7 +299,7 @@ public class ReservationUIController implements Initializable {
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/dialog_boxes/edit-reservation.fxml")); // Use a dedicated FXML for editing
-            loader.setControllerFactory(ApplicationContextProvider.getApplicationContext()::getBean);
+            loader.setControllerFactory(MainFinal.getSpringContext()::getBean);
 
             Parent root = loader.load();
             EditReservationController editController = loader.getController();

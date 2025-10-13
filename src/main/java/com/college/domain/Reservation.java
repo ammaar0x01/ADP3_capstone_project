@@ -18,6 +18,52 @@ public class Reservation {
     private String reservationDateTimeEnd;
     // -----------------------------------
 
+
+
+
+    // FK Relationship to Guest
+    @ManyToOne
+    @JoinColumn(name = "guest_id", nullable = false)
+    private Guest guest;
+
+    public Guest getGuest() {
+        return guest;
+    }
+
+    public void setGuest(Guest guest) {
+        this.guest = guest;
+    }
+
+
+    //FK Relationship to Room
+    @OneToOne(mappedBy = "reservation", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    private Room room;
+
+    //FK Relationship to event
+    @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL)
+    private Event event;
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public int getReservationId() {
+        return reservationId;
+    }
+
+    public void setReservationId(Integer reservationId) {
+        this.reservationId = reservationId;
+    }
+
+
+    public Room getRoom() {
+        return room;
+    }
+
     public Reservation(){}
     public Reservation(String reservationDateTimeStart, String reservationDateTimeEnd) {
         this.reservationDateTimeStart = reservationDateTimeStart;
@@ -31,9 +77,7 @@ public class Reservation {
     // -----------------------------------
 
     // getters
-    public int getReservationId() {
-        return reservationId;
-    }
+
 
     public String getReservationDateTimeStart() {
         return reservationDateTimeStart;

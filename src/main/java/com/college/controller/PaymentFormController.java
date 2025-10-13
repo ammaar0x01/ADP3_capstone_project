@@ -1,7 +1,9 @@
 package com.college.controller;
 
+import com.college.domain.Guest;
 import com.college.domain.Payment;
 import com.college.service.PaymentService;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -23,12 +25,38 @@ public class PaymentFormController {
 
     private Payment payment;
 
+
+
+    //FK TO GUEST
+    private Guest guest;
+
+    public void setGuest(Guest guest) {
+        this.guest = guest;
+    }
+
+
+
+    private double price;
+
+    @FXML
+    private Label lblPrice; // bind to FXML label
+
+    public void setPrice(double price) {
+        this.price = price;
+        System.out.println("paymentFormController price: " + price);
+        // Update label and text field
+        Platform.runLater(() -> {
+            lblPrice.setText("Price from database: " + price);
+            txtAmount.setText(String.valueOf(price));
+        });
+    }
+
     @FXML
     public void initialize() {
-        choiceMethod.setValue("Select an option");
+        choiceMethod.setValue("Select Payment Method");
         choiceMethod.getItems().addAll("Cash", "Card", "EFT");
 
-        choiceStatus.setValue("Select an option");
+        choiceStatus.setValue("Select Payment Status");
         choiceStatus.getItems().addAll("Pending", "Completed", "Failed");
         datePicker.setValue(LocalDate.now());
 
@@ -82,8 +110,13 @@ public class PaymentFormController {
                         .setPaymentDate(datePicker.getValue())
                         .build();
 
+                newPayment.setGuest(guest);
+
                 paymentService.create(newPayment);
+
                 showAlert(Alert.AlertType.INFORMATION, "Payment created successfully!");
+
+
             } else {
                 // Update existing payment
                 payment.setPaymentAmount(amount);
@@ -111,7 +144,13 @@ public class PaymentFormController {
     }
 
     private void closeWindow() {
-        ((Stage) txtAmount.getScene().getWindow()).close();
+        Stage modalStage = (Stage) txtAmount.getScene().getWindow();  // the modal
+        Stage parentStage = (Stage) modalStage.getOwner();            // PaymentView window
+
+        modalStage.close();  // close the modal
+        if (parentStage != null) {
+            parentStage.close();  // close PaymentView
+        }
     }
 
     private void showAlert(String message) {

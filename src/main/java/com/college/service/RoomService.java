@@ -1,6 +1,7 @@
 package com.college.service;
 
 import com.college.domain.Room;
+import com.college.factory.RoomFactory;
 import com.college.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class RoomService implements IRoomService {
 
     @Override
     public List<Room> getAll() {
-        return List.of();
+        return roomRepository.findAll();
     }
 
     @Override
@@ -43,4 +44,6 @@ public class RoomService implements IRoomService {
         roomRepository.deleteById(integer);
         return true;
     }
+
+
 }

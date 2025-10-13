@@ -12,7 +12,6 @@ import jakarta.persistence.*;
 public class Room {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int roomID;
 
     private String roomType;
@@ -20,31 +19,53 @@ public class Room {
     private Boolean availability;
     private String features;
 
+
+
+
+
+
     // FK to Reservation
-//    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-//    @JoinColumn(name = "reservation_id", referencedColumnName = "reservationId")
-//    private Reservation reservation;
+    @OneToOne
+    @JoinColumn(name = "reservation_id", referencedColumnName = "reservationId", nullable = true)
+    private Reservation reservation;
 
-    // FK to Housekeeper
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "housekeeper_id", referencedColumnName = "housekeeperId")
-    private Housekeeper housekeeper;
 
-//    public Reservation getReservation() {
-//        return reservation;
-//    }
 
-//    public void setReservation(Reservation reservation) {
-//        this.reservation = reservation;
-//    }
 
-    public Housekeeper getHousekeeper() {
-        return housekeeper;
+    // FK to Employee, one to one means only one housekeeper per 1 room
+    @OneToOne
+    @JoinColumn(name = "employee_id", referencedColumnName = "employeeId", nullable = true)
+    private Employee employee;
+
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setHousekeeper(Housekeeper housekeeper) {
-        this.housekeeper = housekeeper;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
+
+
+
+
+
+
+
+
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
+    }
+
+
+
+    public void setAvailability(Boolean availability) {
+        this.availability = availability;
+    }
+
+
+
+
 
     public Room(){}
     public Room(int roomID, String roomType, float pricePerNight, Boolean availability, String features) {
@@ -84,6 +105,8 @@ public class Room {
         return features;
     }
 
+
+
     @Override
     public String toString() {
         return "Room{" +
@@ -95,7 +118,17 @@ public class Room {
                 '}';
     }
 
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
 
+    public void setPricePerNight(float pricePerNight) {
+        this.pricePerNight = pricePerNight;
+    }
+
+    public void setFeatures(String features) {
+        this.features = features;
+    }
 
     /// Builder pattern
     public static class RoomBuilder{

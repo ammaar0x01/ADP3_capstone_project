@@ -35,6 +35,30 @@ public void setEmployee(Employee employee) { this.employee = employee; }
 
 
 
+
+
+    //FK to Employee, one to one will work if we only have day or night shift. not many
+    @OneToOne
+    @JoinColumn(name = "employee_id", unique = true) // foreign key to Employee
+    private Employee employee;
+
+
+
+
+
+
+
+
+
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
     public Shift() {}
 
     // Full constructor

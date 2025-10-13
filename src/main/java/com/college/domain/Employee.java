@@ -1,129 +1,138 @@
 package com.college.domain;
 
 import jakarta.persistence.*;
-import jakarta.persistence.Table;
-//import lombok.Getter;
-//import lombok.Setter;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
-//@Getter
-//@Setter
 @Entity
 public class Employee {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int employeeId;
 
-    private String firstNames;
-    private String lastName;
-//    private LocalTime startDate;
-//    private LocalDateTime registerDateTime;
-    private String formattedDateTime;
+    private String jobType;
+    private LocalDate startDate;
 
 
-    private String gender;
-    private int age;
+    //FK TO ROOM
+    @OneToOne(mappedBy = "employee")
+    private Room room;
 
-    public Employee(){}
-    public Employee(String empFirstName, String empLastName, String dateTime) {
-        this.firstNames = empFirstName;
-        this.lastName = empLastName;
-//        this.registerDateTime = dateTime;
-        this.formattedDateTime = dateTime;
+    public Room getRoom() {
+        return room;
     }
 
-//    public Employee(String empFirstName, String empLastName) {
-//        this.firstNames = empFirstName;
-//        this.lastName = empLastName;
-//    }
-
-//    public Employee(
-//            String firstNames,
-//            String lastName,
-//            String gender,
-//            int age,
-//            LocalTime empStartDate
-//    ) {
-//        this.firstNames = firstNames;
-//        this.lastName = lastName;
-//        this.gender = gender;
-//        this.age = age;
-//        this.empStartDate = empStartDate;
-//    }
-    // -------------------------------------
-
-    // getters
-
-    public String getFormattedDateTime() {
-        return formattedDateTime;
-    }
-
-    public void setFormattedDateTime(String formattedDateTime) {
-        this.formattedDateTime = formattedDateTime;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getFirstNames() {
-        return firstNames;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public int getAge() {
-        return age;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
 
-//    public LocalDateTime getRegisterDateTime() {
-//        return registerDateTime;
-//    }
-
-//    public void setRegisterDateTime(LocalDateTime registerDateTime) {
-//        this.registerDateTime = registerDateTime;
-//    }
 
 
-    // setters
 
-    public void setId(int id) {
-        this.id = id;
+
+
+    //FK TO USERS TABLE
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "userId") // FK column
+    private User user;
+
+    //FK Parent to shift
+    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Shift shift;
+
+
+    // FK Parent to EmployeeSalary
+    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+    private EmployeeSalary salary;
+
+    public EmployeeSalary getSalary() {
+        return salary;
     }
 
-    public void setFirstNames(String firstNames) {
-        this.firstNames = firstNames;
+    public void setSalary(EmployeeSalary salary) {
+        this.salary = salary;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+
+
+    public Shift getShift() {
+        return shift;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setShift(Shift shift) {
+        this.shift = shift;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+
+
+
+
+
+    public User getUser() {
+        return user;
     }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+
+
+    public Employee() {
+
+    }
+
+
+
+    //HERE WE SET FK when we make an employee object using its constructor and not factory.
+    public Employee(String jobType, LocalDate startDate, User user) {
+        this.jobType = jobType;
+        this.startDate = startDate;
+        this.user = user;
+    }
+
+
+
+
+
+    // Getters
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public String getJobType() {
+        return jobType;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+
+
+    // Setters
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public void setJobType(String jobType) {
+        this.jobType = jobType;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+
 
     @Override
     public String toString() {
         return "Employee{" +
-                "formattedDateTime=" + formattedDateTime +
-                ", lastName='" + lastName + '\'' +
-                ", firstNames='" + firstNames + '\'' +
-                ", id=" + id +
+                "employeeId=" + employeeId +
+                ", jobType='" + jobType + '\'' +
+                ", startDate=" + startDate +
                 '}';
     }
 }

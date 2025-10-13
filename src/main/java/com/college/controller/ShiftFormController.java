@@ -2,9 +2,8 @@ package com.college.controller;
 
 import com.college.domain.Employee;
 import com.college.domain.Shift;
-import com.college.repository.EmployeeRepository;
+import com.college.service.EmployeeService;
 import com.college.service.ShiftService;
-
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -14,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Component
 public class ShiftFormController {
@@ -30,7 +30,31 @@ public class ShiftFormController {
     private ShiftService shiftService;
     private EmployeeRepository employeeRepository;
 
+    @Autowired
+    EmployeeService empService;
+
     private Shift shift;
+
+
+    //WHICH EMPLOYEE TO ADD SHIFT TO Combo Box
+    @FXML
+    private ComboBox<Employee> employeeComboBox;
+
+
+
+    //will store FK object from employee
+    private Employee employee;  // hold the FK reference
+
+    //FK setter from employee
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+//        System.out.println("FK received in FoodWorkerController: " + employee.getId());
+    }
+
+
+
+
+
 
     @FXML
     public void initialize() {
@@ -47,6 +71,33 @@ public class ShiftFormController {
         // Debug: confirm controller loaded
         System.out.println("ShiftFormController initialized");
         System.out.println("ShiftService injected: " + (shiftService != null));
+
+        try {
+            List<Employee> employees = empService.getAllEmployees(); // fetch all employees
+            employeeComboBox.setItems(FXCollections.observableArrayList(employees));
+
+            // Display employee names in ComboBox
+            employeeComboBox.setCellFactory(cb -> new ListCell<>() {
+                @Override
+                protected void updateItem(Employee emp, boolean empty) {
+                    super.updateItem(emp, empty);
+                    setText(empty || emp == null ? "" : emp.getUser().getName() + " " + emp.getUser().getSurname());
+                }
+            });
+
+            employeeComboBox.setButtonCell(new ListCell<>() {
+                @Override
+                protected void updateItem(Employee emp, boolean empty) {
+                    super.updateItem(emp, empty);
+                    setText(empty || emp == null ? "" : emp.getUser().getName() + " " + emp.getUser().getSurname());
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error loading employees into ComboBox: " + e.getMessage());
+        }
+
     }
 
     public void setShift(Shift shift) {
@@ -90,7 +141,26 @@ public class ShiftFormController {
                         .setEmployee(selectedEmployee)
                         .build();
 
+                Employee selectedEmployee = employeeComboBox.getSelectionModel().getSelectedItem();
+                if (selectedEmployee == null) {
+                    showAlert("Please select an employee");
+                    return;
+                }
+
+
+                //HERE U CHECK: if the employee object, has a shift assigned to it. getShift of employee called. it returns shift object jpa
+                if (selectedEmployee.getShift() != null) {
+                    showAlert("This employee already has a shift assigned!");
+                    return;
+                }
+
+                newShift.setEmployee(selectedEmployee);
+
+
                 shiftService.create(newShift);
+
+
+
                 showAlert(Alert.AlertType.INFORMATION, "Shift created successfully!");
             } else {
                 // Update existing shift

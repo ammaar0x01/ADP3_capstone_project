@@ -7,22 +7,45 @@ Date: 26 March 2025
 
 package com.college.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Guest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int guestID;
-
     private String name;
     private String surname;
     private String contactNumber;
     private String email;
     private String paymentDetails;
+
+
+
+
+
+    //FK to Reservation
+    @OneToMany(mappedBy = "guest", cascade = CascadeType.ALL)
+    private List<Reservation> reservations = new ArrayList<>();
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+
+
+
+
+
+
+
 
     protected Guest() {}
     private Guest(GuestBuilder builder) {
@@ -32,6 +55,10 @@ public class Guest {
         this.surname = builder.surname;
         this.name = builder.name;
         this.guestID = builder.guestID;
+    }
+
+    public void setGuestID(int guestID) {
+        this.guestID = guestID;
     }
 
     public String getPaymentDetails() {
@@ -68,6 +95,10 @@ public class Guest {
                 ", email='" + email + '\'' +
                 ", paymentDetails='" + paymentDetails + '\'' +
                 '}';
+    }
+
+    public int getGuestId() {
+        return this.guestID;
     }
 
     public static class GuestBuilder {

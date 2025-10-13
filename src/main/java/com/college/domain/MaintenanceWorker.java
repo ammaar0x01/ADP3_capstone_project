@@ -13,6 +13,23 @@ public class MaintenanceWorker {
     private String company;
     private String type;
 
+
+
+
+    //FK to Employee
+    @OneToOne
+    @JoinColumn(name = "employee_id", unique = true) // foreign key to Employee
+    private Employee employee;
+
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
     protected MaintenanceWorker() {}
 
     private MaintenanceWorker(MaintenanceWorkerBuilder builder) {
