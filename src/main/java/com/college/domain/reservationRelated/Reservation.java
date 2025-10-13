@@ -10,11 +10,11 @@ import com.college.domain.Guest;
 import jakarta.persistence.*;
 
 @Entity
-//@Table(name="Reservation")
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reservationId;
+
     private String reservationDateTimeStart;
     private String reservationDateTimeEnd;
     // -----------------------------------

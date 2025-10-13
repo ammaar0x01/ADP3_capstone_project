@@ -94,7 +94,7 @@ public class DashboardController {
 
     @FXML
     public void showOverview() {
-        safeLoadView("/scenes/overview1.fxml", "Overview");
+        safeLoadView("/scenes/admin/overview-admin.fxml", "Overview");
     }
 
 
@@ -108,7 +108,7 @@ public class DashboardController {
 
     @FXML
     public void showGuestsGreen() {
-        safeLoadViewOtherPages("/scenes/guestFinalGreen.fxml", "Guests");
+        safeLoadViewOtherPages("/scenes/manager/guest-manager.fxml", "Guests");
     }
 
     @FXML
@@ -129,7 +129,7 @@ public class DashboardController {
 
     @FXML
     public void showEventsSolo() {
-        safeLoadViewOtherPages("/scenes/eventFinalAll.fxml", "Reservation");
+        safeLoadViewOtherPages("/scenes/manager/event-manager.fxml", "Reservation");
     }
 
     @FXML
@@ -139,18 +139,18 @@ public class DashboardController {
 
     @FXML
     public void showRooms() {
-        safeLoadViewOtherPages("/scenes/window-room-page1.fxml", "Rooms");
+        safeLoadViewOtherPages("/scenes/manager/room-page1-manager.fxml", "Rooms");
     }
 
 
     @FXML
     public void showPrint() {
-        safeLoadViewOtherPages("/scenes/printFinal.fxml", "Print");
+        safeLoadViewOtherPages("/scenes/admin/print-payment-admin.fxml", "Print");
     }
 
     @FXML
     public void showSearchGuest() {
-        safeLoadViewOtherPages("/scenes/guestSearchFinal.fxml", "Search For A Guest");
+        safeLoadViewOtherPages("/scenes/manager/guest-search-manager.fxml", "Search For A Guest");
     }
 
     @FXML
@@ -159,28 +159,28 @@ public class DashboardController {
 
     @FXML
     public void showRestful() {
-        safeLoadView("/scenes/restFinal.fxml", "Restful Web Service");
+        safeLoadView("/scenes/manager/REST-manager.fxml", "Restful Web Service");
     }
 
     @FXML
-    public void showProfileManager() {safeLoadView("/scenes/profileManagerFinal.fxml", "My Profile");}
+    public void showProfileManager() {safeLoadView("/scenes/manager/profile-manager.fxml", "My Profile");}
 
     @FXML
     public void showFAQ() {
-        safeLoadView("/scenes/FAQ.fxml", "FAQ");
+        safeLoadView("/scenes/manager/faq-manager.fxml", "FAQ");
     }
 
     @FXML
-    public void showAdminAddRoom() {safeLoadView("/scenes/addRoomFinal.fxml", "Add Rooms");}
+    public void showAdminAddRoom() {safeLoadView("/modal-forms/add-room.fxml", "Add Rooms");}
 
     @FXML
-    public void showCustomRooms() {safeLoadView("/scenes/customRoomFinal.fxml", "Custom Rooms");}
+    public void showCustomRooms() {safeLoadView("/scenes/_experimental/customRoomFinal.fxml", "Custom Rooms");}
 
 //this is the old show-overview-manager before adding profile image persistence, just go back to this if the new method show overview manager
 // if it breaks spring context or something for manager dash after doing this
 //    @FXML
 //    public void showOverviewManager() {
-//        safeLoadView("/scenes/overviewManager.fxml", "Overview");
+//        safeLoadView("/scenes/overview-manager.fxml", "Overview");
 //    }
 
 
@@ -189,7 +189,7 @@ public class DashboardController {
     @FXML
     public void showOverviewUser() {
         try {
-            String fxmlPath = "/scenes/overviewUser.fxml";
+            String fxmlPath = "/scenes/standard/overview-user.fxml";
             String viewName = "Overview";
 
             if (getClass().getResource(fxmlPath) == null) {
@@ -228,7 +228,7 @@ public class DashboardController {
     @FXML
     public void showOverviewManager() {
         try {
-            String fxmlPath = "/scenes/overviewManager.fxml";
+            String fxmlPath = "/scenes/manager/overview-manager.fxml";
             String viewName = "Overview";
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
@@ -287,17 +287,17 @@ public class DashboardController {
 
     @FXML
     public void showShifts() {
-        safeLoadViewOtherPages("/scenes/shiftFinalOld.fxml", "Shifts");
+        safeLoadViewOtherPages("/scenes/manager/shift-manager.fxml", "Shifts");
     }
 
     @FXML
     public void showShiftsUser() {
-        safeLoadViewOtherPages("/scenes/shiftFinalUser.fxml", "Shifts");
+        safeLoadViewOtherPages("/scenes/standard/shift-user.fxml", "Shifts");
     }
 
     @FXML
     public void showEmployeeSalary() {
-        safeLoadViewOtherPages("/scenes/EmployeeSalary.fxml", "Employee Salaries");
+        safeLoadViewOtherPages("/scenes/manager/employee-salary-manager.fxml", "Employee Salaries");
     }
 
     @FXML
@@ -308,7 +308,7 @@ public class DashboardController {
     @FXML
     public void showSignIn(ActionEvent event) {
         showSignInPage(event);
-//        safeLoadViewOtherPages("/scenes/window-login.fxml", "Login");
+//        safeLoadViewOtherPages("/scenes/login.fxml", "Login");
     }
 
 
@@ -348,11 +348,11 @@ public class DashboardController {
             loader.setControllerFactory(MainFinal.getSpringContext()::getBean); // <-- Spring injection
             Parent view = loader.load();
 
-            if ("/scenes/window-room-page1.fxml".equals(fxmlPath)) {
+            if ("/scenes/manager/room-page1-manager.fxml".equals(fxmlPath)) {
                 view.getStylesheets().add(getClass().getResource("/css/buttonStyle.css").toExternalForm());
-            }else if("/scenes/window-room-page2.fxml".equals(fxmlPath)){
+            }else if("/scenes/manager/room-page2-manager.fxml".equals(fxmlPath)){
                 view.getStylesheets().add(getClass().getResource("/css/buttonStyle.css").toExternalForm());
-            }else if ("/scenes/customRoomFinal.fxml".equals(fxmlPath)) {
+            }else if ("/scenes/_experimental/customRoomFinal.fxml".equals(fxmlPath)) {
                 view.getStylesheets().add(getClass().getResource("/css/buttonStyle.css").toExternalForm());
             }
 
@@ -405,7 +405,7 @@ public class DashboardController {
     public void showSignInPage(ActionEvent event) {
         try {
             // Load login FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/window-login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/login.fxml"));
             loader.setControllerFactory(MainFinal.getSpringContext()::getBean);
             Parent loginRoot = loader.load();
 

@@ -1,4 +1,4 @@
-package com.college.controller;
-
-public class RoleControllerView {
-}
+//package com.college.controller;
+//
+//public class RoleControllerView {
+//}

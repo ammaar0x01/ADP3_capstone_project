@@ -1,5 +1,6 @@
 package com.college.controller;
 
+import com.college.controller.reservationRelated.RoomUIController;
 import com.college.domain.reservationRelated.Room;
 import com.college.factory.RoomFactory;
 import com.college.service.RoomService;
@@ -16,7 +17,7 @@ class RoomControllerTest {
     private RoomService roomService;
 
     @Autowired
-    RoomController controller;
+    RoomUIController controller;
 
     Room roomOne;
     Room roomTwo;

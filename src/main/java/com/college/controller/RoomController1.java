@@ -592,7 +592,7 @@
 //    @FXML
 //    private void goBack(ActionEvent event) {
 //        try {
-//            Parent mainViewRoot = FXMLLoader.load(getClass().getResource("/scenes/window-room-page1.fxml"));
+//            Parent mainViewRoot = FXMLLoader.load(getClass().getResource("/scenes/room-page1-manager.fxml"));
 //            Scene currentScene = ((Node) event.getSource()).getScene();
 //            currentScene.setRoot(mainViewRoot);
 //        } catch (IOException e) {

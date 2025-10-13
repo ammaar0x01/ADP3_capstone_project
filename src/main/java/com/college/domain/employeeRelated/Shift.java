@@ -13,7 +13,6 @@ import java.time.LocalTime;
 
 
 @Entity
-//@Table(name = "shift")
 public class Shift {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

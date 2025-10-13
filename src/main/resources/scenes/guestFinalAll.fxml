@@ -1,60 +1,60 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<!--<?import javafx.scene.control.*?>-->
+<!--<?import javafx.scene.image.*?>-->
+<!--<?import javafx.scene.layout.*?>-->
+<!--<?import javafx.scene.text.*?>-->
 
-<AnchorPane xmlns="http://javafx.com/javafx/17.0.12"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.college.controller.GuestUIController"
-            style="-fx-background-color: white;">
+<!--<AnchorPane xmlns="http://javafx.com/javafx/17.0.12"-->
+<!--            xmlns:fx="http://javafx.com/fxml/1"-->
+<!--            fx:controller="com.college.controller.reservationRelated.GuestUIController"-->
+<!--            style="-fx-background-color: white;">-->
 
-    <!-- Left Green Panel -->
-    <Pane fx:id="leftPane" style="-fx-background-color: #66BA88;"
-          prefWidth="230.0"
-          AnchorPane.topAnchor="0.0"
-          AnchorPane.bottomAnchor="0.0"
-          AnchorPane.leftAnchor="0.0">
-        <children>
-            <ImageView layoutX="63.0" layoutY="26.0" preserveRatio="true" fitWidth="100">
-                <image>
-                    <Image url="@/images/c.png" />
-                </image>
-            </ImageView>
+<!--    &lt;!&ndash; Left Green Panel &ndash;&gt;-->
+<!--    <Pane fx:id="leftPane" style="-fx-background-color: #66BA88;"-->
+<!--          prefWidth="230.0"-->
+<!--          AnchorPane.topAnchor="0.0"-->
+<!--          AnchorPane.bottomAnchor="0.0"-->
+<!--          AnchorPane.leftAnchor="0.0">-->
+<!--        <children>-->
+<!--            <ImageView layoutX="63.0" layoutY="26.0" preserveRatio="true" fitWidth="100">-->
+<!--                <image>-->
+<!--                    <Image url="@/images/c.png" />-->
+<!--                </image>-->
+<!--            </ImageView>-->
 
-            <Button layoutX="40.0" layoutY="275.0"
-                    onAction="#handleEditGuest"
-                    prefHeight="40.0" prefWidth="150.0"
-                    style="-fx-background-color: #398F6C; -fx-background-radius: 15px;"
-                    text="Update Guest" textFill="WHITE" />
-        </children>
-    </Pane>
+<!--            <Button layoutX="40.0" layoutY="275.0"-->
+<!--                    onAction="#handleEditGuest"-->
+<!--                    prefHeight="40.0" prefWidth="150.0"-->
+<!--                    style="-fx-background-color: #398F6C; -fx-background-radius: 15px;"-->
+<!--                    text="Update Guest" textFill="WHITE" />-->
+<!--        </children>-->
+<!--    </Pane>-->
 
-    <!-- Title -->
-    <Text text="Guests" fill="#383838"
-          AnchorPane.topAnchor="30.0"
-          AnchorPane.leftAnchor="250.0">
-        <font>
-            <Font size="32.0" />
-        </font>
-    </Text>
+<!--    &lt;!&ndash; Title &ndash;&gt;-->
+<!--    <Text text="Guests" fill="#383838"-->
+<!--          AnchorPane.topAnchor="30.0"-->
+<!--          AnchorPane.leftAnchor="250.0">-->
+<!--        <font>-->
+<!--            <Font size="32.0" />-->
+<!--        </font>-->
+<!--    </Text>-->
 
-    <!-- Table -->
-    <TableView fx:id="guestTable"
-               AnchorPane.topAnchor="100.0"
-               AnchorPane.leftAnchor="250.0"
-               AnchorPane.rightAnchor="20.0"
-               AnchorPane.bottomAnchor="20.0"
-               style="-fx-background-color: white; -fx-border-color: transparent;">
-        <columns>
-            <TableColumn fx:id="colGuestID" text="GuestID" prefWidth="60"/>
-            <TableColumn fx:id="colName" text="Name" prefWidth="150"/>
-            <TableColumn fx:id="colSurname" text="Surname" prefWidth="150"/>
-            <TableColumn fx:id="colEmail" text="Email" prefWidth="150"/>
-            <TableColumn fx:id="colContact" text="Contact" prefWidth="200"/>
-            <TableColumn fx:id="colPayment" text="Payment Method" prefWidth="200"/>
-        </columns>
-    </TableView>
+<!--    &lt;!&ndash; Table &ndash;&gt;-->
+<!--    <TableView fx:id="guestTable"-->
+<!--               AnchorPane.topAnchor="100.0"-->
+<!--               AnchorPane.leftAnchor="250.0"-->
+<!--               AnchorPane.rightAnchor="20.0"-->
+<!--               AnchorPane.bottomAnchor="20.0"-->
+<!--               style="-fx-background-color: white; -fx-border-color: transparent;">-->
+<!--        <columns>-->
+<!--            <TableColumn fx:id="colGuestID" text="GuestID" prefWidth="60"/>-->
+<!--            <TableColumn fx:id="colName" text="Name" prefWidth="150"/>-->
+<!--            <TableColumn fx:id="colSurname" text="Surname" prefWidth="150"/>-->
+<!--            <TableColumn fx:id="colEmail" text="Email" prefWidth="150"/>-->
+<!--            <TableColumn fx:id="colContact" text="Contact" prefWidth="200"/>-->
+<!--            <TableColumn fx:id="colPayment" text="Payment Method" prefWidth="200"/>-->
+<!--        </columns>-->
+<!--    </TableView>-->
 
-</AnchorPane>
+<!--</AnchorPane>-->

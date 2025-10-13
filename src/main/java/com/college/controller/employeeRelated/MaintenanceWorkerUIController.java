@@ -1,0 +1,113 @@
+package com.college.controller.employeeRelated;
+
+import com.college.domain.Employee;
+import com.college.domain.employeeRelated.MaintenanceWorker;
+import com.college.service.MaintenanceWorkerService;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+@Component
+public class MaintenanceWorkerUIController {
+
+    @FXML private TableView<MaintenanceWorker> table;
+    @FXML private TableColumn<MaintenanceWorker, Integer> colId;
+    @FXML private TableColumn<MaintenanceWorker, Boolean> colExternal;
+    @FXML private TableColumn<MaintenanceWorker, String> colCompany;
+    @FXML private TableColumn<MaintenanceWorker, String> colType;
+
+
+
+
+    //will store FK object from employee
+    private Employee employee;  // hold the FK reference
+
+    //FK setter from employee
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+//        System.out.println("FK received in FoodWorkerController: " + employee.getId());
+    }
+
+
+
+
+
+    @Autowired
+    private MaintenanceWorkerService service;
+
+    @Autowired
+    private ApplicationContext applicationContext;
+
+    private final ObservableList<MaintenanceWorker> workers = FXCollections.observableArrayList();
+
+    @FXML
+    public void initialize() {
+        colId.setCellValueFactory(new PropertyValueFactory<>("maintenanceId"));
+        colExternal.setCellValueFactory(new PropertyValueFactory<>("external"));
+        colCompany.setCellValueFactory(new PropertyValueFactory<>("company"));
+        colType.setCellValueFactory(new PropertyValueFactory<>("type"));
+        table.setItems(workers);
+        load();
+    }
+
+    private void load() {
+        List<MaintenanceWorker> list = service.getAll();
+        Platform.runLater(() -> {
+            workers.clear();
+            workers.addAll(list);
+        });
+    }
+
+    @FXML
+    private void handleAdd() { openForm(null); }
+
+    @FXML
+    private void handleUpdate() {
+        MaintenanceWorker selected = table.getSelectionModel().getSelectedItem();
+        if (selected != null) openForm(selected);
+    }
+
+    @FXML
+    private void handleDelete() {
+        MaintenanceWorker selected = table.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            service.delete(selected.getMaintenanceId());
+            load();
+        }
+    }
+
+    private void openForm(MaintenanceWorker worker) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/_trash/Add_MaintenanceWorker.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle(worker == null ? "Add Worker" : "Update Worker");
+            stage.setScene(new Scene(loader.load()));
+            MaintenanceWorkerAddUIController controller = loader.getController();
+
+            //FOREIGN KEY ADD
+            controller.setEmployee(this.employee);
+
+
+
+            controller.setWorker(worker);
+            stage.showAndWait();
+            load();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}

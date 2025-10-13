@@ -7,7 +7,7 @@
 
 <?import javafx.geometry.Insets?>
 <AnchorPane prefHeight="605.0" prefWidth="1030.0" style="-fx-background-color: white;"
-            xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.college.controller.ReservationUIController">
+            xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.college.controller.reservationRelated.ReservationUIController">
 
 <!--    style="-fx-background-color: white;" makes it look nice but causes right ugly ui glitch on right of table?-->
     <!-- Table -->
@@ -34,7 +34,7 @@
 
         <ImageView layoutX="63.0" layoutY="26.0">
             <image>
-                <Image url="/images/c.png" />
+                <Image url="@/images/c.png" />
             </image>
         </ImageView>
 

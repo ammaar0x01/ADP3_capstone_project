@@ -157,11 +157,11 @@ public class UserLoginController {
 //
 //            //THIS IS NO LONGER USED OR CALLED, this change page method is deprecated
 //            if ("ADMIN".equals(role)) {
-//                fxmlToLoad = "/scenes/dashboardAdmin.fxml";
+//                fxmlToLoad = "/scenes/dashboard-admin.fxml";
 //            } else if ("MANAGER".equals(role)) {
-//                fxmlToLoad = "/scenes/dashboard.fxml";
+//                fxmlToLoad = "/scenes/dashboard-manager.fxml";
 //            } else if ("USER".equals(role)) {  //
-//                fxmlToLoad = "/scenes/dashboardUser.fxml";
+//                fxmlToLoad = "/scenes/dashboard-user.fxml";
 //            } else {
 //                fxmlToLoad = "/scenes/window-sign-upFinal.fxml"; // fallback
 //                System.out.println(fxmlToLoad);

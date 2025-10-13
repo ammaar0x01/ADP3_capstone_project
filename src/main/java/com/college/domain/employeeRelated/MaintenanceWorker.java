@@ -4,16 +4,14 @@ import com.college.domain.Employee;
 import jakarta.persistence.*;
 
 @Entity
-//@Table(name="MaintenanceWorker")
 public class MaintenanceWorker {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int maintenanceId;
+
     private boolean external;
     private String company;
     private String type;
-
 
 
 

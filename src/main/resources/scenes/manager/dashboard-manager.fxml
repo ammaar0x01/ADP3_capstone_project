@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane stylesheets="@/css/styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.college.controller.DashboardController">
+
+    <left>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background: #FFFFFF; -fx-border-color: #FFFFFF;" styleClass="scroll-pane" vbarPolicy="AS_NEEDED">
+
+            <AnchorPane>
+                <VBox prefWidth="220.0" spacing="10.0" style="-fx-background-color: #66BA88; -fx-padding: 20;" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+
+                    <!-- User Profile #66BA88-->
+                    <VBox alignment="CENTER" spacing="10">
+                        <!-- Profile Image with Circle Clip -->
+                        <ImageView fx:id="profileImage" fitHeight="80" fitWidth="80">
+                            <image>
+                                <Image url="@/images/characters/download3.jpg" />
+                            </image>
+                            <clip>
+                                <Circle centerX="40" centerY="40" radius="40" />
+                            </clip>
+                        </ImageView>
+
+                        <!-- User Name -->
+                        <Label fx:id="emailLabel" style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;" text="John Doe" />
+
+                        <!-- Role -->
+                        <Label fx:id="roleLabel" style="-fx-text-fill: #FFFFFF; -fx-font-size: 12px;" text="Administrator" />
+                    </VBox>
+
+                    <Separator />
+
+                    <!-- Menu Items -->
+                    <VBox spacing="5">
+                        <Button onAction="#showOverviewManager" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" text="Overview" />
+
+                        <Button onAction="#showProfileManager" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" text="My Profile" />
+
+                        <Button onAction="#showGuestsGreen" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" text="Add Reservations" />
+
+
+                        <Button onAction="#showGuestSolo" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" text="Manage Guests" />
+                        <Button onAction="#showReservationSolo" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" text="Manage Reservation" />
+                        <Button onAction="#showEventsSolo" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" text="Manage Events" />
+                        <Button onAction="#showPaymentsSolo" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" text="Manage Payments" />
+
+
+                        <Button onAction="#showRooms" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" text="Rooms" />
+
+                        <Button onAction="#showCustomRooms" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" text="Custom Rooms" />
+<!--                        <Button onAction="#showPayments" styleClass="menu-button" text="Payments" />-->
+                        <Button onAction="#showEmployeesGreen" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" text="Employees" />
+
+                        <Button onAction="#showShifts" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" text="Shifts" />
+
+                        <Button onAction="#showEmployeeSalary" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" text="Employee Salaries" />
+
+                        <Button onAction="#showSearchGuest" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" text="Search Guest" />
+
+                        <Button onAction="#showSearchTopPayment" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" text="Top Guest Payments" />
+
+                        <Button onAction="#showRestful" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" text="RestfulWeb" />
+
+                        <Button onAction="#showFAQ" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" text="FAQ" />
+
+                        <Button onAction="#showSignIn" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" text="Return To SignIn" />
+   
+                       <!-- Spacer to push Exit button down -->
+                       <Region VBox.vgrow="ALWAYS" />
+                        <Separator prefWidth="150.0" />
+                        <Button onAction="#exitApplication" prefHeight="40.0" prefWidth="200.0" styleClass="exit-button" text="Exit">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
+
+                    </VBox>
+                </VBox>
+            </AnchorPane>
+        </ScrollPane>
+    </left>
+
+    <center>
+        <StackPane fx:id="contentArea" style="-fx-background-color: #ecf0f1;" />
+    </center>
+</BorderPane>

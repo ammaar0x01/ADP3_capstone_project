@@ -52,10 +52,4 @@ public class SecurityConfig {
 
         return new ProviderManager(provider);
     }
-
-
-
-
-
-
 }

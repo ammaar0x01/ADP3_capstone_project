@@ -12,15 +12,9 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class RestSecurityConfig {
 
-
-
-
-
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(csrf -> csrf.disable())
+        http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")     //  ADMIN access only
                         .requestMatchers("/api/manager/**").hasAnyRole("MANAGER", "ADMIN") // Manager + Admin access
@@ -31,8 +25,4 @@ public class RestSecurityConfig {
 
         return http.build();
     }
-
-
-
-
 }

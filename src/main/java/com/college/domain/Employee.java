@@ -9,7 +9,6 @@ import java.time.LocalDate;
 
 @Entity
 public class Employee {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int employeeId;

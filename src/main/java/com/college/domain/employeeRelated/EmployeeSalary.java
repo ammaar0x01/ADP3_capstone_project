@@ -7,9 +7,7 @@ import java.time.LocalDate;
 
 
 @Entity
-//@Table(name = "employee_salary")
 public class EmployeeSalary {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int salaryId;

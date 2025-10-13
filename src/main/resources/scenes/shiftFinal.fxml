@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.college.controller.ShiftViewController">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.college.controller.employeeRelated.ShiftUIController">
    <HBox prefWidth="1000.0">
       <children>
          <Pane fx:id="leftPane" prefWidth="200.0" style="-fx-background-color:  rgba(10, 147, 6, 0.8);">

@@ -9,10 +9,9 @@ import com.college.domain.Employee;
 import jakarta.persistence.*;
 
 @Entity
-//@Table(name="Room")
 public class Room {
-
     @Id
+//    private int roomId;
     private int roomID;
 
     private String roomType;

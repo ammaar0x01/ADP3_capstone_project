@@ -9,9 +9,7 @@ import jakarta.persistence.*;
 // if u dont have an extra attribute in bridge table, jpa makes the bridge for u without an entity like this
 
 @Entity
-//@Table(name = "user_role")
 public class UserRole {
-
     @Id
     @GeneratedValue
     private int id;

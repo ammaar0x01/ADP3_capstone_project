@@ -3,21 +3,13 @@ package com.college.domain.reservationRelated;
 import jakarta.persistence.*;  // Only if you're using JPA/Hibernate, otherwise remove
 
 @Entity
-//@Table(name="Event")
 public class Event {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int eventId;
 
-
     private String reason;
-
-
     private String description;
-
-
-
 
 
 

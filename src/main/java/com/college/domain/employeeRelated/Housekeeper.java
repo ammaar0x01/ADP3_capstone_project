@@ -11,9 +11,7 @@ import com.college.domain.Employee;
 import jakarta.persistence.*;
 
 @Entity
-//@Table(name="Housekeeper")
 public class Housekeeper {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int housekeeperId;

@@ -4,7 +4,6 @@ import com.college.MainFinal;
 import com.college.controller.DashboardController;
 import com.college.domain.User;
 import com.college.repository.UserRepository;
-import com.college.service.UserService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -25,19 +24,19 @@ public class DashboardAuthoriseHandler {
     UserRepository userRepository;
 
     public void redirectToDashboard(Stage stage, Authentication auth) {
-        String fxmlToLoad = "scenes/default-dashboard.fxml"; // default fallback
+        String fxmlToLoad = "scenes/default-dashboard-manager.fxml"; // default fallback
         String role = "UNKNOWN";
 
         for (GrantedAuthority authority : auth.getAuthorities()) {
             role = authority.getAuthority();
             if (role.equals("ROLE_ADMIN")) {
-                fxmlToLoad = "/scenes/dashboardAdmin.fxml";
+                fxmlToLoad = "/scenes/admin/dashboard-admin.fxml";
                 break;
             } else if (role.equals("ROLE_MANAGER")) {
-                fxmlToLoad = "/scenes/dashboard.fxml";
+                fxmlToLoad = "/scenes/manager/dashboard-manager.fxml";
                 break;
             }else if (role.equals("ROLE_USER")) {  // <-- add this
-                fxmlToLoad = "/scenes/dashboardUser.fxml";
+                fxmlToLoad = "/scenes/standard/dashboard-user.fxml";
                 break;
             }
         }

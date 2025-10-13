@@ -6,7 +6,7 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="605.0" prefWidth="1030.0" style="-fx-background-color: white;"
-            xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.college.controller.PaymentViewController">
+            xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.college.controller.reservationRelated.PaymentUIController">
 
 
     <!-- Table -->
@@ -34,7 +34,7 @@
 
         <ImageView layoutX="63.0" layoutY="26.0">
             <image>
-                <Image url="/images/c.png" />
+                <Image url="@/images/c.png" />
             </image>
         </ImageView>
         <Button layoutX="40.0" layoutY="275.0" onAction="#handleUpdatePayment" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #398F6C;-fx-background-radius: 15px;" stylesheets="/css/buttonStyle.css" text="Update Payment" textFill="WHITE" />
