@@ -10,5 +10,3 @@ VALUES
 (57, 'Deluxe', 1500.00, TRUE, 'AC, TV, Wifi, Mini Bar, Balcony', NULL),
 (58, 'Deluxe', 1500.00, TRUE, 'AC, TV, Wifi, Mini Bar, Balcony', NULL),
 (59, 'Presidential', 2500.00, TRUE, 'AC, TV, Wifi, Mini Bar, Balcony, Jacuzzi', NULL);
-xqo-mvap-yrd
-
