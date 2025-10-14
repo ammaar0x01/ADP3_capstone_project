@@ -28,7 +28,7 @@ public class MainFinal extends Application {
     public void start(Stage stage) throws Exception {
         // -----------------------------
         // main scene
-//        String sceneName = "/scenes/window-sign-upFinal.fxml";
+//        String sceneName = "/scenes/window-sign.fxml";
 
 
         // other scenes
@@ -41,7 +41,7 @@ public class MainFinal extends Application {
         loader.setControllerFactory(springContext::getBean);
         Parent root = loader.load();
 //
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/window-sign-upFinal.fxml"));
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/window-sign.fxml"));
 //        loader.setControllerFactory(springContext::getBean);
 //        Parent root = loader.load();
 

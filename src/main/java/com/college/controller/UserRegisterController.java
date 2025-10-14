@@ -15,16 +15,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Component
 public class UserRegisterController {
@@ -218,18 +216,20 @@ public class UserRegisterController {
     @FXML
     private void goToLogin() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/login.fxml"));
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/_experimental/window-login-d1.fxml"));
             loader.setControllerFactory(MainFinal.getSpringContext()::getBean);
 
             Parent loginPage = loader.load();
             Stage stage = (Stage) username.getScene().getWindow();
             stage.getScene().setRoot(loginPage);
+            stage.setResizable(false);
 
-            String stylesheet = getClass().getResource("/css/buttonStyle.css").toExternalForm();
-            Scene scene = stage.getScene();
-            if (!scene.getStylesheets().contains(stylesheet)) {
-                scene.getStylesheets().add(stylesheet);
-            }
+//            String stylesheet = getClass().getResource("/css/buttonStyle.css").toExternalForm();
+//            Scene scene = stage.getScene();
+//            if (!scene.getStylesheets().contains(stylesheet)) {
+//                scene.getStylesheets().add(stylesheet);
+//            }
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -240,5 +240,20 @@ public class UserRegisterController {
     private void handleExit(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
+    }
+
+    // newer //
+    @FXML
+    public void exitApplication(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exit Application");
+//        alert.setHeaderText("Are you sure you want to exit?");
+        alert.setContentText("Are you sure you want to exit?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.close();
+        }
     }
 }

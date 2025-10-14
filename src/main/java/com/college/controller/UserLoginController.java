@@ -1,8 +1,6 @@
 package com.college.controller;
 
-import com.college.MainFinal;
 import com.college.config.DashboardAuthoriseHandler;
-import com.college.domain.User;
 import com.college.service.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -163,7 +160,7 @@ public class UserLoginController {
 //            } else if ("USER".equals(role)) {  //
 //                fxmlToLoad = "/scenes/dashboard-user.fxml";
 //            } else {
-//                fxmlToLoad = "/scenes/window-sign-upFinal.fxml"; // fallback
+//                fxmlToLoad = "/scenes/window-sign.fxml"; // fallback
 //                System.out.println(fxmlToLoad);
 //            }
 //
@@ -202,7 +199,7 @@ public class UserLoginController {
     @FXML
     private void handleGoBack(ActionEvent event) throws IOException {
         // Load the register window FXML
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/window-sign-upFinal.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/scenes/window-sign.fxml"));
         loader.setControllerFactory(com.college.MainFinal.getSpringContext()::getBean); // spring context aware
         Parent registerRoot = loader.load();
 
@@ -211,10 +208,12 @@ public class UserLoginController {
 
         // Replace scene with the register window
         Scene scene = new Scene(registerRoot);
-        scene.getStylesheets().add(getClass().getResource("/css/buttonStyle.css").toExternalForm()); // keep styling
+//        scene.getStylesheets().add(getClass().getResource("/css/buttonStyle.css").toExternalForm()); // keep styling
 
         stage.setScene(scene);
-        stage.setTitle("HMS - User Login");
+        stage.setTitle("Sign up");
+        stage.setResizable(false);
+
         stage.show();
     }
 
