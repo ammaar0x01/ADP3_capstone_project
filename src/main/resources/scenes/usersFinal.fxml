@@ -58,19 +58,20 @@
     </Text>
 
     <!-- User Table -->
-    <TableView fx:id="userTable" layoutX="268.0" layoutY="114.0"
-               prefHeight="332.0" prefWidth="730.0"
-               style="-fx-background-color: white; -fx-border-color: transparent;">
-        <columns>
-            <TableColumn fx:id="userIdColumn" text="ID" prefWidth="50"/>
-            <TableColumn fx:id="nameColumn" text="Name" prefWidth="120"/>
-            <TableColumn fx:id="surnameColumn" text="Surname" prefWidth="120"/>
-            <TableColumn fx:id="emailColumn" text="Email" prefWidth="150"/>
-            <TableColumn fx:id="roleColumn" text="Role" prefWidth="100"/>
-            <TableColumn fx:id="startDateColumn" text="Start Date" prefWidth="100"/>
-            <TableColumn fx:id="ageColumn" text="Age" prefWidth="60"/>
-            <TableColumn fx:id="genderColumn" text="Gender" prefWidth="80"/>
-        </columns>
-    </TableView>
+    <AnchorPane leftAnchor="240.0" rightAnchor="40.0" topAnchor="114.0" bottomAnchor="100.0">
+        <TableView fx:id="userTable" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                   style="-fx-background-color: white; -fx-border-color: transparent;">
+            <columns>
+                <TableColumn fx:id="userIdColumn" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="nameColumn" text="Name" prefWidth="120"/>
+                <TableColumn fx:id="surnameColumn" text="Surname" prefWidth="120"/>
+                <TableColumn fx:id="emailColumn" text="Email" prefWidth="150"/>
+                <TableColumn fx:id="roleColumn" text="Role" prefWidth="100"/>
+                <TableColumn fx:id="startDateColumn" text="Start Date" prefWidth="100"/>
+                <TableColumn fx:id="ageColumn" text="Age" prefWidth="60"/>
+                <TableColumn fx:id="genderColumn" text="Gender" prefWidth="80"/>
+            </columns>
+        </TableView>
+    </AnchorPane>
 
 </AnchorPane>
