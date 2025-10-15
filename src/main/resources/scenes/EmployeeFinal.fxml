@@ -10,14 +10,14 @@
             fx:controller="com.college.controller.EmployeeControllerView">
 
     <!-- Table -->
-    <AnchorPane leftAnchor="240.0" rightAnchor="40.0" topAnchor="114.0" bottomAnchor="100.0">
+    <AnchorPane leftAnchor="230.0" rightAnchor="0.0" topAnchor="60.0" bottomAnchor="0.0">
         <TableView fx:id="employeeTable" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                    style="-fx-background-color: white; -fx-border-color: transparent;">
             <columns>
-                <TableColumn fx:id="colEmployeeId" prefWidth="60" text="Employee ID" />
-                <TableColumn fx:id="colJobType" prefWidth="150" text="Job Type" />
-                <TableColumn fx:id="colStartDate" prefWidth="150" text="Start Date" />
-                <TableColumn fx:id="colUserId" prefWidth="150" text="User ID" />
+                <TableColumn fx:id="colEmployeeId" text="Employee ID" />
+                <TableColumn fx:id="colJobType" text="Job Type" />
+                <TableColumn fx:id="colStartDate" text="Start Date" />
+                <TableColumn fx:id="colUserId" text="User ID" />
             </columns>
         </TableView>
     </AnchorPane>

@@ -13,14 +13,14 @@
     <Label layoutX="40.0" layoutY="20.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Payments" />
 
     <!-- Table -->
-    <AnchorPane leftAnchor="40.0" rightAnchor="40.0" topAnchor="68.0" bottomAnchor="100.0">
+    <AnchorPane leftAnchor="230.0" rightAnchor="0.0" topAnchor="60.0" bottomAnchor="0.0">
         <TableView fx:id="paymentTable" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <columns>
-                <TableColumn fx:id="colId" prefWidth="60" text="ID" />
-                <TableColumn fx:id="colAmount" prefWidth="150" text="Amount" />
-                <TableColumn fx:id="colMethod" prefWidth="150" text="Method" />
-                <TableColumn fx:id="colStatus" prefWidth="150" text="Status" />
-                <TableColumn fx:id="colDate" prefWidth="200" text="Date" />
+                <TableColumn fx:id="colId" text="ID" />
+                <TableColumn fx:id="colAmount" text="Amount" />
+                <TableColumn fx:id="colMethod" text="Method" />
+                <TableColumn fx:id="colStatus" text="Status" />
+                <TableColumn fx:id="colDate" text="Date" />
             </columns>
         </TableView>
     </AnchorPane>
